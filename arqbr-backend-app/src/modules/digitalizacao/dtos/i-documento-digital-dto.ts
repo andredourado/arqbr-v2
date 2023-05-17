@@ -14,4 +14,14 @@ interface IDocumentoDigitalDTO {
   updatedAt?: Date
 }
 
-export { IDocumentoDigitalDTO }
+interface ISolicitacao {
+  id: string
+  solicitacaoFisico: boolean
+  nomeArquivo: string
+  dataSolicitacao: Date
+  solicitanteId: string
+  solicitanteNome: string
+}
+
+
+export { IDocumentoDigitalDTO, ISolicitacao}

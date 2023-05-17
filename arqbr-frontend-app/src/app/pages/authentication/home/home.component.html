@@ -1,5 +1,85 @@
 <po-page-default title="Home">
   <div class="background">
-    <img src="assets/images/login-page-logo.png" class="logo">
+    <div class="po-row">
+      <div class="po-xl-3 po-lg-3 po-md-6 po-sm-12 quadrados">
+        <div class="quadrados-body" style="background-color: rgb(27,159,182); color: white;">
+          <div class="title">{{ documentosPages }}</div>
+          <div class="subtitle">Páginas Processadas</div>
+        </div>
+      </div>
+  
+      <div class="po-xl-3 po-lg-3 po-md-6 po-sm-12 quadrados">
+        <div class="quadrados-body" style="background-color: rgb(28,166,73); color: white;">
+          <div class="title">{{ documento }}</div>
+          <div class="subtitle">Documentos Processados</div>
+        </div>
+      </div>
+
+      <div class="po-xl-3 po-lg-3 po-md-6 po-sm-12 quadrados">
+        <div class="quadrados-body" style="background-color: var(--color-04); color: white;">
+          <div class="title">6.318</div>
+          <div class="subtitle">Caixas em Guarda</div>
+        </div>
+      </div>
+   
+      <div class="po-xl-3 po-lg-3 po-md-6 po-sm-12 quadrados">
+        <div class="quadrados-body" style="background-color: rgb(222,29,55); color: white;">
+          <div class="title">{{ documentsProcessing }}</div>
+          <div class="subtitle">Sendo Processados</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="po-row">
+      <div class="po-md-12 po-lg-6 po-mb-sm-2 po-mb-md-2 po-mt-2 po-table-shadow">
+        <div class="font">Últimas Solicitações</div>
+        <po-table 
+          [p-auto-collapse]="true"
+          [p-height]="listHeight"
+          [p-columns]="columns"
+          p-container="string"
+          [p-hide-columns-manager]="true"
+          [p-items]="solicitacoes"
+          [p-sort]="true"
+          [p-striped]="true"
+        > </po-table>
+      </div> 
+
+      <po-tabs class="po-md-12 po-lg-6 po-mb-sm-2 po-mb-md-2 po-lb-lg-2 po-mt-2">
+        <po-tab p-label="Tipo de Documento" p-active>
+          <div class="grafico"> 
+            <po-chart 
+              p-title="Top Tipos Documentos"
+              [p-height]="graphHeight"
+              [p-series]="topTipoDocumento"
+              [p-type]="tipoDocumentoType"
+              [p-options]="tipoDocumentoOptions"
+            > </po-chart> 
+          </div>
+        </po-tab>
+
+        <po-tab p-label="Centros de Custo">
+          <div class="grafico"> 
+            <po-chart 
+              p-title="Top Centros de Custo"
+              [p-height]="graphHeight"
+              [p-series]="topDepartamento"
+              [p-type]="departamentoType"
+              [p-options]="departamentoOptions"
+            > </po-chart> 
+          </div>
+        </po-tab>
+      </po-tabs> 
+
+      <!-- <div class="po-md-12 po-lg-6 po-mb-sm-2 po-mb-md-2 po-lb-lg-2 po-mt-2" *ngIf="!canSeeDepartamento"> 
+        <po-chart 
+          p-title="Top Tipos Documentos"
+          [p-height]="listHeight"
+          [p-series]="topTipoDocumento"
+          [p-type]="tipoDocumentoType"
+          [p-options]="tipoDocumentoOptions"
+        > </po-chart> 
+      </div> -->
+    </div>
   </div>
 </po-page-default>

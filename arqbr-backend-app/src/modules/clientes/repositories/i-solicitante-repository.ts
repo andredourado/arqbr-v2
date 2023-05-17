@@ -1,5 +1,6 @@
 import { ISolicitanteDTO } from '@modules/clientes/dtos/i-solicitante-dto'
 import { HttpResponse } from '@shared/helpers'
+import { Solicitante } from '../infra/typeorm/entities/solicitante'
 
 interface ISolicitanteRepository {
   // create
@@ -30,6 +31,10 @@ interface ISolicitanteRepository {
 
   // get
   get (id: string): Promise<HttpResponse>
+
+
+  // get by email
+  getByEmail (email: string): Promise<Solicitante>
 
 
   // update

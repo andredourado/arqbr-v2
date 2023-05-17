@@ -228,6 +228,22 @@ class SolicitanteRepository implements ISolicitanteRepository {
   }
 
 
+  // get by email
+  async getByEmail (email: string): Promise<Solicitante> {
+    try {
+      const solicitante = await this.repository.findOne({ email })
+
+      if (typeof solicitante === 'undefined') {
+        return null
+      }
+
+      return solicitante
+    } catch (err) {
+      return null
+    }
+  }
+
+
   // update
   async update ({
     id,

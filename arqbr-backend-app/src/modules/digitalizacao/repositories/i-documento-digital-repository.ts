@@ -1,4 +1,6 @@
-import { IDocumentoDigitalDTO } from '@modules/digitalizacao/dtos/i-documento-digital-dto'
+import { Solicitante } from '@modules/clientes/infra/typeorm/entities/solicitante'
+import { IDocumentoDigitalDTO, ISolicitacao } from '@modules/digitalizacao/dtos/i-documento-digital-dto'
+import { User } from '@modules/security/infra/typeorm/entities/user'
 import { HttpResponse } from '@shared/helpers'
 
 interface IDocumentoDigitalRepository {
@@ -12,7 +14,10 @@ interface IDocumentoDigitalRepository {
     page: number,
     rowsPerPage: number,
     order: string,
-    filter: string
+    filter: any,
+    tipoDocumentoId: string,
+    user: User,
+    solicitante: Solicitante
   ): Promise<HttpResponse>
 
 
@@ -25,7 +30,28 @@ interface IDocumentoDigitalRepository {
 
 
   // count
-  count (search: string, filter: string): Promise<HttpResponse>
+  count (
+    search: string, 
+    filter: any,
+    tipoDocumentoId: string,
+    user: User, 
+    solicitante: Solicitante
+  ): Promise<HttpResponse>
+
+
+  // count pages
+  countPages (user: User, solicitante: Solicitante): Promise<HttpResponse>
+
+
+  countProcessing (user: User, solicitante: Solicitante): Promise<HttpResponse>
+
+
+  // count by tipo documento
+  countByTipoDocumento (user: User, solicitante: Solicitante): Promise<HttpResponse>
+
+
+  // count by departamento
+  countByDepartamento (): Promise<HttpResponse>
 
 
   // get
@@ -42,6 +68,9 @@ interface IDocumentoDigitalRepository {
   
   // multi delete
   multiDelete (ids: string[]): Promise<HttpResponse>
+
+  // get solicitacao
+  getDocumentosSolicitados(rowsPerPage: number): Promise<HttpResponse<ISolicitacao[]>>
 }
 
 export { IDocumentoDigitalRepository }
