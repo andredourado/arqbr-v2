@@ -4,6 +4,7 @@ import { ITipoDocumentoRepository } from '@modules/digitalizacao/repositories/i-
 import { TipoDocumento } from '@modules/digitalizacao/infra/typeorm/entities/tipo-documento'
 import { noContent, serverError, ok, notFound, HttpResponse } from '@shared/helpers'
 import { AppError } from '@shared/errors/app-error'
+import { newObjectBuilder } from '@utils/new-object-constructor'
 
 class TipoDocumentoRepository implements ITipoDocumentoRepository {
   private repository: Repository<TipoDocumento>
@@ -120,19 +121,42 @@ class TipoDocumentoRepository implements ITipoDocumentoRepository {
 
 
   // select
-  async select (filter: string, clienteId): Promise<HttpResponse> {
+  async select (filter: string, clienteId: string, departamentoId: string): Promise<HttpResponse> {
     try {
-      const tiposDocumento = await this.repository.createQueryBuilder('tip')
+      let query = this.repository.createQueryBuilder('tip')
         .select([
           'tip.id as "value"',
           'tip.descricao as "label"',
+          'cam.id as "id"',
+          'cam.nomeCampo as "nomeCampo"',
+          'cam.titulo as "titulo"',
+          'cam.metodoExtracao as "metodoExtracao"'
         ])
-        .where('tip.clienteId = :clienteId', { clienteId: `${clienteId}`})
+        .leftJoin('campos_documento', 'cam', 'cam.tipoDocumentoId = tip.id')
+
+      if (clienteId) {
+        query = query 
+          .where('tip.clienteId = :clienteId', { clienteId: `${clienteId}`})
+      }
+
+      if (departamentoId) {
+        query = query 
+          .where('tip.departamentoId = :departamentoId', { departamentoId: `${departamentoId}`})
+      }
+
+      const tiposDocumento = await query
         .andWhere('tip.descricao ilike :filter', { filter: `${filter}%` })
         .addOrderBy('tip.descricao')
         .getRawMany()
 
-      return ok(tiposDocumento)
+      const newTiposDocumento = newObjectBuilder({
+        data: tiposDocumento,
+        ref: 'value',
+        variablesToArray: ['id', 'nomeCampo', 'titulo', 'metodoExtracao'],
+        nameArrayVariable: 'campos' 
+      }) 
+
+      return ok(newTiposDocumento)
     } catch (err) {
       return serverError(err)
     }

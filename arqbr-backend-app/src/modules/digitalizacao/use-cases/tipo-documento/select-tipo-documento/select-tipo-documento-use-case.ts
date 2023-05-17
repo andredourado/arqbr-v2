@@ -17,9 +17,10 @@ class SelectTipoDocumentoUseCase {
 
   async execute({
     filter,
-    clienteId
+    clienteId,
+    departamentoId
   }): Promise<ResponseProps> {
-    const tiposDocumento = await this.tipoDocumentoRepository.select(filter, clienteId)
+    const tiposDocumento = await this.tipoDocumentoRepository.select(filter, clienteId, departamentoId)
 
     const newTiposDocumento = {
       items: tiposDocumento.data,

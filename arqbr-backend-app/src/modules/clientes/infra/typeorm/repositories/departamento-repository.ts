@@ -105,12 +105,18 @@ class DepartamentoRepository implements IDepartamentoRepository {
   // select
   async select (filter: string, clienteId): Promise<HttpResponse> {
     try {
-      const departamentos = await this.repository.createQueryBuilder('dep')
+      let query = this.repository.createQueryBuilder('dep')
         .select([
           'dep.id as "value"',
           'dep.nome as "label"',
         ])
-        .where('dep.clienteId = :clienteId', { clienteId: `${clienteId}`})
+
+        if (clienteId) {
+          query = query
+            .where('dep.clienteId = :clienteId', { clienteId: `${clienteId}`})
+        }
+
+      const departamentos = await query
         .andWhere('dep.nome ilike :filter', { filter: `${filter}%` })
         .addOrderBy('dep.nome')
         .getRawMany()
