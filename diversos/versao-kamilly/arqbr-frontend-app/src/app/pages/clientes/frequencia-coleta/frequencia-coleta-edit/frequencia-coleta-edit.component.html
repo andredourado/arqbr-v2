@@ -1,0 +1,248 @@
+<po-page-default p-title="Frequencia de Coletas" [p-actions]="pageActions">
+  <form [formGroup]="frequenciaColetaForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="clienteId"
+        name="clienteId"
+        (p-change)="clienteIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="clienteIdService"
+        p-label="Cliente"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="contratoId"
+        name="contratoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="contratoIdService"
+        p-label="Contrato"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="frequenciaId"
+        name="frequenciaId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="frequenciaIdService"
+        p-label="Frequência"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="diasDoMes"
+        name="diasDoMes"
+        p-clean
+        p-label="Dias do Mês (separados por virgula)"
+        p-maxlength="100"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="segHorarioInicio"
+        name="segHorarioInicio"
+        p-clean
+        p-label="Seg Início"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="segHorarioFim"
+        name="segHorarioFim"
+        p-clean
+        p-label="Seg Fim"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="terHorarioInicio"
+        name="terHorarioInicio"
+        p-clean
+        p-label="Ter Início"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="terHorarioFim"
+        name="terHorarioFim"
+        p-clean
+        p-label="Ter Fim"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quaHorarioInicio"
+        name="quaHorarioInicio"
+        p-clean
+        p-label="Qua Início"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quaHorarioFim"
+        name="quaHorarioFim"
+        p-clean
+        p-label="Qua Fim"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quiHorarioInicio"
+        name="quiHorarioInicio"
+        p-clean
+        p-label="Qui Início"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quiHorarioFim"
+        name="quiHorarioFim"
+        p-clean
+        p-label="Qui Fim"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sexHorarioInicio"
+        name="sexHorarioInicio"
+        p-clean
+        p-label="Sex Início"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sexHorarioFim"
+        name="sexHorarioFim"
+        p-clean
+        p-label="Sex Fim"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sabHorarioInicio"
+        name="sabHorarioInicio"
+        p-clean
+        p-label="Sab Início"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sabHorarioFim"
+        name="sabHorarioFim"
+        p-clean
+        p-label="Sab Fim"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="domHorarioInicio"
+        name="domHorarioInicio"
+        p-clean
+        p-label="Dom Início"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="domHorarioFim"
+        name="domHorarioFim"
+        p-clean
+        p-label="Dom Fim"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="desabilitado"
+        name="desabilitado"
+        [p-disabled]="readonly"
+        p-label="Desabilitado"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

@@ -1,0 +1,53 @@
+<po-page-default p-title="Plantas" [p-actions]="pageActions">
+  <form [formGroup]="plantaForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="unidadeId"
+        name="unidadeId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="unidadeIdService"
+        p-label="Unidade"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="nome"
+        name="nome"
+        p-clean
+        p-label="Nome"
+        p-maxlength="60"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-number
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="quantidadePosicoes"
+        name="quantidadePosicoes"
+        p-clean
+        p-label="Quantidade de Posições"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+        p-required
+      > </po-number>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="desabilitado"
+        name="desabilitado"
+        [p-disabled]="readonly"
+        p-label="Desabilitado"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

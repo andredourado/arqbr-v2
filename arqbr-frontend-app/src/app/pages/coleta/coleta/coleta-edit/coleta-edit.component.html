@@ -1,0 +1,163 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="coletaForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="clienteId"
+        name="clienteId"
+        (p-change)="clienteIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="clienteIdService"
+        [p-label]="this.literals.fields.form['clienteId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="departamentoId"
+        name="departamentoId"
+        (p-change)="departamentoIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="departamentoIdService"
+        [p-label]="this.literals.fields.form['departamentoId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="solicitanteId"
+        name="solicitanteId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="solicitanteIdService"
+        [p-label]="this.literals.fields.form['solicitanteId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="pontoColetaId"
+        name="pontoColetaId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="pontoColetaIdService"
+        [p-label]="this.literals.fields.form['pontoColetaId']"
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="identificador"
+        name="identificador"
+        p-clean
+        [p-label]="this.literals.fields.form['identificador']"
+        p-maxlength="40"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-datepicker
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="dataProgramadaColeta"
+        name="dataProgramadaColeta"
+        p-clean
+        [p-label]="this.literals.fields.form['dataProgramadaColeta']"
+        [p-readonly]="readonly"
+      > </po-datepicker>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-datepicker
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="horaProgramadaColeta"
+        name="horaProgramadaColeta"
+        p-clean
+        [p-label]="this.literals.fields.form['horaProgramadaColeta']"
+        [p-readonly]="readonly"
+      > </po-datepicker>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-number
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="volumes"
+        name="volumes"
+        p-clean
+        [p-label]="this.literals.fields.form['volumes']"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+        p-required
+      > </po-number>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="veiculoId"
+        name="veiculoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="veiculoIdService"
+        [p-label]="this.literals.fields.form['veiculoId']"
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="entregadorId"
+        name="entregadorId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="entregadorIdService"
+        [p-label]="this.literals.fields.form['entregadorId']"
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-datepicker
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="dataEfetivaColeta"
+        name="dataEfetivaColeta"
+        p-clean
+        [p-label]="this.literals.fields.form['dataEfetivaColeta']"
+        [p-readonly]="readonly"
+      > </po-datepicker>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-datepicker
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="horaEfetivaColeta"
+        name="horaEfetivaColeta"
+        p-clean
+        [p-label]="this.literals.fields.form['horaEfetivaColeta']"
+        [p-readonly]="readonly"
+      > </po-datepicker>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="arquivoFotoProtocolo"
+        name="arquivoFotoProtocolo"
+        p-clean
+        [p-label]="this.literals.fields.form['arquivoFotoProtocolo']"
+        p-maxlength="255"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+  </form>
+</po-page-default>

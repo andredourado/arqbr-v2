@@ -1,0 +1,69 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="cepForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="codigoCep"
+        name="codigoCep"
+        p-clean
+        [p-label]="this.literals.fields.form['codigoCep']"
+        p-maxlength="60"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="logradouro"
+        name="logradouro"
+        p-clean
+        [p-label]="this.literals.fields.form['logradouro']"
+        p-maxlength="60"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="estadoId"
+        name="estadoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="estadoIdService"
+        [p-label]="this.literals.fields.form['estadoId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="cidadeId"
+        name="cidadeId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="cidadeIdService"
+        [p-label]="this.literals.fields.form['cidadeId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="bairro"
+        name="bairro"
+        p-clean
+        [p-label]="this.literals.fields.form['bairro']"
+        p-maxlength="60"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+  </form>
+</po-page-default>

@@ -1,0 +1,62 @@
+<po-page-dynamic-search
+  (p-change-disclaimers)="clickDisclaimers($event)"
+  (p-quick-search)="search($event)"
+  p-title="Documentos Digitais"
+>
+ 
+<div class="po-row">
+  <po-select
+    [p-options]="tiposDocumento" 
+    class="po-lg-6 po-sm-12 po-p-0"
+    (p-change)="changeTipoDocumento($event)" 
+    p-label="Tipo de documento"
+  > </po-select> 
+</div>
+
+<form [formGroup]="filterForm">
+  <div
+    style="max-width: calc(100vw - 288px); display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding-right: 8px; margin-bottom: 8px;" 
+    *ngIf="tipoDocumentoSelected != null"
+  >
+    <div style="display: flex; flex-direction: row; justify-content: flex-start; padding-bottom: 8px;">
+      <div 
+        style="display: flex; flex-direction: column; width: 300px;"
+        class="po-pr-1 po-pl-1" 
+        *ngFor="let campo of tipoDocumentoSelected.campos"
+      >
+        <label [for]="campo.value" class="po-field-title">{{campo.label}}</label>
+        <input
+          [formControlName]="campo.value"
+          class="po-input"
+          [id]="campo.value"
+          [name]="campo.value" 
+          clean 
+          type="text"
+        >
+      </div>
+    </div>
+    
+    <button 
+      type="button" 
+      class="fa-solid fa-magnifying-glass fa-lg" 
+      style="height: 50px; width: 50px; background-color: white; border: solid 1px #bdbdbd; color: #0C9ABE;"
+      (click)="filterDocumentos()"
+    > </button>
+  </div>
+</form>
+
+  <po-table
+    #table
+    [p-actions]="tableActions"
+    p-actions-right
+    [p-columns]="fields"
+    p-container
+    [p-height]="listHeight"
+    p-infinite-scroll
+    p-infinite-scroll-distance="90"
+    [p-items]="items"
+    [p-loading]="loading"
+    p-selectable
+    (p-show-more)="showMoreItems()"
+  > </po-table>
+</po-page-dynamic-search>

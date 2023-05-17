@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap');
+
+.no-padding {
+  padding: 0px;
+}
+
+.checkbox-header {
+  display: flex;
+  margin-top: 37px;
+  align-items: flex-end;
+}
+
+.campos {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  max-width: 1400px;
+}
+
+.upload {
+  // width: 200px;
+  height: 20px;
+  margin-top: 32px;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0;
+}
+
+canvas {
+  cursor: crosshair;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  max-height: calc(100vh - 300px);
+
+  .canvas-container {
+    .pagination {
+      background-color: #0c9abe;
+      display: flex;
+      flex-direction: row;
+      height: 40px;
+      justify-content: center;
+      user-select: none;
+    
+      a {
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+       cursor: pointer;
+      }
+    
+      .spacement-left {
+        margin-left: 39px;
+      }
+    
+      .spacement-right {
+        margin-right: 39px;
+      }
+    }
+  
+    .img {
+      display: grid;
+      border: 1px solid #0c9abe;
+      max-height: calc(100vh - 329px);
+      overflow-y: scroll;
+  
+      #canvasForeground {
+        z-index: 10;
+        border: none;
+        grid-column-start: 1;
+        grid-row-start: 1;
+        top: 0;
+        left: 0;
+      }
+  
+      #img {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        z-index: 1;
+      }
+    }
+  }
+  
+  .side-menu {
+    display: flex;
+    flex-direction: column;
+  
+    .table-div {
+      width: 100%;
+      height: calc(100vh - 654px);
+      margin-bottom: 20px;
+      margin-left: -2px;
+      border: 1px solid #0c9abe;
+  
+      .squares-table {
+        border-collapse: collapse;
+        user-select: none;
+        width: 100%;
+      
+        thead {
+          background-color: #0c9abe;
+        }
+      
+        th {
+          color: white;
+          font-family: 'NunitoSans';
+          font-size: 14px;
+          line-height: 24px;
+          padding: 8px 16px;
+          text-transform: uppercase;
+        }
+      
+        .table-body {
+          background-color: white;
+          max-height: calc(100vh - 668px);
+          overflow-y: scroll;
+          width: 100%;
+  
+          .square-name {
+            border-left: 1px solid #83a9b333;
+            font-family: 'NunitoSans';
+            padding-left: 8px;
+          }
+          
+          .square-name-header {
+            border-left: 1px solid #83a9b333;
+            color: #0c9abe;
+            font-family: 'NunitoSans';
+            padding-left: 8px;
+          }
+        
+          .page-number { 
+            font-family: 'NunitoSans';
+            padding: 0px 8px;
+            text-align: center;
+            width: 65px;
+          }
+        
+          .page-number-header {
+            color: #0c9abe;
+            font-family: 'NunitoSans';
+            padding: 0px 8px;
+            text-align: center;
+            width: 65px;
+          }
+        }
+      
+        tr {
+          border-bottom: 1px solid #83a9b333;
+          cursor: pointer; 
+          transition: 0.2s;
+          width: 100%;
+        }
+      
+        tr:hover {
+          background-color: #96b7cf26;
+        }
+      }
+    }
+    
+    .form {
+      height: 345px;
+      width: 100%;
+      border: 1px solid #0c9abe;
+      padding: 10px 10px;
+      position: relative;
+      overflow-y: scroll;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: flex;
+  
+      .buttons {
+        display: flex;
+        justify-content: flex-end;
+      }
+      
+      .actions {
+        padding-top: 15px;
+      }
+      
+      po-button {
+        padding: 15px 0px 0px 10px;
+      }
+    }
+  }
+}
+
+img::selection {
+  color:transparent;
+}
+img::-moz-selection {
+  color:transparent;
+}
+
+.texto-body {
+  max-height: calc(100vh - 329px);
+  overflow-y: scroll;
+  border: 1px solid #0c9abe;
+
+  .texto {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #0c9abe;
+}
+

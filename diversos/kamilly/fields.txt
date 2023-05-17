@@ -1,0 +1,327 @@
+07ec0931-be00-4f0b-a9f5-5665bb537301;860b3bb1-7a9d-48e9-bd86-2935361134b8;referencia;Referência;regex_date
+07ec0931-be00-4f0b-a9f5-5665bb537301;aa591b33-b82a-4216-a26e-0125529c4475;nome_cooperado;Nome do cooperado;text_in_line
+07ec0931-be00-4f0b-a9f5-5665bb537301;ac7ea004-d1df-4552-82ad-59b0ca0df17b;nome_colaborador;Nome do colaborador;text_in_line
+e8cb728f-d58a-42fe-8451-0270e1269b0f;9c81dd68-296a-4380-83c3-63b1dd95f34c;referencia;Referência;regex_date
+e8cb728f-d58a-42fe-8451-0270e1269b0f;c0953f63-506e-465c-ace4-e0b124ff5a31;nome_cooperado;Nome do cooperado;text_in_line
+e8cb728f-d58a-42fe-8451-0270e1269b0f;591337c2-2464-4743-b12e-2d948fa2e67e;nome_colaborador;Nome do colaborador;text_in_line
+1da17f61-8b00-4392-8d3e-c931f3ec9c5d;b2cbdb18-14f4-4dc8-949a-3daa9a542ded;referencia;Referência;regex_date
+1da17f61-8b00-4392-8d3e-c931f3ec9c5d;6c125458-e98f-47dc-9435-d82a7b7a1945;nome_cooperado;Nome do cooperado;text_in_line
+1da17f61-8b00-4392-8d3e-c931f3ec9c5d;11f2e174-235e-4d88-a56a-3f61278c4ac7;nome_colaborador;Nome do colaborador;text_in_line
+89164510-06b6-4efe-aa35-136d6530620f;17f89525-aea7-4089-9f90-9038366d0581;referencia;Referência;regex_date
+89164510-06b6-4efe-aa35-136d6530620f;d59c4525-2a3b-4452-92ee-d76c7a628a39;nome_cooperado;Nome do cooperado;text_in_line
+89164510-06b6-4efe-aa35-136d6530620f;a44f5fab-cd91-4692-984c-4a7886759fb0;nome_colaborador;Nome do colaborador;text_in_line
+b470f824-bc86-49de-bf31-ea9c041c72a9;a8ef5ff0-d776-493a-ba94-7b16c21d9380;referencia;Referência;regex_date
+b470f824-bc86-49de-bf31-ea9c041c72a9;d137b50a-ea9d-4bf6-8fc3-cad49e15c8b1;nome_cooperado;Nome do cooperado;text_in_line
+b470f824-bc86-49de-bf31-ea9c041c72a9;5844b233-51b5-4e27-964e-5ed9d867c34b;nome_colaborador;Nome do colaborador;text_in_line
+d4915321-89e1-4144-8f4b-e799e3595de4;762bd53e-4d51-4725-83e5-88eda76de418;referencia;Referência;regex_date
+d4915321-89e1-4144-8f4b-e799e3595de4;5651cfa7-3b70-451f-8c10-d9aacca57203;nome_cooperado;Nome do cooperado;text_in_line
+d4915321-89e1-4144-8f4b-e799e3595de4;f756dec1-2fd2-4e84-a78f-63b17a933c58;nome_colaborador;Nome do colaborador;text_in_line
+61791fbc-65d6-496c-b827-78b3a1673047;d25664b6-c3d5-4c6d-adde-c5917bf18668;referencia;Referência;regex_date
+61791fbc-65d6-496c-b827-78b3a1673047;d34f4434-506b-4260-9f4a-740ffd5813e5;nome_cooperado;Nome do cooperado;text_in_line
+61791fbc-65d6-496c-b827-78b3a1673047;6e551aa4-9133-4552-827e-c29bbaf584ac;nome_colaborador;Nome do colaborador;text_in_line
+584f6961-0679-4175-be47-5bf75acff478;0765f73f-8862-424e-bcca-cf7d0143ef60;referencia;Referência;regex_date
+584f6961-0679-4175-be47-5bf75acff478;dd18d3d3-b619-474e-b2ee-e417ed8761b0;nome_cooperado;Nome do cooperado;text_in_line
+584f6961-0679-4175-be47-5bf75acff478;08211d05-797c-4cfd-9795-c43668c16b6f;nome_colaborador;Nome do colaborador;text_in_line
+60bbb162-36f4-4c41-9d63-c042e57a4424;71cbb695-2b54-4066-855a-d891b40a0cd5;referencia;Referência;regex_date
+60bbb162-36f4-4c41-9d63-c042e57a4424;0f32f125-017f-4c12-b362-d0cb1dc779fa;nome_cooperado;Nome do cooperado;text_in_line
+60bbb162-36f4-4c41-9d63-c042e57a4424;ed5684d5-9a94-44d5-8507-6a7a52584aa3;nome_colaborador;Nome do colaborador;text_in_line
+cfbb428d-8497-4622-995e-690bae8551c4;72d01f32-0a75-4184-ad75-2aa13e77c5d8;referencia;Referência;regex_date
+cfbb428d-8497-4622-995e-690bae8551c4;6a206ced-3909-4a55-93cf-f6f04429a7c3;nome_cooperado;Nome do cooperado;text_in_line
+cfbb428d-8497-4622-995e-690bae8551c4;4cd69633-9bba-47a9-952b-6a5e4273147b;nome_colaborador;Nome do colaborador;text_in_line
+4b233bd3-3010-4bf7-84fd-c397ee3a3754;250a0131-d19d-4b37-a647-8a2cff6d42f8;referencia;Referência;regex_date
+4b233bd3-3010-4bf7-84fd-c397ee3a3754;16507f5f-eddc-4b33-9283-9945c73d4fc9;nome_cooperado;Nome do cooperado;text_in_line
+4b233bd3-3010-4bf7-84fd-c397ee3a3754;2f4dbd16-499b-4593-936d-b139e22f826f;nome_colaborador;Nome do colaborador;text_in_line
+99a2f227-4e08-4540-bde2-61c87a7cc655;bf3e115c-86b9-4d05-a5d5-92ca5e411957;referencia;Referência;regex_date
+99a2f227-4e08-4540-bde2-61c87a7cc655;2a59e26c-282c-4895-af11-6c3613f30d69;nome_cooperado;Nome do cooperado;text_in_line
+99a2f227-4e08-4540-bde2-61c87a7cc655;45aa8a94-8bc6-466e-82c4-e82f1558e4e6;nome_colaborador;Nome do colaborador;text_in_line
+f215706c-2f00-4763-ade5-20aeac5a7dd2;cb9a6599-67dc-4872-a3f5-eb5ef5da3024;referencia;Referência;regex_date
+f215706c-2f00-4763-ade5-20aeac5a7dd2;acebb9c8-1e3d-4f24-b1ae-a1d5803bc15d;nome_cooperado;Nome do cooperado;text_in_line
+f215706c-2f00-4763-ade5-20aeac5a7dd2;900b0864-2f0c-40ed-a62c-bc259416ec3e;nome_colaborador;Nome do colaborador;text_in_line
+bdecef25-5a20-40e3-a635-15ee77945dc4;821b166d-e853-4a61-9eaf-0d849387e825;referencia;Referência;regex_date
+bdecef25-5a20-40e3-a635-15ee77945dc4;d5bf204c-2955-43dc-a989-02b7d558ed6b;nome_cooperado;Nome do cooperado;text_in_line
+bdecef25-5a20-40e3-a635-15ee77945dc4;d905bf06-356e-4118-8dbb-700e611787ff;nome_colaborador;Nome do colaborador;text_in_line
+85a32f52-5152-43ce-b6d9-8f0e28ec68dc;4761160b-1272-4ecd-91f2-b738a31a388f;referencia;Referência;regex_date
+85a32f52-5152-43ce-b6d9-8f0e28ec68dc;fe06570c-dac8-4256-bc2b-37b5b0c01fa4;nome_cooperado;Nome do cooperado;text_in_line
+85a32f52-5152-43ce-b6d9-8f0e28ec68dc;ccce7fb2-b9d5-474c-be3c-bb3a4de4b1c6;nome_colaborador;Nome do colaborador;text_in_line
+6fc2d7e2-1df3-433b-a2e8-fbe912946015;39da538c-7828-4007-8f57-76ba7b459768;referencia;Referência;regex_date
+6fc2d7e2-1df3-433b-a2e8-fbe912946015;e1a2a622-ea88-4249-b71c-4c0c8ab5be31;nome_cooperado;Nome do cooperado;text_in_line
+6fc2d7e2-1df3-433b-a2e8-fbe912946015;14ef85fd-05e9-44dc-9583-37d93afd3ee5;nome_colaborador;Nome do colaborador;text_in_line
+80e51847-18ed-47d2-a811-170f3a72e527;b6787c7c-1b4d-4b70-bf30-b85b2980af5f;referencia;Referência;regex_date
+80e51847-18ed-47d2-a811-170f3a72e527;65fcc400-2878-4b9e-8eaa-75f766c489e5;nome_cooperado;Nome do cooperado;text_in_line
+80e51847-18ed-47d2-a811-170f3a72e527;0d18dc98-87ee-49c2-bec3-5d3a3800380b;nome_colaborador;Nome do colaborador;text_in_line
+be3ab536-031f-4060-98f8-3c67feabe072;7d4dace6-22d4-4ae4-babb-5598b5fab967;referencia;Referência;regex_date
+be3ab536-031f-4060-98f8-3c67feabe072;c4e5476b-9cc8-458f-8cbd-ca0b07c42021;nome_cooperado;Nome do cooperado;text_in_line
+be3ab536-031f-4060-98f8-3c67feabe072;0943352b-bc04-47c2-a2d7-47a5d278b749;nome_colaborador;Nome do colaborador;text_in_line
+839a512b-6a2b-4754-813f-57b2677bbff1;f9832ac7-504e-4a79-b363-1a731284e30b;referencia;Referência;regex_date
+839a512b-6a2b-4754-813f-57b2677bbff1;f6ae47e2-b186-4c58-9e81-dcc47f566d6b;nome_cooperado;Nome do cooperado;text_in_line
+839a512b-6a2b-4754-813f-57b2677bbff1;9367c3ac-327f-449d-b37d-e829ff8ffa75;nome_colaborador;Nome do colaborador;text_in_line
+40486445-02b3-4517-bf4b-dc708374cdbb;4e32d376-8a4f-4cc4-a2c0-4a6fbe1f2a90;referencia;Referência;regex_date
+40486445-02b3-4517-bf4b-dc708374cdbb;45ef53f4-1d96-4bfc-8ba5-ca6e2dd08f44;nome_cooperado;Nome do cooperado;text_in_line
+40486445-02b3-4517-bf4b-dc708374cdbb;b7eb51e1-0f12-43bd-bcff-ecc34eeb0c1b;nome_colaborador;Nome do colaborador;text_in_line
+fd626c94-d8e0-4753-98a6-91e56cc25833;c1bf1cf4-c9e9-4b4c-906c-2aefa62f092f;referencia;Referência;regex_date
+fd626c94-d8e0-4753-98a6-91e56cc25833;e44b5b3d-2c16-4737-ad71-3b1fa055290c;nome_cooperado;Nome do cooperado;text_in_line
+fd626c94-d8e0-4753-98a6-91e56cc25833;bec90efa-31e5-4d6c-810a-a0fdec203e60;nome_colaborador;Nome do colaborador;text_in_line
+e1c60e6a-23f6-471b-ae68-f9a9b825b224;fb2a710e-ad7f-4c64-8eb5-17cb185116fe;referencia;Referência;regex_date
+e1c60e6a-23f6-471b-ae68-f9a9b825b224;0686e97d-f824-43f8-860b-f69614d97d11;nome_cooperado;Nome do cooperado;text_in_line
+e1c60e6a-23f6-471b-ae68-f9a9b825b224;3d78e643-e3eb-456e-bd82-b7bdb7d3c90b;nome_colaborador;Nome do colaborador;text_in_line
+8a66411d-ef3e-4aa0-b921-329b5d26d767;d2abe313-8362-4c1d-8e67-0b5f9bc27cf2;referencia;Referência;regex_date
+8a66411d-ef3e-4aa0-b921-329b5d26d767;524fe637-ed74-492b-8762-5483284c7659;nome_cooperado;Nome do cooperado;text_in_line
+8a66411d-ef3e-4aa0-b921-329b5d26d767;cc54119d-6a11-4f61-b436-6272993ec711;nome_colaborador;Nome do colaborador;text_in_line
+bb009e27-c996-462a-b11d-3b9bd31d9c53;d766ba57-9bcd-4589-92a0-00fd924e7fb1;referencia;Referência;regex_date
+bb009e27-c996-462a-b11d-3b9bd31d9c53;6a43eb42-9a80-4abe-8c51-3b56e570e660;nome_cooperado;Nome do cooperado;text_in_line
+bb009e27-c996-462a-b11d-3b9bd31d9c53;f0bab775-03cd-4b67-8591-ce94fba0d320;nome_colaborador;Nome do colaborador;text_in_line
+02a6edde-2933-4753-a68d-20e3e55800dc;309f5a4b-90c4-42e4-823f-733a4f5e05ab;referencia;Referência;regex_date
+02a6edde-2933-4753-a68d-20e3e55800dc;3085640a-66af-4d61-9559-48296c2b8d10;nome_cooperado;Nome do cooperado;text_in_line
+02a6edde-2933-4753-a68d-20e3e55800dc;8ad75d64-61cd-49da-afae-1b6079110f50;nome_colaborador;Nome do colaborador;text_in_line
+00a057d0-7d55-4797-bed9-cfda28c255f8;98aa5e77-7a03-46ea-af45-622e5a2c80eb;referencia;Referência;regex_date
+00a057d0-7d55-4797-bed9-cfda28c255f8;a7b79412-0b7d-473c-8f00-bda96cdb1402;nome_cooperado;Nome do cooperado;text_in_line
+00a057d0-7d55-4797-bed9-cfda28c255f8;6fa17bec-62ec-4b9e-8ede-67d89f11c8ff;nome_colaborador;Nome do colaborador;text_in_line
+fa5dcf28-8ccc-4878-9c34-949451e167ab;5b8b103d-4c74-4aa1-9944-b508eb660cd1;referencia;Referência;regex_date
+fa5dcf28-8ccc-4878-9c34-949451e167ab;ced6b42b-38fa-46e0-80de-c2218b420c91;nome_cooperado;Nome do cooperado;text_in_line
+fa5dcf28-8ccc-4878-9c34-949451e167ab;c5bdda24-37e1-41de-a53f-c34c3d06accc;nome_colaborador;Nome do colaborador;text_in_line
+f2a1d963-3925-4f3b-af49-7cf67681a590;75221ee7-b3a5-4247-bf70-36ce64858f65;referencia;Referência;regex_date
+f2a1d963-3925-4f3b-af49-7cf67681a590;694bb338-5641-4dc6-8d61-21a1d1919641;nome_cooperado;Nome do cooperado;text_in_line
+f2a1d963-3925-4f3b-af49-7cf67681a590;71bf37f4-eefb-4fbb-9168-d1d4fcf0e2a5;nome_colaborador;Nome do colaborador;text_in_line
+2b11b32f-a4f4-4e54-ac41-57126e160243;a22a8558-464e-4813-9624-ec52b77702fe;referencia;Referência;regex_date
+2b11b32f-a4f4-4e54-ac41-57126e160243;e03941ca-67c7-4cc0-a505-fe58e1c62605;nome_cooperado;Nome do cooperado;text_in_line
+2b11b32f-a4f4-4e54-ac41-57126e160243;c09e3cd1-4d1f-4122-87c6-0699585fd4e4;nome_colaborador;Nome do colaborador;text_in_line
+ebd3552c-f538-4883-b720-8e14e9fcba1d;50ad473a-3cc7-43e3-b542-00651de4ef8b;referencia;Referência;regex_date
+ebd3552c-f538-4883-b720-8e14e9fcba1d;e249c07f-2fac-4cc2-b867-241ffae35ed0;nome_cooperado;Nome do cooperado;text_in_line
+ebd3552c-f538-4883-b720-8e14e9fcba1d;a06b9122-e9be-48ac-b143-865343adbb18;nome_colaborador;Nome do colaborador;text_in_line
+429c6ec9-ae6a-4cb7-9dc1-d9b286ea3b0a;c0a0d17f-9ff2-4c7c-b86c-429b82db2026;referencia;Referência;regex_date
+429c6ec9-ae6a-4cb7-9dc1-d9b286ea3b0a;6146d1d2-a8d4-4df6-875e-91381ce48830;nome_cooperado;Nome do cooperado;text_in_line
+429c6ec9-ae6a-4cb7-9dc1-d9b286ea3b0a;606e63c1-4adb-4d72-8dbb-53a073eee9e2;nome_colaborador;Nome do colaborador;text_in_line
+96108755-476f-4425-8982-cf909ffb2bff;6dc702e6-ae2e-49cb-8493-3d12a2a42530;referencia;Referência;regex_date
+96108755-476f-4425-8982-cf909ffb2bff;3280afb4-064d-49ad-bab8-6abf2177f73b;nome_cooperado;Nome do cooperado;text_in_line
+96108755-476f-4425-8982-cf909ffb2bff;8b573769-02bd-4bda-8980-83a225a20987;nome_colaborador;Nome do colaborador;text_in_line
+b4c4e72d-2406-4c7d-a097-98872477175b;dd6355cc-d463-43f7-a03c-12e12e9d55e0;referencia;Referência;regex_date
+b4c4e72d-2406-4c7d-a097-98872477175b;73b9903e-34a7-49a4-8543-8359e26b9405;nome_cooperado;Nome do cooperado;text_in_line
+b4c4e72d-2406-4c7d-a097-98872477175b;d75acaf9-93ca-4632-84d4-e13707af222e;nome_colaborador;Nome do colaborador;text_in_line
+3de7b53e-b231-4d61-b206-0174ca8cbb74;626b468f-75c4-4106-b027-78ebf048d17a;referencia;Referência;regex_date
+3de7b53e-b231-4d61-b206-0174ca8cbb74;91bc60c6-3efe-417b-a9c3-c067876c8e5e;nome_cooperado;Nome do cooperado;text_in_line
+3de7b53e-b231-4d61-b206-0174ca8cbb74;e872d445-4f6c-4575-83f5-0d434dca69c8;nome_colaborador;Nome do colaborador;text_in_line
+1c3095cd-3934-46f4-9202-7ef8099710cd;978eedf6-07ad-45ed-a539-478eba7bb37e;referencia;Referência;regex_date
+1c3095cd-3934-46f4-9202-7ef8099710cd;a4df1b03-645a-4644-9a3f-7528abe66bac;nome_cooperado;Nome do cooperado;text_in_line
+1c3095cd-3934-46f4-9202-7ef8099710cd;b5923d44-fb11-4a33-8286-47f05b2ee4ff;nome_colaborador;Nome do colaborador;text_in_line
+6ae2e132-8734-44f2-9627-2613b6f0686e;7dab94a2-2014-4490-8608-9c8df91307c2;referencia;Referência;regex_date
+6ae2e132-8734-44f2-9627-2613b6f0686e;d2fe6ba4-1ba5-457c-bf32-5b2798982303;nome_cooperado;Nome do cooperado;text_in_line
+6ae2e132-8734-44f2-9627-2613b6f0686e;ede1de37-e2a1-451a-97e7-e425e77f1bc1;nome_colaborador;Nome do colaborador;text_in_line
+30ae292d-454f-4cf0-b84e-3457560eb2a6;8138e989-28fc-4a53-89e6-661b2ece6285;referencia;Referência;regex_date
+30ae292d-454f-4cf0-b84e-3457560eb2a6;7bf28360-2dcb-4d0b-91dc-afe34b8979e1;nome_cooperado;Nome do cooperado;text_in_line
+30ae292d-454f-4cf0-b84e-3457560eb2a6;3b2c3b15-418b-4d61-80a9-d3610a607637;nome_colaborador;Nome do colaborador;text_in_line
+a716c70c-dc31-4c1b-8133-059eb6d449f8;c3fa83c1-8cf5-4343-8ec6-2974245fbc15;referencia;Referência;regex_date
+a716c70c-dc31-4c1b-8133-059eb6d449f8;2f69308b-ed63-47b6-96b3-52ee13f1f768;nome_cooperado;Nome do cooperado;text_in_line
+a716c70c-dc31-4c1b-8133-059eb6d449f8;20cdde17-92e8-428b-8064-083efaeed55c;nome_colaborador;Nome do colaborador;text_in_line
+896de5f8-d922-411a-a5f6-aa81d5b78f8c;f7d1378a-5b5a-457e-b10c-2424f4a0045e;referencia;Referência;regex_date
+896de5f8-d922-411a-a5f6-aa81d5b78f8c;9b8ff67d-1d9b-4097-a8e7-dcf9da4309ed;nome_cooperado;Nome do cooperado;text_in_line
+896de5f8-d922-411a-a5f6-aa81d5b78f8c;6c599d17-5104-4d0a-a3dd-d32c08d7817e;nome_colaborador;Nome do colaborador;text_in_line
+88f7297f-9948-4705-9e64-a31e4c37a39b;72923892-6968-455d-a572-0e938fdfb736;referencia;Referência;regex_date
+88f7297f-9948-4705-9e64-a31e4c37a39b;015ac96a-c44e-407c-b4ef-e014fa0da055;nome_cooperado;Nome do cooperado;text_in_line
+88f7297f-9948-4705-9e64-a31e4c37a39b;83d82cbe-e0ce-4eec-ab2f-147ad279119b;nome_colaborador;Nome do colaborador;text_in_line
+9f0ba5f0-1682-49fe-8bde-2208dd306c8c;05f6c3f1-510b-4dc2-948f-1929609effb5;referencia;Referência;regex_date
+9f0ba5f0-1682-49fe-8bde-2208dd306c8c;a537dbf0-25af-4b2a-98de-afa4173d6150;nome_cooperado;Nome do cooperado;text_in_line
+9f0ba5f0-1682-49fe-8bde-2208dd306c8c;b4220c3d-81b5-4156-9078-93c32b9a0dd8;nome_colaborador;Nome do colaborador;text_in_line
+4abfb72d-8071-48c0-a848-5f94edcfe0ad;7c1c7a62-692f-4fd6-aa8b-f4e88ecf8222;referencia;Referência;regex_date
+4abfb72d-8071-48c0-a848-5f94edcfe0ad;e6446ab6-1ca4-4fdc-8e3a-cd24b8e71e41;nome_cooperado;Nome do cooperado;text_in_line
+4abfb72d-8071-48c0-a848-5f94edcfe0ad;7c8ee6fd-414c-4828-b34a-2f3b7c7758ab;nome_colaborador;Nome do colaborador;text_in_line
+0a528fbf-6ac2-4fcd-8919-21586e5acac7;456de000-313a-4c1f-ad78-ae776469882a;referencia;Referência;regex_date
+0a528fbf-6ac2-4fcd-8919-21586e5acac7;99c81148-ea82-43b1-adbf-d409de30a1fa;nome_cooperado;Nome do cooperado;text_in_line
+0a528fbf-6ac2-4fcd-8919-21586e5acac7;f7fc1710-62e7-4814-bbd7-c2b0f1e12172;nome_colaborador;Nome do colaborador;text_in_line
+d773e1dd-be96-4940-bea9-c5555276d5f0;c55ec9a3-42e9-415e-a427-d1775d88c8c0;referencia;Referência;regex_date
+d773e1dd-be96-4940-bea9-c5555276d5f0;9f9ab420-4514-42ff-a469-d10dd4248a47;nome_cooperado;Nome do cooperado;text_in_line
+d773e1dd-be96-4940-bea9-c5555276d5f0;f48bccb9-0864-4e77-8b86-960e98070d41;nome_colaborador;Nome do colaborador;text_in_line
+31f63c3f-fe3a-4c76-9f1f-b258c9d0e4e4;42aa807f-94ec-4bdd-8b4d-5742c0310fa6;referencia;Referência;regex_date
+31f63c3f-fe3a-4c76-9f1f-b258c9d0e4e4;2af942fe-1e2f-4fa4-869b-206dcb424347;nome_cooperado;Nome do cooperado;text_in_line
+31f63c3f-fe3a-4c76-9f1f-b258c9d0e4e4;70c6a68f-d620-4de7-83f9-ff651bc81892;nome_colaborador;Nome do colaborador;text_in_line
+b0fe8f47-2017-4cdd-b8cf-fd010a7a273c;9e28471b-5552-4538-9082-3a3aa3bd95a7;referencia;Referência;regex_date
+b0fe8f47-2017-4cdd-b8cf-fd010a7a273c;f72f85f9-0bb9-48c3-aaa2-c8d0e4961f22;nome_cooperado;Nome do cooperado;text_in_line
+b0fe8f47-2017-4cdd-b8cf-fd010a7a273c;5cb4c961-6997-4b61-aa8b-c63b6dfedd51;nome_colaborador;Nome do colaborador;text_in_line
+0c2ddbd0-e9e9-427d-b21c-1e7d6a72f248;7f057c4e-e871-48d5-b20f-1f3cbe4179ed;referencia;Referência;regex_date
+0c2ddbd0-e9e9-427d-b21c-1e7d6a72f248;07f7bcea-6bff-4980-bf33-14d07ea38bb2;nome_cooperado;Nome do cooperado;text_in_line
+0c2ddbd0-e9e9-427d-b21c-1e7d6a72f248;840e5ac8-3549-4979-8fc7-58cd97b0e8cb;nome_colaborador;Nome do colaborador;text_in_line
+4d345515-cddf-472b-af16-ba3579b1f70d;850ae8bd-f511-4aec-85c5-083f65d49d6f;referencia;Referência;regex_date
+4d345515-cddf-472b-af16-ba3579b1f70d;cc046649-9159-432f-afde-1db6f8cbed9b;nome_cooperado;Nome do cooperado;text_in_line
+4d345515-cddf-472b-af16-ba3579b1f70d;a9e97c73-3847-4a8c-b7ef-f91239a360ea;nome_colaborador;Nome do colaborador;text_in_line
+887e2336-0322-47e2-90da-98c991fd30e1;d65b7ebe-8720-4501-87e5-04f70519e11e;referencia;Referência;regex_date
+887e2336-0322-47e2-90da-98c991fd30e1;e790b428-4d65-4be3-94cc-147cf182c0ee;tesouraria;Tesouraria;text_in_line
+887e2336-0322-47e2-90da-98c991fd30e1;02b707f3-16cb-46a1-a54e-c0e829c47220;dia;Dia;regex_date_day
+e80e3b33-7fd5-43bd-843a-d39d7b97e136;a0edd1b1-8d36-4ee9-aa05-725e19c2c6d7;referencia;Referência;regex_date
+e80e3b33-7fd5-43bd-843a-d39d7b97e136;fb7fadd2-dae9-4fd1-bc99-ad2c95f9a9cc;tesouraria;Tesouraria;text_in_line
+e80e3b33-7fd5-43bd-843a-d39d7b97e136;86ab0fd3-2e5c-446c-bf5f-1d3534148e02;banco;Banco;regex_bank_code
+da3da9cf-4ec0-402b-8c97-e9a3703bb836;519059e9-ee44-433e-8216-1e9134da79d4;referencia;Referência;regex_date
+da3da9cf-4ec0-402b-8c97-e9a3703bb836;235a1ce9-1429-48fd-9875-48ef1c4aae52;nome_cooperado;Nome do cooperado;text_in_line
+da3da9cf-4ec0-402b-8c97-e9a3703bb836;b4646c2a-3ab8-4c97-8349-c11edecc36fa;nome_colaborador;Nome do colaborador;text_in_line
+de27cb54-d831-473b-9e01-7122906f4dc3;5ec804c6-4707-4ddf-b7fd-b07641598b40;referencia;Referência;regex_date
+de27cb54-d831-473b-9e01-7122906f4dc3;b8c390fb-9378-4b15-919f-4bbc415ee9cd;nome_cooperado;Nome do cooperado;text_in_line
+de27cb54-d831-473b-9e01-7122906f4dc3;7594f535-0b33-4ca7-b94b-a8505122af5a;nome_colaborador;Nome do colaborador;text_in_line
+eedd0e3d-8d6c-4555-9328-b9cc89a6738b;3094c3ba-7c34-4ee2-a0b3-b9f21eff7ec8;referencia;Referência;regex_date
+eedd0e3d-8d6c-4555-9328-b9cc89a6738b;422c00e9-8232-4769-ba7f-4afb5dabfefc;nome_cooperado;Nome do cooperado;text_in_line
+eedd0e3d-8d6c-4555-9328-b9cc89a6738b;4770e21c-f63c-4bd7-92a8-315c215ace0e;nome_colaborador;Nome do colaborador;text_in_line
+5bf612e2-0dae-4ebe-ae70-7aa254f1af45;15d5847b-806f-486f-a365-4d6846ddff2c;referencia;Referência;regex_date
+5bf612e2-0dae-4ebe-ae70-7aa254f1af45;d4d239cc-f1ec-4d08-aa56-18307d598da0;nome_cooperado;Nome do cooperado;text_in_line
+5bf612e2-0dae-4ebe-ae70-7aa254f1af45;1d175ff3-5f81-4bd9-a12f-45a4de4c094d;nome_colaborador;Nome do colaborador;text_in_line
+e4ec9520-ea8e-414c-87f4-c01b10fff023;fbf55ef8-2f81-4ddb-83d1-91edde35530a;referencia;Referência;regex_date
+e4ec9520-ea8e-414c-87f4-c01b10fff023;1c8992e0-784d-4847-b87c-df05f390a0c3;nome_cooperado;Nome do cooperado;text_in_line
+e4ec9520-ea8e-414c-87f4-c01b10fff023;b03a8836-d0bc-4479-b155-9785819bf2c4;nome_colaborador;Nome do colaborador;text_in_line
+a42f96bb-f997-4d6f-9561-8a3681f9b2ce;5b07c240-932e-4524-b012-f21b02971fc4;referencia;Referência;regex_date
+a42f96bb-f997-4d6f-9561-8a3681f9b2ce;d1c4e2e2-7d7a-49e3-81bf-264315ae4680;nome_cooperado;Nome do cooperado;text_in_line
+a42f96bb-f997-4d6f-9561-8a3681f9b2ce;8442df4b-152a-46df-8346-36f8187a0273;nome_colaborador;Nome do colaborador;text_in_line
+23fa05e7-5810-4357-a5bd-19b286d28ffd;4ba23418-630b-4873-8de1-129fa9a1bfd2;referencia;Referência;regex_date
+23fa05e7-5810-4357-a5bd-19b286d28ffd;85d075b4-be80-40cf-afcf-79dac8d0b031;nome_cooperado;Nome do cooperado;text_in_line
+23fa05e7-5810-4357-a5bd-19b286d28ffd;24ad0285-5c60-4ae2-8ecb-64c32a9b5995;nome_colaborador;Nome do colaborador;text_in_line
+b774c610-6c1b-45a2-a031-9ee226bfd0e1;8fcd85d2-40ce-4df3-af6c-752a099eca31;referencia;Referência;regex_date
+b774c610-6c1b-45a2-a031-9ee226bfd0e1;46ac1812-1bd7-466f-a1e8-b7996ff0c88f;nome_cooperado;Nome do cooperado;text_in_line
+b774c610-6c1b-45a2-a031-9ee226bfd0e1;00debade-51e7-4b0b-8887-9e182794e8fb;nome_colaborador;Nome do colaborador;text_in_line
+eb16ec35-3469-4518-b273-a1e914e7b495;fbdab2f6-6805-4f23-bac5-3668a42cf010;referencia;Referência;regex_date
+eb16ec35-3469-4518-b273-a1e914e7b495;e1b98483-7d38-4487-9e09-5e444bbbd393;nome_cooperado;Nome do cooperado;text_in_line
+eb16ec35-3469-4518-b273-a1e914e7b495;c456032a-c97f-4894-9710-4d188d88a117;nome_colaborador;Nome do colaborador;text_in_line
+359c3a0b-6478-4c04-86b6-85d2209486c2;fde84be8-ef25-4923-b589-93f0713bc86d;referencia;Referência;regex_date
+359c3a0b-6478-4c04-86b6-85d2209486c2;dc8c802a-7b07-402e-9be0-942bea13060f;nome_cooperado;Nome do cooperado;text_in_line
+359c3a0b-6478-4c04-86b6-85d2209486c2;f21721a1-8ced-4b71-9e10-e5bc0476b29d;nome_colaborador;Nome do colaborador;text_in_line
+95171af2-b3e3-431f-b7c6-9f90cf40a90e;294dfe78-a3e9-4dd9-a0f7-0ba2aaaa45e8;referencia;Referência;regex_date
+95171af2-b3e3-431f-b7c6-9f90cf40a90e;119cef48-244e-4df2-8d51-2a7429ae3d9d;nome_cooperado;Nome do cooperado;text_in_line
+95171af2-b3e3-431f-b7c6-9f90cf40a90e;77e4a24a-d24b-4a32-8c48-24bbb79ac8a2;nome_colaborador;Nome do colaborador;text_in_line
+04a6147e-35d0-4c39-bbd6-24761548afd2;904a6ab8-da8f-4ba4-ab63-2c8d13ab5307;referencia;Referência;regex_date
+04a6147e-35d0-4c39-bbd6-24761548afd2;e91f3d21-cbd6-483c-a5c3-8adaf22a96c0;nome_cooperado;Nome do cooperado;text_in_line
+04a6147e-35d0-4c39-bbd6-24761548afd2;ac51da6d-f6b6-4a94-b488-320d6b6a4a55;nome_colaborador;Nome do colaborador;text_in_line
+5cb737f7-12e3-4ea2-b148-43df8ed18faf;18d93a91-4df3-4b5f-8da2-3bd094121fd8;referencia;Referência;regex_date
+5cb737f7-12e3-4ea2-b148-43df8ed18faf;24ab54ea-36ca-437d-a61d-6804faeba079;nome_cooperado;Nome do cooperado;text_in_line
+5cb737f7-12e3-4ea2-b148-43df8ed18faf;37059cc9-5d62-46f7-91b2-d6a4b4d752d4;nome_colaborador;Nome do colaborador;text_in_line
+70951c97-461a-48e4-adbc-8fef76940c21;0566312d-ae95-4f6b-9f3e-3d5aa8b54817;referencia;Referência;regex_date
+70951c97-461a-48e4-adbc-8fef76940c21;b9bca4b9-4da1-41d0-a158-ed1315daf981;nome_cooperado;Nome do cooperado;text_in_line
+70951c97-461a-48e4-adbc-8fef76940c21;61057d61-10c3-4105-b5d8-c19740e19ff4;nome_colaborador;Nome do colaborador;text_in_line
+08ef90e5-bb34-4031-9c93-ca6003a3ed46;4fa364d7-a1ad-4762-b7ac-ea9297c26300;referencia;Referência;regex_date
+08ef90e5-bb34-4031-9c93-ca6003a3ed46;2389451f-99a8-40fc-b667-088e4f5800fa;nome_cooperado;Nome do cooperado;text_in_line
+08ef90e5-bb34-4031-9c93-ca6003a3ed46;317b0405-146d-422b-b830-77b365204db3;nome_colaborador;Nome do colaborador;text_in_line
+2f158d36-3935-45ac-bd1e-87f838328995;072c1c5d-f856-4043-92e6-87fb26e58402;referencia;Referência;regex_date
+2f158d36-3935-45ac-bd1e-87f838328995;c97279e9-ae7e-4e17-a25a-c714b071fa0d;nome_cooperado;Nome do cooperado;text_in_line
+2f158d36-3935-45ac-bd1e-87f838328995;292d5807-bb9a-4e22-be72-196cf36649b0;nome_colaborador;Nome do colaborador;text_in_line
+5d72acca-a6f5-431d-a944-536d73e7459b;50902bb0-3746-4594-a091-67ee5dd97fce;referencia;Referência;regex_date
+5d72acca-a6f5-431d-a944-536d73e7459b;a2678b5c-ed60-489c-83a8-c984bcaef321;nome_cooperado;Nome do cooperado;text_in_line
+5d72acca-a6f5-431d-a944-536d73e7459b;3eae38ec-1ac4-47de-a78f-fc4f1cd1388a;nome_colaborador;Nome do colaborador;text_in_line
+45eb2d8b-6032-4ac6-a1ed-a2acb5a58529;063043cf-44c0-4373-baf6-4ba9f9a23ed3;referencia;Referência;regex_date
+45eb2d8b-6032-4ac6-a1ed-a2acb5a58529;e5338555-87f0-45d6-9862-70ccf3632c0c;nome_cooperado;Nome do cooperado;text_in_line
+45eb2d8b-6032-4ac6-a1ed-a2acb5a58529;c512e612-0f21-435a-9a12-9b0561b77e00;nome_colaborador;Nome do colaborador;text_in_line
+19ab54ec-1627-4db7-9b96-0d7185b89d9b;00e19d3c-88b1-494f-9998-4f48a644a754;referencia;Referência;regex_date
+19ab54ec-1627-4db7-9b96-0d7185b89d9b;4f9b534a-f9c5-41ec-9582-10845d7b6a55;nome_cooperado;Nome do cooperado;text_in_line
+19ab54ec-1627-4db7-9b96-0d7185b89d9b;c32123b3-9b8b-4c4b-9b7d-7a07dfe0c3e9;nome_colaborador;Nome do colaborador;text_in_line
+9b530663-0be5-46ba-9040-e00e0701dec4;788365c5-3e4c-4869-948f-b350576291ed;referencia;Referência;regex_date
+9b530663-0be5-46ba-9040-e00e0701dec4;e6f486b8-f4e4-4f16-a108-0fa70222527d;nome_cooperado;Nome do cooperado;text_in_line
+9b530663-0be5-46ba-9040-e00e0701dec4;fefe8514-9e9e-4a47-afe9-f6460ef692fb;nome_colaborador;Nome do colaborador;text_in_line
+4a428556-02ca-4c22-96f9-de949ef192dc;2bbed9d7-d271-42ec-b7a8-739b805b6bc1;referencia;Referência;regex_date
+4a428556-02ca-4c22-96f9-de949ef192dc;11f51d27-4ad2-4da5-b996-662fc7e6478e;nome_cooperado;Nome do cooperado;text_in_line
+4a428556-02ca-4c22-96f9-de949ef192dc;8532ed9f-199b-4343-9caa-dceb0e0b59da;nome_colaborador;Nome do colaborador;text_in_line
+4dfc11c0-6086-4d0e-a310-f27a66830f3f;54638089-449d-46a4-ac5e-ac72c5fec6ac;referencia;Referência;regex_date
+4dfc11c0-6086-4d0e-a310-f27a66830f3f;f59d93a9-cf9c-4645-8f7b-28c93012ae13;nome_cooperado;Nome do cooperado;text_in_line
+4dfc11c0-6086-4d0e-a310-f27a66830f3f;c88dad51-e330-4d51-b807-7b4a61da583e;nome_colaborador;Nome do colaborador;text_in_line
+341aaffe-abf0-4587-91de-16f2dbeb7edb;cd190f72-478e-437a-8c84-08a9edd41623;referencia;Referência;regex_date
+341aaffe-abf0-4587-91de-16f2dbeb7edb;129bfc68-82f7-4d95-9cf8-6fb0c60d7c78;nome_cooperado;Nome do cooperado;text_in_line
+341aaffe-abf0-4587-91de-16f2dbeb7edb;07c9e930-ad29-4b7c-9d26-a993af077e8a;nome_colaborador;Nome do colaborador;text_in_line
+e9b84b5f-8b67-41c9-aae7-97086b5f8109;8897b3d9-fca7-4bc2-95e3-f537d45e95ad;referencia;Referência;regex_date
+e9b84b5f-8b67-41c9-aae7-97086b5f8109;79e0701d-1e21-41eb-b636-9227f028191a;nome_cooperado;Nome do cooperado;text_in_line
+e9b84b5f-8b67-41c9-aae7-97086b5f8109;27e97302-7231-4b09-8d0b-98b14ac6501d;nome_colaborador;Nome do colaborador;text_in_line
+032d01ff-384c-4bc5-ae3c-257da691878b;1d759325-355d-4f92-a6b6-d41243e65e7e;referencia;Referência;regex_date
+032d01ff-384c-4bc5-ae3c-257da691878b;eb6e1a1f-dcf3-4794-857d-7c6ca8f90e20;nome_cooperado;Nome do cooperado;text_in_line
+032d01ff-384c-4bc5-ae3c-257da691878b;d5d9761e-74f5-43f7-a70d-23a528181f66;nome_colaborador;Nome do colaborador;text_in_line
+9ff83365-4c1d-4e49-8a86-9ddebb81b6e5;dfe01df3-9ba1-4568-b27c-d0515081a5db;referencia;Referência;regex_date
+9ff83365-4c1d-4e49-8a86-9ddebb81b6e5;255e95bf-e630-4cf1-baff-2af4320f3464;nome_cooperado;Nome do cooperado;text_in_line
+9ff83365-4c1d-4e49-8a86-9ddebb81b6e5;c029039d-f321-49f9-8246-8a897617bcb0;nome_colaborador;Nome do colaborador;text_in_line
+f48f7fbd-8f78-4874-adbf-c72bbaf73aba;1a7de33e-6f97-4892-b27c-963e84b94159;referencia;Referência;regex_date
+f48f7fbd-8f78-4874-adbf-c72bbaf73aba;11b8bcd5-9ad3-47d9-9d79-a039a443252b;nome_cooperado;Nome do cooperado;text_in_line
+f48f7fbd-8f78-4874-adbf-c72bbaf73aba;898fd487-180b-42a3-8ded-bab3b4dfef12;nome_colaborador;Nome do colaborador;text_in_line
+ddbed02e-0a6c-4bb9-939b-6b2882a16711;2cad07e6-12dc-4877-bb6a-ccfb28223892;referencia;Referência;regex_date
+ddbed02e-0a6c-4bb9-939b-6b2882a16711;ba11e8a8-b67a-4648-98c6-6f61c1a10266;nome_cooperado;Nome do cooperado;text_in_line
+ddbed02e-0a6c-4bb9-939b-6b2882a16711;b9a2138a-0c6c-4027-87ff-133d92149ca2;nome_colaborador;Nome do colaborador;text_in_line
+a8d09969-20a6-4287-a4c9-1f19d3d04385;526dcdb6-50ff-4ac3-829c-3e8a7e24c782;referencia;Referência;regex_date
+a8d09969-20a6-4287-a4c9-1f19d3d04385;cfd2a0c5-af7c-4a7d-abb0-c017f0dd66a4;nome_cooperado;Nome do cooperado;text_in_line
+a8d09969-20a6-4287-a4c9-1f19d3d04385;9f09ebf0-d221-44d2-8808-0d899232f757;nome_colaborador;Nome do colaborador;text_in_line
+64d23fd3-3b64-4825-a776-b817c55981be;2debe1b0-1100-4ff2-86be-398bef615c88;referencia;Referência;regex_date
+64d23fd3-3b64-4825-a776-b817c55981be;879fb647-995b-4716-a2b5-eae269c5ae96;nome_cooperado;Nome do cooperado;text_in_line
+64d23fd3-3b64-4825-a776-b817c55981be;1bd1e03d-f3e0-4ee3-ba30-f6119b34051b;nome_colaborador;Nome do colaborador;text_in_line
+f53ccfa0-ae4b-4bd4-84cd-dcbeceb96f9d;f3bf566a-66c5-4892-bb20-9c9b74ebc91f;referencia;Referência;regex_date
+f53ccfa0-ae4b-4bd4-84cd-dcbeceb96f9d;e07869b9-31b6-489f-bcb7-42c0ffea9e4c;nome_cooperado;Nome do cooperado;text_in_line
+f53ccfa0-ae4b-4bd4-84cd-dcbeceb96f9d;240e085c-8bcd-4026-8713-0c8fffb79c8d;nome_colaborador;Nome do colaborador;text_in_line
+db460b34-27f3-4325-b34e-a4b682ce8935;e243b080-96eb-4a67-b520-23959b9e039f;referencia;Referência;regex_date
+db460b34-27f3-4325-b34e-a4b682ce8935;b59805b2-da25-422c-b11c-84243ce2c6f0;nome_cooperado;Nome do cooperado;text_in_line
+db460b34-27f3-4325-b34e-a4b682ce8935;e123f7a2-de1e-4bdd-944e-67c64916ab84;nome_colaborador;Nome do colaborador;text_in_line
+858ad211-ce76-4cfc-9a29-4a01b5482d2f;5cb2b3b1-add4-4663-8532-20a1f19fb89d;referencia;Referência;regex_date
+858ad211-ce76-4cfc-9a29-4a01b5482d2f;9a8f004c-f846-4b4a-a968-7aaa575fce62;nome_cooperado;Nome do cooperado;text_in_line
+858ad211-ce76-4cfc-9a29-4a01b5482d2f;6c70d930-d9f7-4089-9862-fa0316c15625;nome_colaborador;Nome do colaborador;text_in_line
+72c560d8-c902-4771-abf5-720cc2736bc9;3271cd79-3b84-4134-ab59-1b8ae48a57a7;referencia;Referência;regex_date
+72c560d8-c902-4771-abf5-720cc2736bc9;4633a0a5-3e4f-493b-bf3d-a1b8ec601691;nome_cooperado;Nome do cooperado;text_in_line
+72c560d8-c902-4771-abf5-720cc2736bc9;02c2ae63-3791-4e09-91a9-903364f75b56;nome_colaborador;Nome do colaborador;text_in_line
+f694441a-65ef-4429-a1aa-b619e91a3b56;c19abc6a-ed36-4d9a-b228-620184b30bbe;referencia;Referência;regex_date
+f694441a-65ef-4429-a1aa-b619e91a3b56;a0b65a3a-fd28-468f-bef0-9a6ec67cd207;nome_cooperado;Nome do cooperado;text_in_line
+f694441a-65ef-4429-a1aa-b619e91a3b56;9fd7210e-a4d5-4458-b712-7bef2f6295cd;nome_colaborador;Nome do colaborador;text_in_line
+489d6bc7-dbf4-4f06-982a-984935c92f1c;035eeeba-2374-45e8-b508-7a269c7dbece;referencia;Referência;regex_date
+489d6bc7-dbf4-4f06-982a-984935c92f1c;74ec155d-8c3c-4156-99ae-62e050778353;nome_cooperado;Nome do cooperado;text_in_line
+489d6bc7-dbf4-4f06-982a-984935c92f1c;b666ce92-5748-4c3f-9504-244d34142aa5;nome_colaborador;Nome do colaborador;text_in_line
+f4db0abf-9f99-4603-8154-51a71e481ff8;7bb9f173-b837-43f5-9ffa-1567bc82bcb7;referencia;Referência;regex_date
+f4db0abf-9f99-4603-8154-51a71e481ff8;ee2fbc30-7217-463b-ab59-0a3fdc4a720a;nome_cooperado;Nome do cooperado;text_in_line
+f4db0abf-9f99-4603-8154-51a71e481ff8;86f4bbb2-78b1-4689-a954-71dd04c32a49;nome_colaborador;Nome do colaborador;text_in_line
+1b50a58e-b94c-408d-a7ad-d6123bfa9ea0;b90afaa1-4ed1-4721-8a8b-eb40a1ab3c3b;referencia;Referência;regex_date
+1b50a58e-b94c-408d-a7ad-d6123bfa9ea0;a3f2afcb-2ed5-4187-9087-dc4f9c6d5188;nome_cooperado;Nome do cooperado;text_in_line
+1b50a58e-b94c-408d-a7ad-d6123bfa9ea0;b679e493-2559-4a45-838c-fdb42aa36e92;nome_colaborador;Nome do colaborador;text_in_line
+819b26f1-3812-4374-9339-52a69f4182cd;314a8e99-59f8-4eab-aece-04531b7c37eb;referencia;Referência;regex_date
+819b26f1-3812-4374-9339-52a69f4182cd;99fa40af-df93-4420-bcfb-9714636ce26b;nome_cooperado;Nome do cooperado;text_in_line
+819b26f1-3812-4374-9339-52a69f4182cd;b215a744-2100-4ced-84dd-1c1f03e870d7;nome_colaborador;Nome do colaborador;text_in_line
+0a1a698e-ce05-4a74-80a4-8b4cf434537f;e17a6c0c-6c85-4682-ac94-a904118586fb;referencia;Referência;regex_date
+0a1a698e-ce05-4a74-80a4-8b4cf434537f;badd84b3-2e7d-4272-b653-8401d43fc14f;nome_cooperado;Nome do cooperado;text_in_line
+0a1a698e-ce05-4a74-80a4-8b4cf434537f;ef6dbb5a-873c-4363-9fff-a1a0b3f9b25c;nome_colaborador;Nome do colaborador;text_in_line
+72d8e60f-f9cf-4a8d-a9fe-13b7021c7aca;be306f84-f7c6-4903-92d7-4285d5ce80e7;referencia;Referência;regex_date
+72d8e60f-f9cf-4a8d-a9fe-13b7021c7aca;a445f752-ead4-4246-8ef6-494f0c1fb107;nome_cooperado;Nome do cooperado;text_in_line
+72d8e60f-f9cf-4a8d-a9fe-13b7021c7aca;c6f0863e-d088-46c2-b0a8-7d79b56f4a4e;nome_colaborador;Nome do colaborador;text_in_line
+28fd6e4d-1511-43b5-bcb9-5fad85e5baa0;1760db5b-c12c-454d-bb52-10bcadc7ee0f;referencia;Referência;regex_date
+28fd6e4d-1511-43b5-bcb9-5fad85e5baa0;494fe39d-fafe-497f-aa8c-ddf09a62211a;nome_cooperado;Nome do cooperado;text_in_line
+28fd6e4d-1511-43b5-bcb9-5fad85e5baa0;7eecf519-18da-4d70-8e62-1368208597e1;nome_colaborador;Nome do colaborador;text_in_line
+305088ba-85d3-42e0-b31d-20dc9825e50c;44a7aa2c-9e59-4407-9867-8913ae9085c0;referencia;Referência;regex_date
+305088ba-85d3-42e0-b31d-20dc9825e50c;f7fecf7b-80c7-40f5-b595-9a1bd990ab2f;nome_cooperado;Nome do cooperado;text_in_line
+305088ba-85d3-42e0-b31d-20dc9825e50c;411cd698-b1c0-47b8-aba5-a1d63eb561a0;nome_colaborador;Nome do colaborador;text_in_line
+1eb01c0c-66d0-4eb3-b491-e85e1d84b351;c0ace915-7ccb-41b9-b909-5fa8d10efd6b;referencia;Referência;regex_date
+1eb01c0c-66d0-4eb3-b491-e85e1d84b351;b7bd4d69-8d34-47a4-8ef7-309d649fb604;nome_cooperado;Nome do cooperado;text_in_line
+1eb01c0c-66d0-4eb3-b491-e85e1d84b351;3ccf497c-dd5e-4c9f-9d02-f9f5c78d2ff9;nome_colaborador;Nome do colaborador;text_in_line
+66f15c1a-8588-4094-9d9e-616029cde0e5;6b1449af-c918-4121-8d55-3a6448b354d2;referencia;Referência;regex_date
+66f15c1a-8588-4094-9d9e-616029cde0e5;bd83f20f-f3e6-4f16-a26a-c1b18ee42a96;nome_cooperado;Nome do cooperado;text_in_line
+66f15c1a-8588-4094-9d9e-616029cde0e5;a7ba8b58-80a2-4cf8-8f27-8c1d121c37a6;nome_colaborador;Nome do colaborador;text_in_line
+7f6cbf15-322e-4421-a843-f8b0cef1e846;eb876540-7f28-4084-9a87-d356943cac7f;referencia;Referência;regex_date
+7f6cbf15-322e-4421-a843-f8b0cef1e846;b457faed-6f36-4ebf-9760-2ee812e63ae7;nome_cooperado;Nome do cooperado;text_in_line
+7f6cbf15-322e-4421-a843-f8b0cef1e846;69d70d5b-7fec-452c-811c-2f98bc964dcc;nome_colaborador;Nome do colaborador;text_in_line
+72291639-160b-40a6-98ef-2b7d926673d3;324f347f-c5d5-4891-9904-53f496d53a1f;referencia;Referência;regex_date
+72291639-160b-40a6-98ef-2b7d926673d3;80c31aa6-06fc-44d9-9cc0-072886dc081c;nome_cooperado;Nome do cooperado;text_in_line
+72291639-160b-40a6-98ef-2b7d926673d3;43fe2df7-d488-4c33-8d46-5db7bc51ef57;nome_colaborador;Nome do colaborador;text_in_line
+8a979507-9fa8-4347-b800-098c39c739d7;49582637-485d-4caa-9b1a-662eab378de7;referencia;Referência;regex_date
+8a979507-9fa8-4347-b800-098c39c739d7;574e511d-7d81-4313-add9-56867ed70a94;nome_cooperado;Nome do cooperado;text_in_line
+8a979507-9fa8-4347-b800-098c39c739d7;44af97bf-91c4-467a-b445-ab658ce46a9d;nome_colaborador;Nome do colaborador;text_in_line
+52761209-8194-4563-bedb-d13aa12a8e13;fed0c5eb-3f92-486c-8573-c11e0cef89bb;referencia;Referência;regex_date
+52761209-8194-4563-bedb-d13aa12a8e13;f9b561ba-bc10-4aee-842e-c8a58aed95c7;nome_cooperado;Nome do cooperado;text_in_line
+52761209-8194-4563-bedb-d13aa12a8e13;7e251d87-e7dd-4a1f-9050-5736b8cd4c66;nome_colaborador;Nome do colaborador;text_in_line
+4c084fa2-0778-4b08-8c2f-acedd64e1c99;2015a3ed-359b-4761-bc11-ef74624729fb;referencia;Referência;regex_date
+4c084fa2-0778-4b08-8c2f-acedd64e1c99;fb1ffa31-9ea6-4874-9701-a6d1f3f42a72;nome_cooperado;Nome do cooperado;text_in_line
+4c084fa2-0778-4b08-8c2f-acedd64e1c99;9a68a5de-35d0-42d7-8a37-9503a78fa6c9;nome_colaborador;Nome do colaborador;text_in_line
+e823bda7-2fe6-4baf-a5ef-afb1818210bf;0ae5b368-7144-4f66-b79f-348550c25d4f;referencia;Referência;regex_date
+e823bda7-2fe6-4baf-a5ef-afb1818210bf;77fe869d-b129-42e8-b870-b3f3dd3eb197;nome_cooperado;Nome do cooperado;text_in_line
+e823bda7-2fe6-4baf-a5ef-afb1818210bf;7d3e54aa-395e-4bad-91fa-d06280f0b85b;nome_colaborador;Nome do colaborador;text_in_line
+0f9ef14f-5540-4574-99fe-bcb455d59a4f;b3b3877e-cb68-4081-aabe-dbba3dda1bfb;referencia;Referência;regex_date
+0f9ef14f-5540-4574-99fe-bcb455d59a4f;be2dba4d-1eef-478f-9856-22f4090b40e5;nome_cooperado;Nome do cooperado;text_in_line
+0f9ef14f-5540-4574-99fe-bcb455d59a4f;7ba4f9f5-40b0-435e-b11b-b4fa1ca7e368;nome_colaborador;Nome do colaborador;text_in_line
+457195d0-3c79-4032-856b-a3c7a5569061;9e6a83bb-a29a-41f0-8d2c-4b446ed17d84;referencia;Referência;regex_date
+457195d0-3c79-4032-856b-a3c7a5569061;3541cbce-c6c3-4549-a2fa-fe5e37b821ca;nome_cooperado;Nome do cooperado;text_in_line
+457195d0-3c79-4032-856b-a3c7a5569061;ee8c92a9-e21b-4d7f-82a3-66af636f32d4;nome_colaborador;Nome do colaborador;text_in_line
+63f6b94b-3d97-4bb8-9513-a62d6d205585;4c9ca6b1-528c-4eff-bad5-da6c44934195;referencia;Referência;regex_date
+63f6b94b-3d97-4bb8-9513-a62d6d205585;b665a53d-bf46-49fe-8193-5573ea557aaa;nome_cooperado;Nome do cooperado;text_in_line
+63f6b94b-3d97-4bb8-9513-a62d6d205585;69a54289-7ffa-4985-941c-23e63af21bc4;nome_colaborador;Nome do colaborador;text_in_line
+e62214b8-b8b6-4df3-bdb7-5fda5ed48b35;36b60f8d-0e20-4857-a869-2359508ada4e;referencia;Referência;regex_date
+e62214b8-b8b6-4df3-bdb7-5fda5ed48b35;faa6204e-1556-4459-b75a-7ad5cd1f1ed3;nome_cooperado;Nome do cooperado;text_in_line
+e62214b8-b8b6-4df3-bdb7-5fda5ed48b35;6ef9949a-5b58-4560-9a47-e841a2c4cc74;nome_colaborador;Nome do colaborador;text_in_line
+93d0cd8d-6a4c-4183-af00-70b2095bddd9;f43f81cc-8930-4a64-bf11-a142833bae1c;referencia;Referência;regex_date
+93d0cd8d-6a4c-4183-af00-70b2095bddd9;bfe9af74-c908-4457-bc6f-b3d9c135ad06;nome_cooperado;Nome do cooperado;text_in_line
+93d0cd8d-6a4c-4183-af00-70b2095bddd9;2544004f-d394-4b2c-a874-642c9672022d;nome_colaborador;Nome do colaborador;text_in_line
+f47f45b1-3116-47d2-a2da-09aa187feecf;cd039763-cfbb-4e52-9057-51f6b934c2d9;referencia;Referência;regex_date
+f47f45b1-3116-47d2-a2da-09aa187feecf;8a4ad557-5f4c-4316-8470-50b858612998;nome_cooperado;Nome do cooperado;text_in_line
+f47f45b1-3116-47d2-a2da-09aa187feecf;4471c0ca-b81c-4072-9480-b9a17df0ed07;nome_colaborador;Nome do colaborador;text_in_line
+cf1ed754-a8f8-49f3-9c86-16da7b988dce;4f475717-fe62-4a29-9d2c-9b91d35704c1;referencia;Referência;regex_date
+cf1ed754-a8f8-49f3-9c86-16da7b988dce;f6b65003-3737-4e76-9eec-9b2be3981433;nome_cooperado;Nome do cooperado;text_in_line
+cf1ed754-a8f8-49f3-9c86-16da7b988dce;5c74b0af-6e70-4a32-b925-fe98179b5bec;nome_colaborador;Nome do colaborador;text_in_line
+ba9a9ea9-4daa-414a-9281-3dc9577be9d9;310bfa64-66e9-4ba4-974a-b6aff72ab6df;referencia;Referência;regex_date
+ba9a9ea9-4daa-414a-9281-3dc9577be9d9;71440a3f-6b02-46f3-b0df-4c14e189728e;nome_cooperado;Nome do cooperado;text_in_line
+ba9a9ea9-4daa-414a-9281-3dc9577be9d9;153967eb-4a5e-4381-8f0b-718b23b47f83;nome_colaborador;Nome do colaborador;text_in_line

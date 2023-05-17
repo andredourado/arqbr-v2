@@ -1,0 +1,49 @@
+<po-page-default title="Home">
+  <div class="background">
+    <div class="po-row">
+      <div class="po-lg-3 po-mb-2 quadrados" style="background-color: rgb(27,159,182); color: white;" >
+        <div class="title">158.720</div>
+        <div class="subtitle">Páginas Processadas</div>
+      </div>
+  
+      <div class="po-lg-3 po-mb-2 color quadrados" style="background-color: rgb(28,166,73); color: white;">
+        <div class="title">13.266</div>
+        <div class="subtitle">Nips Gerados</div>
+      </div>
+
+      <div class="po-lg-3 po-mb-2 quadrados" style="background-color: var(--color-04); color: white;">
+        <div class="title">66</div>
+        <div class="subtitle">Caixas em Guarda</div>
+      </div>
+   
+      <div class="po-lg-3 po-mb-2 quadrados" style="background-color: rgb(222,29,55); color: white;">
+        <div class="title">602.080</div>
+        <div class="subtitle">Sendo Processados</div>
+      </div>
+    </div>
+
+    <div class = "po-row"> 
+      <div  class = "po-md-6 po-mb-sm-2 po-mb-md-2 po-lb-lg-2 po-mt-2"> 
+        <po-table 
+        [p-auto-collapse]="true"
+        [p-columns]="columns"
+        p-container="string"
+        [p-hide-columns-manager]="true"
+        [p-items]="items"
+        [p-sort]="true"
+        [p-striped]="true"
+        >
+        </po-table>
+      </div> 
+
+      <div  class = "po-md-6 po-mb-sm-6 po-mb-md-4 po-lb-lg-4 po-mt-2"> 
+        <po-chart p-title = "Família de Docs"
+          [p-categories]="consumptionPerCapitaItems"
+          [p-series]="consumptionPerCapita"
+          [p-type]="consumptionPerCapitaType"
+          [p-options]="consumptionPerCapitaOptions"
+        > </po-chart> 
+      </div>
+    </div>
+  </div>
+</po-page-default>

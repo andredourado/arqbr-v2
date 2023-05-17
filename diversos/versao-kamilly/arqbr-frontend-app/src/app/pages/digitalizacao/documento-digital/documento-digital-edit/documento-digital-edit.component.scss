@@ -1,0 +1,162 @@
+// .no-padding {
+//   padding: 0px;
+// }
+
+// .checkbox-header {
+//   display: flex;
+//   margin-top: 37px;
+//   align-items: flex-end;
+// }
+
+
+
+// .no-padding {
+//   padding: 0px;
+// }
+
+// .checkbox-header {
+//   display: flex;
+//   margin-top: 37px;
+//   align-items: flex-end;
+// }
+
+
+.component-first {
+  margin: 0px 0px 20px 0px;
+  padding: 15px;
+}
+
+// .buttons {
+//     width: 50%;
+// }
+
+.po-icon-button {
+  font-size: 16px;
+}
+
+.pdf-viewer {
+  height: 90%;
+  width: 97%;
+  margin-left: 22px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.pass-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  width: 40%;
+}
+
+.number-pages {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.pass-botton {
+  background-color: #ffff;
+  border: none;
+}
+
+.zoom-component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px;
+  width: 15%;
+}
+
+.button-zoom {
+  margin: 0;
+}
+
+.po-icon {
+  font-size: 25px;
+  color: #0c9abe;
+  cursor: grab;
+}
+
+.form-document {
+  height: 100%;
+}
+
+.form-input {
+  width: 90%
+}
+
+.buttons-form {
+  display: flex;
+  width: 90%;
+  margin-top: 5px;
+}
+
+.form-filter-input {
+  margin-bottom: 25px;
+}
+
+.form-filter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.filter-button {
+  width: 100%;
+  font-size: 17px;
+}
+
+.number-pages-avance {
+  display: flex;
+  align-items: center;
+}
+
+.number-pages-avance > p {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.number-pages {
+  display: flex;
+  align-items: center;
+}
+
+.contador {
+  display: flex;
+  width: 50px;
+  height: 30px;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+// .number {
+//   width: 20px;
+// }
+
+// .pass-page-margin {
+//     margin: 10px;
+//     justify-content: space-around;
+// }
+
+@media (max-width: 560px) {
+  
+.pdf-viewer {
+  margin-left: 0px;
+}
+
+.zoom-component {
+  width: 30%;
+  align-items: center;
+}
+
+.pass-page {
+  width: 50%;
+}
+
+}

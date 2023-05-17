@@ -1,0 +1,125 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="entregadorForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="cpfCnpj"
+        name="cpfCnpj"
+        p-clean
+        [p-label]="this.literals.fields.form['cpfCnpj']"
+        p-maxlength="20"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="nome"
+        name="nome"
+        p-clean
+        [p-label]="this.literals.fields.form['nome']"
+        p-maxlength="60"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="email"
+        name="email"
+        p-clean
+        [p-label]="this.literals.fields.form['email']"
+        p-maxlength="100"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="endereco"
+        name="endereco"
+        p-clean
+        [p-label]="this.literals.fields.form['endereco']"
+        p-maxlength="100"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="numero"
+        name="numero"
+        p-clean
+        [p-label]="this.literals.fields.form['numero']"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="complemento"
+        name="complemento"
+        p-clean
+        [p-label]="this.literals.fields.form['complemento']"
+        p-maxlength="100"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="cep"
+        name="cep"
+        p-clean
+        [p-label]="this.literals.fields.form['cep']"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="telefonesFixos"
+        name="telefonesFixos"
+        p-clean
+        [p-label]="this.literals.fields.form['telefonesFixos']"
+        p-maxlength="100"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="celular"
+        name="celular"
+        p-clean
+        [p-label]="this.literals.fields.form['celular']"
+        p-maxlength="20"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="desabilitado"
+        name="desabilitado"
+        [p-disabled]="readonly"
+        [p-label]="this.literals.fields.form['desabilitado']"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

@@ -1,0 +1,391 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="jornadaForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="descricao"
+        name="descricao"
+        p-clean
+        [p-label]="this.literals.fields.form['descricao']"
+        p-maxlength="60"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="segPrimeiraInicio"
+        name="segPrimeiraInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['segPrimeiraInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="segPrimeiraFim"
+        name="segPrimeiraFim"
+        p-clean
+        [p-label]="this.literals.fields.form['segPrimeiraFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="segSegundaInicio"
+        name="segSegundaInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['segSegundaInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="segSegundaFim"
+        name="segSegundaFim"
+        p-clean
+        [p-label]="this.literals.fields.form['segSegundaFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="terPrimeiraInicio"
+        name="terPrimeiraInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['terPrimeiraInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="terPrimeiraFim"
+        name="terPrimeiraFim"
+        p-clean
+        [p-label]="this.literals.fields.form['terPrimeiraFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="terSegundaInicio"
+        name="terSegundaInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['terSegundaInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="terSegundaFim"
+        name="terSegundaFim"
+        p-clean
+        [p-label]="this.literals.fields.form['terSegundaFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quaPrimeiraInicio"
+        name="quaPrimeiraInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['quaPrimeiraInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quaPrimeiraFim"
+        name="quaPrimeiraFim"
+        p-clean
+        [p-label]="this.literals.fields.form['quaPrimeiraFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quaSegundaInicio"
+        name="quaSegundaInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['quaSegundaInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quaSegundaFim"
+        name="quaSegundaFim"
+        p-clean
+        [p-label]="this.literals.fields.form['quaSegundaFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quiPrimeiraInicio"
+        name="quiPrimeiraInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['quiPrimeiraInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quiPrimeiraFim"
+        name="quiPrimeiraFim"
+        p-clean
+        [p-label]="this.literals.fields.form['quiPrimeiraFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quiSegundaInicio"
+        name="quiSegundaInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['quiSegundaInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quiSegundaFim"
+        name="quiSegundaFim"
+        p-clean
+        [p-label]="this.literals.fields.form['quiSegundaFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sexPrimeiraInicio"
+        name="sexPrimeiraInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['sexPrimeiraInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sexPrimeiraFim"
+        name="sexPrimeiraFim"
+        p-clean
+        [p-label]="this.literals.fields.form['sexPrimeiraFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sexSegundaInicio"
+        name="sexSegundaInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['sexSegundaInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sexSegundaFim"
+        name="sexSegundaFim"
+        p-clean
+        [p-label]="this.literals.fields.form['sexSegundaFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sabPrimeiraInicio"
+        name="sabPrimeiraInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['sabPrimeiraInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sabPrimeiraFim"
+        name="sabPrimeiraFim"
+        p-clean
+        [p-label]="this.literals.fields.form['sabPrimeiraFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sabSegundaInicio"
+        name="sabSegundaInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['sabSegundaInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sabSegundaFim"
+        name="sabSegundaFim"
+        p-clean
+        [p-label]="this.literals.fields.form['sabSegundaFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="domPrimeiraInicio"
+        name="domPrimeiraInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['domPrimeiraInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="domPrimeiraFim"
+        name="domPrimeiraFim"
+        p-clean
+        [p-label]="this.literals.fields.form['domPrimeiraFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="domSegundaInicio"
+        name="domSegundaInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['domSegundaInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="domSegundaFim"
+        name="domSegundaFim"
+        p-clean
+        [p-label]="this.literals.fields.form['domSegundaFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="desabilitado"
+        name="desabilitado"
+        [p-disabled]="readonly"
+        [p-label]="this.literals.fields.form['desabilitado']"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

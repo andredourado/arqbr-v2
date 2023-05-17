@@ -1,0 +1,81 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="sugestaoForm">
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="clienteId"
+        name="clienteId"
+        (p-change)="clienteIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="clienteIdService"
+        [p-label]="this.literals.fields.form['clienteId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="departamentoId"
+        name="departamentoId"
+        (p-change)="departamentoIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="departamentoIdService"
+        [p-label]="this.literals.fields.form['departamentoId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="solicitanteId"
+        name="solicitanteId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="solicitanteIdService"
+        [p-label]="this.literals.fields.form['solicitanteId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="titulo"
+        name="titulo"
+        p-clean
+        [p-label]="this.literals.fields.form['titulo']"
+        p-maxlength="60"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-textarea
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="descricao"
+        name="descricao"
+        p-clean
+        [p-label]="this.literals.fields.form['descricao']"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+        p-rows="5"
+    > </po-textarea>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="atendido"
+        name="atendido"
+        [p-disabled]="readonly"
+        [p-label]="this.literals.fields.form['atendido']"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

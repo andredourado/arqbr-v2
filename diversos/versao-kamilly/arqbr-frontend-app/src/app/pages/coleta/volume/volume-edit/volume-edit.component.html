@@ -1,0 +1,79 @@
+<po-page-default p-title="Volumes" [p-actions]="pageActions">
+  <form [formGroup]="volumeForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="coletaId"
+        name="coletaId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="coletaIdService"
+        p-label="Coleta"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="identificador"
+        name="identificador"
+        p-clean
+        p-label="Identificador"
+        p-maxlength="40"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="arquivoFoto"
+        name="arquivoFoto"
+        p-clean
+        p-label="Arquivo da Foto"
+        p-maxlength="255"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="comentario"
+        name="comentario"
+        p-clean
+        p-label="Comentário"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="localDeArmazenagem"
+        name="localDeArmazenagem"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="localDeArmazenagemService"
+        p-label="Local de Armazenagem"
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="statusId"
+        name="statusId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="statusIdService"
+        p-label="Status"
+      > </po-combo>
+    </div>
+
+  </form>
+</po-page-default>

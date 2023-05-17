@@ -1,0 +1,27 @@
+<po-page-default p-title="Serviços" [p-actions]="pageActions">
+  <form [formGroup]="servicoForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="descricao"
+        name="descricao"
+        p-clean
+        p-label="Descrição"
+        p-maxlength="60"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="desabilitado"
+        name="desabilitado"
+        [p-disabled]="readonly"
+        p-label="Desabilitado"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

@@ -1,0 +1,128 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="documentoDigitalForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="clienteId"
+        name="clienteId"
+        (p-change)="clienteIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="clienteIdService"
+        [p-label]="this.literals.fields.form['clienteId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="departamentoId"
+        name="departamentoId"
+        (p-change)="departamentoIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="departamentoIdService"
+        [p-label]="this.literals.fields.form['departamentoId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="tipoDocumentoId"
+        name="tipoDocumentoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="tipoDocumentoIdService"
+        [p-label]="this.literals.fields.form['tipoDocumentoId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="nomeArquivo"
+        name="nomeArquivo"
+        p-clean
+        [p-label]="this.literals.fields.form['nomeArquivo']"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="nomeArquivoOrigem"
+        name="nomeArquivoOrigem"
+        p-clean
+        [p-label]="this.literals.fields.form['nomeArquivoOrigem']"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-textarea
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="conteudoEmTexto"
+        name="conteudoEmTexto"
+        p-clean
+        [p-label]="this.literals.fields.form['conteudoEmTexto']"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+        p-rows="5"
+    > </po-textarea>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-number
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="numeroPaginas"
+        name="numeroPaginas"
+        p-clean
+        [p-label]="this.literals.fields.form['numeroPaginas']"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+      > </po-number>
+    </div>
+
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="solicitacaoFisico"
+        name="solicitacaoFisico"
+        [p-disabled]="readonly"
+        [p-label]="this.literals.fields.form['solicitacaoFisico']"
+      > </po-checkbox>
+    </div>
+
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+      <po-datepicker
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="dataSolicitacao"
+        name="dataSolicitacao"
+        p-clean
+        [p-label]="this.literals.fields.form['dataSolicitacao']"
+        [p-readonly]="readonly"
+      > </po-datepicker>
+    </div>
+
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="solicitanteId"
+        name="solicitanteId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="solicitanteIdService"
+        [p-label]="this.literals.fields.form['solicitanteId']"
+        p-required
+      > </po-combo>
+    </div>
+
+  </form>
+</po-page-default>

@@ -1,0 +1,51 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="rastreamentoVolumeForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="volumeId"
+        name="volumeId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="volumeIdService"
+        [p-label]="this.literals.fields.form['volumeId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-datepicker
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="dataMovimentacao"
+        name="dataMovimentacao"
+        p-clean
+        [p-label]="this.literals.fields.form['dataMovimentacao']"
+        [p-readonly]="readonly"
+      > </po-datepicker>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-datepicker
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="horaMovimentacao"
+        name="horaMovimentacao"
+        p-clean
+        [p-label]="this.literals.fields.form['horaMovimentacao']"
+        [p-readonly]="readonly"
+      > </po-datepicker>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="localDeArmazenagem"
+        name="localDeArmazenagem"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="localDeArmazenagemService"
+        [p-label]="this.literals.fields.form['localDeArmazenagem']"
+      > </po-combo>
+    </div>
+
+  </form>
+</po-page-default>

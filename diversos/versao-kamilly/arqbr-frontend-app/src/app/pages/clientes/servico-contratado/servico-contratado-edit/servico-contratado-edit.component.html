@@ -1,0 +1,80 @@
+<po-page-default p-title="Serviços Contratados" [p-actions]="pageActions">
+  <form [formGroup]="servicoContratadoForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="clienteId"
+        name="clienteId"
+        (p-change)="clienteIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="clienteIdService"
+        p-label="Cliente"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="contratoId"
+        name="contratoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="contratoIdService"
+        p-label="Contrato"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="servicoId"
+        name="servicoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="servicoIdService"
+        p-label="Serviço"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="unidadeSlaId"
+        name="unidadeSlaId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="unidadeSlaIdService"
+        p-label="Unidade"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-number
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="sla"
+        name="sla"
+        p-clean
+        p-label="SLA"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+        p-required
+      > </po-number>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="desabilitado"
+        name="desabilitado"
+        [p-disabled]="readonly"
+        p-label="Desabilitado"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

@@ -1,0 +1,68 @@
+<po-page-default p-title="Campos dos Documentos Digitais" [p-actions]="pageActions">
+  <form [formGroup]="documentoDigitalCampoForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="documentoDigitalId"
+        name="documentoDigitalId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="documentoDigitalIdService"
+        p-label="Documento Digital"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="campoId"
+        name="campoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="campoIdService"
+        p-label="Campo"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="conteudo"
+        name="conteudo"
+        p-clean
+        p-label="Conteúdo"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-number
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="indiceQualidadeExtracao"
+        name="indiceQualidadeExtracao"
+        p-clean
+        p-label="Índice de Qualidade da Extração"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+      > </po-number>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="pessoaId"
+        name="pessoaId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="pessoaIdService"
+        p-label="Pessoa"
+        p-required
+      > </po-combo>
+    </div>
+
+  </form>
+</po-page-default>

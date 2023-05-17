@@ -1,0 +1,411 @@
+<div class="remove-overflow-x">
+  <po-page-default p-title="Versões de Documento" [p-actions]="pageActions">
+    <div class="po-row campos">
+      <form [formGroup]="versaoDocumentoForm">
+        <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 no-padding">
+          <po-combo
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            formControlName="clienteId"
+            name="clienteId"
+            (p-change)="clienteIdChange($event)"
+            p-clean
+            [p-disabled]="readonly"
+            [p-filter-service]="clienteIdService"
+            p-label="Cliente"
+            p-required
+          > </po-combo>
+        </div>
+    
+        <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 no-padding">
+          <po-combo
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            formControlName="contratoId"
+            name="contratoId"
+            p-clean
+            [p-disabled]="readonly"
+            [p-filter-service]="contratoIdService"
+            p-label="Contrato"
+            p-required
+          > </po-combo>
+        </div>
+    
+        <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 no-padding">
+          <po-combo
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            formControlName="departamentoId"
+            name="departamentoId"
+            p-clean
+            [p-disabled]="readonly"
+            [p-filter-service]="departamentoIdService"
+            p-label="Departamento"
+            p-required
+          > </po-combo>
+        </div>
+    
+        <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 no-padding">
+          <po-combo
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            formControlName="tipoDocumentoId"
+            name="tipoDocumentoId"
+            p-clean
+            [p-disabled]="readonly"
+            [p-filter-service]="tipoDocumentoIdService"
+            p-label="Tipo de Documento"
+            p-required
+          > </po-combo>
+        </div>
+
+        <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 no-padding">
+          <po-input
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            formControlName="descricaoVersao"
+            name="descricaoVersao"
+            p-clean
+            p-label="Descrição da Versão"
+            p-maxlength="60"
+            [p-readonly]="readonly"
+            p-required
+          > </po-input>
+        </div>
+
+        <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 no-padding">
+          <po-input
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            formControlName="qrcode"
+            name="qrcode"
+            p-clean
+            p-label="Qr Code"
+            p-maxlength="60"
+            [p-readonly]="readonly"
+            p-required
+          > </po-input>
+        </div>
+
+        <div class="po-hide-upload-progress">
+          <po-upload
+            name="upload"
+            class="po-sm-2 po-md-2 po-lg-2 po-xl-2 upload"
+            [p-auto-upload]="true"
+            (p-error)="updateFileError()"
+            [p-hide-restrictions-info]=true
+            [p-hide-send-button]="true"
+            (p-success)="uploadSuccess($event)"
+            (p-upload)="uploadFunction()"
+            [p-url]="uploadUrl"
+          > </po-upload>
+        </div>
+      </form>
+    </div>
+
+    <!-- Área Inferior -->
+    <po-tabs>
+      <po-tab p-active p-label="Imagem">
+        <div class="po-row main">
+          <div class="po-sm-12 po-md-6 po-lg-8 po-xl-8 canvas-container">
+            <!-- Aba de paginação -->
+            <div class="pagination">
+              <a class="return" (click)="onClickPage(page - 1)" *ngIf="page !== 0">&laquo;</a>
+              <a [ngClass]="{'spacement-left': page === 0, 'spacement-right': page === pageTotal}">{{"Página " + (page + 1)}}</a>
+              <a class="advance" (click)="onClickPage(page + 1)" *ngIf="page !== pageTotal" [ngClass]="{'disabled': page === pageTotal - 1}">&raquo;</a>
+            </div>     
+
+            <!-- Canvas e imagem -->
+            <div class="img">
+              <canvas #canvasForeground id="canvasForeground" [width]="width - 24" [height]="height"></canvas>
+              <img [src]="src" [width]="width - 24" id="img">
+            </div>
+          </div>
+
+          <div [style]=" 'max-height:' + height + 'px;' "  id="sideMenu" class="po-sm-12 po-md-6 po-lg-4 po-xl-4 side-menu">
+            <!-- Tabela de quadrados -->
+            <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
+              <table class="squares-table">
+                <thead>
+                  <th>Áreas</th>
+                </thead>
+                <div class="table-body">
+                  <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+                    <td class="po-font-text-large page-number-header">Página</td>
+                    <td class="po-font-text-large square-name-header">Nome</td>
+                  </tr>
+                  <tr 
+                    *ngFor="let square of squares; let squareIndex = index"
+                    (click)="tableClick(squareIndex)" 
+                    class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding"
+                  >
+                    <td class="po-font-text-large page-number">{{square.page + 1}}</td>
+                    <td class="po-font-text-large square-name">{{square.name}}</td>
+                  </tr>
+                </div>
+              </table>
+            </div>
+
+            <!-- Formulário de quadrados -->
+            <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding form">
+              <form [formGroup]="squaresForm">
+                <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding inputs">
+                  <po-input
+                    class="po-sm-12 po-md-12 po-lg-9 po-xl-9 po-required"
+                    formControlName="name"
+                    name="name"
+                    p-clean
+                    [p-disabled]="isFormDisabled"
+                    p-label="Nome"
+                    p-maxlength="25"
+                    p-required
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-12 po-lg-3 po-xl-3 po-required"
+                    formControlName="page"
+                    maxlength="5"
+                    name="page"
+                    p-disabled
+                    p-label="Página"
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-3 po-xl-3 po-required"
+                    formControlName="startX"
+                    name="startX"
+                    [p-disabled]="isFormDisabled"
+                    p-label="X Inicial"
+                    p-maxlength="5"
+                    p-required
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-3 po-xl-3 po-required"
+                    formControlName="startY"
+                    name="startY"
+                    [p-disabled]="isFormDisabled"
+                    p-label="Y Inicial"
+                    p-maxlength="5"
+                    p-required
+                  > </po-input>
+                
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-3 po-xl-3 po-required"
+                    formControlName="endX"
+                    name="endX"
+                    [p-disabled]="isFormDisabled"
+                    p-label="X Final"
+                    p-maxlength="5"
+                    p-required
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-3 po-xl-3 po-required"
+                    formControlName="endY"
+                    name="endY"
+                    [p-disabled]="isFormDisabled"
+                    p-label="Y Final"
+                    p-maxlength="5"
+                    p-required
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-6 po-xl-6 po-required"
+                    formControlName="imageWidth"
+                    name="squareWidth"
+                    [p-disabled]="isFormDisabled"
+                    p-label="Largura"
+                    p-maxlength="5"
+                    p-required
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-6 po-xl-6 po-required"
+                    formControlName="imageHeight"
+                    name="squareHeight"
+                    [p-disabled]="isFormDisabled"
+                    p-label="Altura"
+                    p-maxlength="5"
+                    p-required
+                  > </po-input>
+                </div>
+
+                <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-button-div buttons">
+                  <div class="actions">
+                    <po-button
+                      (p-click)="deleteSquare()"
+                      [p-disabled]="isFormDisabled"
+                      p-danger="true"
+                      p-label="Deletar"
+                      p-kind="secondary"
+                    > </po-button>
+
+                    <po-button
+                      (p-click)="addSquare()"
+                      [p-disabled]="isFormDisabled"
+                      p-label="Salvar"
+                      p-kind="primary"
+                    > </po-button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </po-tab>
+      
+      <po-tab p-label="Texto">
+        <div class="po-row main">
+          <div class="po-sm-12 po-md-6 po-lg-8 po-xl-8 canvas-container">
+            <div class="pagination">
+              <a class="return" (click)="onClickPage(page - 1)" *ngIf="page !== 0">&laquo;</a>
+              <a [ngClass]="{'spacement-left': page === 0, 'spacement-right': page === pageTotal}">{{"Página " + (page + 1)}}</a>
+              <a class="advance" (click)="onClickPage(page + 1)" *ngIf="page !== pageTotal" [ngClass]="{'disabled': page === pageTotal - 1}">&raquo;</a>
+            </div>     
+            
+            <div class="texto-body">
+              <div [innerHtml]="fileText"></div>
+              <!-- <p class="texto">{{fileText}}</p> -->
+            </div>
+          </div>
+
+          <div [style]=" 'max-height:' + height + 'px;' "  id="sideMenu" class="po-sm-12 po-md-6 po-lg-4 po-xl-4 side-menu">
+            <!-- Tabela de Text -->
+              <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
+                <table class="squares-table">
+                  <thead>
+                    <th>Áreas</th>
+                  </thead>
+                  <div class="table-body">
+                    <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+                      <td class="po-font-text-large page-number-header">Página</td>
+                      <td class="po-font-text-large square-name-header">Nome</td>
+                    </tr>
+                    <tr 
+                      *ngFor="let text of texts; let textIndex = index"
+                      (click)="tableTextClick(textIndex)" 
+                      class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding"
+                    >
+                      <td class="po-font-text-large page-number">{{text.page + 1}}</td>
+                      <td class="po-font-text-large square-name">{{text.name}}</td>
+                    </tr>
+                  </div>
+                </table>
+              </div>
+
+            <!-- Formulário de quadrados -->
+            <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding form">
+              <form [formGroup]="textForm">
+                <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding inputs">
+                  <po-input
+                    class="po-sm-12 po-md-12 po-lg-9 po-xl-9 po-required"
+                    formControlName="name"
+                    name="name"
+                    p-clean
+                    p-label="Nome"
+                    p-maxlength="25"
+                    p-required
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-12 po-lg-3 po-xl-3 po-required"
+                    formControlName="page"
+                    maxlength="5"
+                    name="page"
+                    p-disabled
+                    p-label="Página"
+                  > </po-input>
+
+                  <!-- <po-input
+                    class="po-sm-12 po-md-6 po-lg-3 po-xl-3 po-required"
+                    formControlName="linha"
+                    name="linha"
+                    p-label="Linha"
+                    p-maxlength="5"
+                    p-required
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-3 po-xl-3 po-required"
+                    formControlName="coluna"
+                    name="coluna"
+                    p-label="Coluna"
+                    p-maxlength="5"
+                    p-required
+                  > </po-input> -->
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                    formControlName="resultadoEsperado"
+                    name="resultadoEsperado"
+                    p-label="Resultado Esperado"
+                  > </po-input>
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                    formControlName="complemento"
+                    name="complemento"
+                    p-label="Complemento"
+                  > </po-input> 
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                    formControlName="mascara"
+                    name="mascara"
+                    p-label="Máscaras"
+                  > </po-input> 
+                  
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                    formControlName="comprimento"
+                    name="comprimento"
+                    p-label="Comprimento"
+                  > </po-input> 
+
+                  <po-input
+                    class="po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                    formControlName="ocorrencia"
+                    name="ocorrencia"
+                    p-label="Ocorrência"
+                  > </po-input> 
+
+                  <po-input
+                  class="po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                  formControlName="referencia"
+                  name="referencia"
+                  p-label="Referência"
+                  > </po-input> 
+
+                  <po-input
+                  class="po-sm-12 po-md-6 po-lg-6 po-xl-6"
+                  formControlName="localizacao"
+                  name="localizacao"
+                  p-label="Localização"
+                  > </po-input> 
+                </div> 
+
+                <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-button-div buttons">
+                  <div class="actions">
+                    <po-button
+                      (p-click)="deleteText()"
+                      p-danger="true"
+                      p-label="Deletar"
+                      p-kind="secondary"
+                    > </po-button>
+
+                    <po-button
+                      (p-click)="addText()"
+                      p-label="Salvar"
+                      p-kind="primary"
+                    > </po-button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </po-tab>
+    </po-tabs>
+  </po-page-default>
+</div>
+
+<po-loading-overlay
+  *ngIf="isLoading"
+  [p-screen-lock]="true"
+  p-text="Carregando" 
+> </po-loading-overlay>

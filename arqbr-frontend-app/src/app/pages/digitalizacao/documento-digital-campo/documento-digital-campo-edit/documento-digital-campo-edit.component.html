@@ -1,0 +1,43 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="documentoDigitalCampoForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="documentoDigitalId"
+        name="documentoDigitalId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="documentoDigitalIdService"
+        [p-label]="this.literals.fields.form['documentoDigitalId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="campoDocumentoId"
+        name="campoDocumentoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="campoDocumentoIdService"
+        [p-label]="this.literals.fields.form['campoDocumentoId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="conteudo"
+        name="conteudo"
+        p-clean
+        [p-label]="this.literals.fields.form['conteudo']"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+  </form>
+</po-page-default>

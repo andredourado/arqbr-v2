@@ -1,0 +1,106 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="posicaoForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="unidadeId"
+        name="unidadeId"
+        (p-change)="unidadeIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="unidadeIdService"
+        [p-label]="this.literals.fields.form['unidadeId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="plantaId"
+        name="plantaId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="plantaIdService"
+        [p-label]="this.literals.fields.form['plantaId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="rua"
+        name="rua"
+        p-clean
+        [p-label]="this.literals.fields.form['rua']"
+        p-maxlength="20"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="linha"
+        name="linha"
+        p-clean
+        [p-label]="this.literals.fields.form['linha']"
+        p-maxlength="20"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="coluna"
+        name="coluna"
+        p-clean
+        [p-label]="this.literals.fields.form['coluna']"
+        p-maxlength="20"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-number
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="posicoes"
+        name="posicoes"
+        p-clean
+        [p-label]="this.literals.fields.form['posicoes']"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+        p-required
+      > </po-number>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-number
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="posicoesDisponíveis"
+        name="posicoesDisponíveis"
+        p-clean
+        [p-label]="this.literals.fields.form['posicoesDisponíveis']"
+        p-maxlength="10"
+        [p-readonly]="readonly"
+        p-required
+      > </po-number>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="desabilitado"
+        name="desabilitado"
+        [p-disabled]="readonly"
+        [p-label]="this.literals.fields.form['desabilitado']"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

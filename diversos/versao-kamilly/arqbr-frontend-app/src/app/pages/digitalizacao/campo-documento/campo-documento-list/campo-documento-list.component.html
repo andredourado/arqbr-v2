@@ -1,0 +1,161 @@
+<!-- <po-page-dynamic-search
+  [p-actions]="pageActions"
+  (p-change-disclaimers)="clickDisclaimers($event)"
+  (p-quick-search)="search($event)"
+  p-title="Campos de Documento"
+>
+  <po-table
+    #table
+    [p-actions]="tableActions"
+    p-actions-right
+    [p-columns]="fields"
+    p-container
+    [p-height]="listHeight"
+    p-infinite-scroll
+    p-infinite-scroll-distance="90"
+    [p-items]="items"
+    [p-loading]="loading"
+    p-selectable
+    (p-show-more)="showMoreItems()"
+  > </po-table>
+</po-page-dynamic-search> -->
+
+
+
+<!-- 
+  <div class="po-row">
+    <po-select
+      [p-options]="tiposDocumento" 
+      class="po-lg-6 po-sm-12 po-p-0"
+      (p-change)="changeTipoDocumento($event)" 
+      p-label="Tipo de documento"
+    > </po-select> 
+  </div>
+
+  <form [formGroup]="filterForm">
+    <div
+      style="max-width: calc(100vw - 288px); display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding-right: 8px; margin-bottom: 8px;" 
+      *ngIf="tipoDocumentoSelected != null"
+    >
+      <div style="display: flex; flex-direction: row; justify-content: flex-start; padding-bottom: 8px;">
+        <div 
+          style="display: flex; flex-direction: column; width: 300px;"
+          class="po-pr-1 po-pl-1" 
+          *ngFor="let campo of tipoDocumentoSelected.campos"
+        >
+          <label [for]="campo" class="po-field-title">{{campo}}</label>
+          <input
+            [formControlName]="campo"
+            class="po-input"
+            [id]="campo"
+            [name]="campo" 
+            clean 
+            type="text"
+          >
+        </div>
+      </div>
+      
+      <button 
+        type="button" 
+        class="fa-solid fa-magnifying-glass fa-lg" 
+        style="height: 50px; width: 50px; background-color: white; border: solid 1px #bdbdbd; color: #0C9ABE;"
+        (click)="filterDocumentos()"
+      > </button>
+    </div>
+  </form> -->
+
+<po-page-default
+  class="po-page-slide-resize"
+  [p-actions]="pageActions"
+  p-title="Campos de Documento"
+> 
+<!-- 
+<po-page-slide 
+  p-click-out="true" 
+  p-size="sm" 
+  p-title="Filtros" 
+  #poPageSlide
+>
+<form 
+  [formGroup]="formFilter" 
+  class="form-filter po-button-width-iguality"
+>
+  <po-input 
+    class="form-filter-input" 
+    formControlName="nip" 
+    name="nip" 
+    p-auto-focus 
+    p-clean 
+    p-label="NIP"
+    p-maxlength="50" 
+    p-required
+  ></po-input>
+
+  <po-input 
+    class="form-filter-input" 
+    formControlName="matricula" 
+    name="matricula" 
+    p-auto-focus 
+    p-clean
+    p-label="Matricula" 
+    p-maxlength="50" 
+    p-required
+  ></po-input>
+
+  <po-input 
+    class="form-filter-input" 
+    formControlName="declarante" 
+    name="declarante" 
+    p-auto-focus 
+    p-clean
+    p-label="Declarante" 
+    p-maxlength="50" 
+    p-required
+  ></po-input>
+
+  <po-input 
+    class="form-filter-input" 
+    formControlName="ano_calendario" 
+    name="ano_calendario" 
+    p-auto-focus 
+    p-clean
+    p-label="Ano Calendário" 
+    p-maxlength="50" 
+    p-required
+  ></po-input>
+
+  <po-input 
+    class="form-filter-input" 
+    formControlName="palavra_chave" 
+    name="palavra_chave" 
+    p-auto-focus 
+    p-clean
+    p-label="Palavra chave (OCR)" 
+    p-maxlength="50" 
+    p-required
+  ></po-input>
+
+  <po-button 
+    class="buttons filter-button" 
+    (p-click)="closePage()" 
+    p-kind="primary" 
+    p-label="Filtrar"
+    p-size="large"
+  ></po-button>
+</form>
+</po-page-slide> -->
+
+<po-table
+  #table
+  [p-actions]="tableActions"
+  p-actions-right
+  [p-columns]="fields"
+  p-container
+  [p-height]="listHeight"
+  p-infinite-scroll
+  p-infinite-scroll-distance="90"
+  [p-loading]="loading"
+  p-selectable
+  (p-show-more)="showMoreItems()"
+></po-table>
+</po-page-default> 

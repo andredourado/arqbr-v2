@@ -1,0 +1,21 @@
+<po-page-dynamic-search
+  [p-actions]="pageActions"
+  (p-change-disclaimers)="clickDisclaimers($event)"
+  (p-quick-search)="search($event)"
+  p-title="Veículos"
+>
+  <po-table
+    #table
+    [p-actions]="tableActions"
+    p-actions-right
+    [p-columns]="fields"
+    p-container
+    [p-height]="listHeight"
+    p-infinite-scroll
+    p-infinite-scroll-distance="90"
+    [p-items]="items"
+    [p-loading]="loading"
+    p-selectable
+    (p-show-more)="showMoreItems()"
+  > </po-table>
+</po-page-dynamic-search>

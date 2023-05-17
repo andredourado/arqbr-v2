@@ -1,0 +1,118 @@
+<po-page-default p-title="Documentos" [p-actions]="pageActions">
+  <form [formGroup]="documentoForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="clienteId"
+        name="clienteId"
+        (p-change)="clienteIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="clienteIdService"
+        p-label="Cliente"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="contratoId"
+        name="contratoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="contratoIdService"
+        p-label="Contrato"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="departamentoId"
+        name="departamentoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="departamentoIdService"
+        p-label="Departamento"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="tipoDocumentoId"
+        name="tipoDocumentoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="tipoDocumentoIdService"
+        p-label="Tipo de Documento"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="nip"
+        name="nip"
+        p-clean
+        p-label="NIP"
+        p-maxlength="40"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="caixaArqbr"
+        name="caixaArqbr"
+        p-clean
+        p-label="Caixa ArqBR"
+        p-maxlength="40"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="conteudoQrCode"
+        name="conteudoQrCode"
+        p-clean
+        p-label="Conteúdo QR Code"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="statusId"
+        name="statusId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="statusIdService"
+        p-label="Status"
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="pessoaId"
+        name="pessoaId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="pessoaIdService"
+        p-label="Pessoa"
+        p-required
+      > </po-combo>
+    </div>
+
+  </form>
+</po-page-default>

@@ -1,0 +1,221 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="frequenciaColetaForm">
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="clienteId"
+        name="clienteId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="clienteIdService"
+        [p-label]="this.literals.fields.form['clienteId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="diasDoMes"
+        name="diasDoMes"
+        p-clean
+        [p-label]="this.literals.fields.form['diasDoMes']"
+        p-maxlength="100"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="segHorarioInicio"
+        name="segHorarioInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['segHorarioInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="segHorarioFim"
+        name="segHorarioFim"
+        p-clean
+        [p-label]="this.literals.fields.form['segHorarioFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="terHorarioInicio"
+        name="terHorarioInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['terHorarioInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="terHorarioFim"
+        name="terHorarioFim"
+        p-clean
+        [p-label]="this.literals.fields.form['terHorarioFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quaHorarioInicio"
+        name="quaHorarioInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['quaHorarioInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quaHorarioFim"
+        name="quaHorarioFim"
+        p-clean
+        [p-label]="this.literals.fields.form['quaHorarioFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quiHorarioInicio"
+        name="quiHorarioInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['quiHorarioInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="quiHorarioFim"
+        name="quiHorarioFim"
+        p-clean
+        [p-label]="this.literals.fields.form['quiHorarioFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sexHorarioInicio"
+        name="sexHorarioInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['sexHorarioInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sexHorarioFim"
+        name="sexHorarioFim"
+        p-clean
+        [p-label]="this.literals.fields.form['sexHorarioFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sabHorarioInicio"
+        name="sabHorarioInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['sabHorarioInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="sabHorarioFim"
+        name="sabHorarioFim"
+        p-clean
+        [p-label]="this.literals.fields.form['sabHorarioFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="domHorarioInicio"
+        name="domHorarioInicio"
+        p-clean
+        [p-label]="this.literals.fields.form['domHorarioInicio']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="domHorarioFim"
+        name="domHorarioFim"
+        p-clean
+        [p-label]="this.literals.fields.form['domHorarioFim']"
+        p-mask="99:99"
+        p-maxlength="5"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <po-checkbox
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 checkbox-header"
+        formControlName="desabilitado"
+        name="desabilitado"
+        [p-disabled]="readonly"
+        [p-label]="this.literals.fields.form['desabilitado']"
+      > </po-checkbox>
+    </div>
+
+  </form>
+</po-page-default>

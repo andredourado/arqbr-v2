@@ -1,0 +1,328 @@
+<po-page-default p-title="Visualizador de PDF" [p-actions]="pageActions">
+ 
+  <!-- <po-select 
+      
+      class="po-lg-6 po-sm-12"
+      p-label="Cliente"
+      p-disabled="true"
+      p-placeholder=""
+    ></po-select>
+
+    <po-select 
+       
+      class="po-lg-6 po-sm-12" 
+      p-label="Departamento"
+      p-disabled="true"
+      p-placeholder=""
+    ></po-select>
+
+    <po-select 
+      
+      class="po-lg-6 po-sm-12" 
+      p-label="Tipo de documento"
+      p-disabled="true"
+      p-placeholder=""
+    ></po-select>
+
+    <po-button 
+    class="po-lg-1 po-sm-4 po-mt-lg-4  po-mb-sm-5" 
+    p-label="Filtros" 
+    (p-click)="openPage()"
+    ></po-button>
+
+      <po-upload
+      #upload
+      name="upload"
+      class="po-lg-3 po-sm-6 po-mt-lg-4  po-ml-sm-5"
+      name="project"
+      (ngModel)="project"
+      (ngModelChange)="changeUpload($event)"
+      [p-hide-send-button]="true"
+      [p-required]="true"
+      p-url="https://po-sample-api.herokuapp.com/v1/uploads/addFile"
+    ></po-upload>
+      
+</po-container> -->
+<!-- <po-container class=" po-page-slide-resize"> -->
+  <po-container class=" po-lg-8 po-sm-12
+  " p-no-padding="true" p-height="780">
+    <!-- <pdf-viewer 
+      [src]="src" 
+      [original-size]="false" 
+      [render-text]="true" 
+      [rotation]="0" 
+      [show-all]="false"
+      [fit-to-page]="false" 
+      [zoom]="pdfZoom" 
+      [zoom-scale]="'page-fit'" 
+      [stick-to-page]="true"
+      [external-link-target]="'blank'" 
+      [show-borders]="false" 
+      [page]="page"
+      (after-load-complete)="afterLoadComplete($event)" 
+      class="pdf-viewer"
+    ></pdf-viewer> -->
+    <pdf-viewer [src]="src"
+    [render-text]="true"
+    [original-size]="false"
+    style="width: 400px; height: 500px"
+   ></pdf-viewer>
+        
+      <po-divider></po-divider>
+
+      <nav 
+        *ngIf="isLoaded" 
+        class="width-input-nav"
+      >
+        <div class="zoom-component">
+          <div 
+          (click)="zoomIn()" 
+          class="nav-component button-zoom po-icon po-icon-zoom-in"
+          ></div>
+
+          <div 
+          (click)="zoomOut()" 
+          class="nav-component button-zoom po-icon po-icon-zoom-out"
+          ></div>
+
+          <div 
+          (click)="resetZoom()" 
+          class="nav-component button-zoom po-icon po-icon-refresh"
+          ></div>
+        </div>
+
+        <div class="pass-page">
+          <div class="number-pages-avance pass-page-margin">
+            <button 
+              (click)="prev50Page()" 
+              [disabled]="page === 1"
+              class="previous nav-component pass-botton po-icon po-icon-first-page"
+            ></button>
+            <p>-50</p>
+          </div>
+
+          <button 
+            (click)="prevPage()" 
+            [disabled]="page === 1"
+            class="previous nav-component pass-botton po-icon po-icon-arrow-left pass-page-margin"
+          ></button>
+
+          <div class="contador">
+            <po-number 
+              class="nav-component " 
+              (p-change)="change()" 
+              name="page" 
+              [(ngModel)]="page" 
+              p-maxlength="4"
+            ></po-number>
+          </div>
+            
+            <div class="number-pages nav-component pass-botton pass-page-margin"> 
+              <p>/ {{ totalPages }}</p>
+            </div>
+          
+
+          <button 
+            (click)="nextPage()" 
+            [disabled]="page === totalPages"
+            class="next nav-component pass-botton po-icon po-icon-arrow-right pass-page-margin"
+          ></button>
+
+          <div class="number-pages-avance pass-page-margin">
+            <p>+50</p>
+            <button 
+              (click)="next50Page()" 
+              [disabled]="page === totalPages"
+              class="next nav-component pass-botton po-icon po-icon-last-page"
+            ></button>
+          </div>
+        </div>
+      </nav>
+    </po-container>
+
+    <po-container class="po-lg-4 po-sm-12 po-mt-sm-12 form-page" p-height="780">
+      <form 
+        [formGroup]="formDocument" 
+        class="form-document"
+      >
+        <po-input 
+          class="form-input" 
+          formControlName="nip" 
+          name="nip" 
+          p-readonly="true" 
+          p-label="NIP" 
+          p-maxlength="50"
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-input" 
+          formControlName="matricula" 
+          name="matricula" 
+          p-readonly="true" 
+          p-label="Matricula"
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-input" 
+          formControlName="declarante" 
+          name="declarante" 
+          p-readonly="true"
+          p-label="Declarante" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-input" 
+          formControlName="ano_calendario" 
+          name="ano_calendario" 
+          p-readonly="true"
+          p-label="Ano Calendário" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-input" 
+          formControlName="temporalidade" 
+          name="temporalidade" 
+          p-readonly="true"
+          p-label="Temporalidade" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-input" 
+          formControlName="caixa_arqbr" 
+          name="caixa_arqbr" 
+          p-readonly="true"
+          p-label="Caixa ARQBR" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-input" 
+          formControlName="paginas" 
+          name="paginas" 
+          p-readonly="true" 
+          p-label="Páginas"
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-input" 
+          formControlName="tamanho" 
+          name="tamanho" 
+          p-readonly="true" 
+          p-label="Tamanho"
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-input" 
+          formControlName="data_insercao" 
+          name="data_insercao" 
+          p-readonly="true"
+          p-label="Data Inserção" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+      </form>
+
+      <div class="buttons-form">
+        <po-button 
+          class="buttons po-lg-6 po-sm-12" 
+          p-kind="primary" 
+          p-label="Download"
+        ></po-button>
+
+        <po-button 
+        class="buttons po-lg-6 po-sm-12" 
+        p-kind="primary" 
+        p-label="Solicitar fisico"
+        ></po-button>
+      </div>
+    </po-container>
+
+    <!-- <po-page-slide 
+      p-click-out="true" 
+      p-size="sm" 
+      p-title="Filtros" 
+      #poPageSlide
+    >
+      <form 
+        [formGroup]="formFilter" 
+        class="form-filter po-button-width-iguality"
+      >
+        <po-input 
+          class="form-filter-input" 
+          formControlName="nip" 
+          name="nip" 
+          p-auto-focus 
+          p-clean 
+          p-label="NIP"
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-filter-input" 
+          formControlName="matricula" 
+          name="matricula" 
+          p-auto-focus 
+          p-clean
+          p-label="Matricula" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-filter-input" 
+          formControlName="declarante" 
+          name="declarante" 
+          p-auto-focus 
+          p-clean
+          p-label="Declarante" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-filter-input" 
+          formControlName="ano_calendario" 
+          name="ano_calendario" 
+          p-auto-focus 
+          p-clean
+          p-label="Ano Calendário" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-input 
+          class="form-filter-input" 
+          formControlName="palavra_chave" 
+          name="palavra_chave" 
+          p-auto-focus 
+          p-clean
+          p-label="Palavra chave (OCR)" 
+          p-maxlength="50" 
+          p-required
+        ></po-input>
+
+        <po-button 
+          class="buttons filter-button" 
+          (p-click)="closePage()" 
+          p-kind="primary" 
+          p-label="Filtrar"
+          p-size="large"
+        ></po-button>
+      </form>
+    </po-page-slide> -->
+</po-page-default>
