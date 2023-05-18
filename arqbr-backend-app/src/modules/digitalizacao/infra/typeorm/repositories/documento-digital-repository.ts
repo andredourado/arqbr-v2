@@ -93,23 +93,20 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
         .select([
           'doc.id as "id"',
           'doc.solicitacaoFisico as "solicitacaoFisico"',
-          'a.descricaoVersao as "versaoDocumentoDescricaoVersao"',
           'doc.nomeArquivo as "nomeArquivo"',
           'doc.dataSolicitacao as "dataSolicitacao"',
           'doc.solicitanteId as "solicitanteId"',
-          'a.id as "clienteId"',
-          'a.nomeFantasia as "clienteNomeFantasia"',
-          'b.id as "departamentoId"',
-          'b.nome as "departamentoNome"',
-          'c.id as "tipoDocumentoId"',
-          'c.descricao as "tipoDocumentoDescricao"',
+          'a.id as "tipoDocumentoId"',
+          'a.descricao as "tipoDocumentoDescricao"',
+          'b.id as "clienteId"',
+          'b.nomeFantasia as "clienteNomeFantasia"',
+          'c.id as "departamentoId"',
+          'c.nome as "departamentoNome"',
         ])
         .distinct(true)
-        .leftJoin('a.clienteId', 'b')
-        .leftJoin('solicitantes', 'c', 'c.clienteId = b.id')
-        .leftJoin('doc.clienteId', 'a')
-        .leftJoin('doc.departamentoId', 'b')
-        .leftJoin('doc.tipoDocumentoId', 'c')
+        .leftJoin('doc.tipoDocumentoId', 'a')
+        .leftJoin('doc.clienteId', 'b')
+        .leftJoin('doc.departamentoId', 'c')
 
       if (filter != null) {
         Object.entries(filter).forEach(([key, value]) => {
@@ -122,17 +119,16 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
 
       if (tipoDocumentoId) {
         query = query
-          .andWhere('a.tipoDocumentoId = :tipoDocumentoId', { tipoDocumentoId })
+          .andWhere('doc.tipoDocumentoId = :tipoDocumentoId', { tipoDocumentoId })
       }
 
-      if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
-        query = query
-          .andWhere('c.email = :email', { email: solicitante.email })
-          .andWhere('c.departamentoId = a.departamentoId')
-      }
+      // if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
+      //   query = query
+      //     .andWhere('c.email = :email', { email: solicitante.email })
+      //     .andWhere('c.departamentoId = a.departamentoId')
+      // }
 
       let documentosDigitais = await query
-        .addOrderBy('a.descricaoVersao', columnOrder[1])
         .take(rowsPerPage)
         .skip(offset)
         .limit(rowsPerPage)

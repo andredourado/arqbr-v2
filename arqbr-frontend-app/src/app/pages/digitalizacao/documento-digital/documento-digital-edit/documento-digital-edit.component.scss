@@ -1,9 +1,140 @@
-.no-padding {
-  padding: 0px;
+.page-body {
+  width: 100%;
+  height: calc(100vh - 154px);
+  padding: 16px;
+  border-radius: 10px;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+
+    .zoom-component {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0px;
+      width: 30%;
+  
+      .button-zoom {
+        margin: 0;
+      }
+    }
+
+    .pass-page {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 5px;
+      width: 50%;
+
+      .number-pages-avance {
+        display: flex;
+        align-items: center;
+      
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+  }
 }
 
-.checkbox-header {
-  display: flex;
-  margin-top: 37px;
-  align-items: flex-end;
+.nav-icon {
+  font-size: 23px;
+  color: #0c9abe;
+  cursor: pointer;
 }
+
+.shadow {
+ box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+             0 0  0 2px rgb(190, 190, 190),
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+.image-container {
+  width: 100%;
+  max-height: calc(100vh - 283px);
+  overflow-y: scroll;
+
+  img {
+    width: 100%;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #0c9abe;
+}
+
+.component-first {
+  margin: 0px 0px 20px 0px;
+  padding: 15px;
+}
+
+.pass-botton {
+  border: none;
+}
+
+.previous {
+  margin-right: 8px;
+  background-color: #f0f0f000;
+}
+
+.next {
+  margin-left: 8px;
+  background-color: #f0f0f000;
+}
+
+.form-document {
+  height: 100%;
+}
+
+.form-input {
+  width: 90%
+}
+
+.buttons-form {
+  display: flex;
+  width: 90%;
+  margin-top: 5px;
+}
+
+.form-filter-input {
+  margin-bottom: 25px;
+}
+
+.form-filter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.filter-button {
+  width: 100%;
+  font-size: 17px;
+}
+
+.number-pages {
+  display: flex;
+  align-items: center;
+}
+
+.contador {
+  display: flex;
+
+  .contador-input {
+    width: 80px;
+    margin-right: 8px;
+  }
+
+  .number-pages {
+    font-size: 20px;
+  }
+}
+

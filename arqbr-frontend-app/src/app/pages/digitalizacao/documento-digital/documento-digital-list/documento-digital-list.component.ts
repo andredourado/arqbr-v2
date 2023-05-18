@@ -164,9 +164,9 @@ export class DocumentoDigitalListComponent implements OnInit, OnDestroy {
       tipoDocumentoSelected.campos.map(campo => {
         if (this.filterService.getFilters) {
           this.filterForm.patchValue({ texto: this.filterService.getFilters['texto'] })
-          this.filterForm.addControl(campo.value, this.formBuilder.control(this.filterService.getFilters[campo.value]))
+          this.filterForm.addControl(campo.id, this.formBuilder.control(this.filterService.getFilters[campo.id]))
         } else {
-          this.filterForm.addControl(campo.value, this.formBuilder.control(''))
+          this.filterForm.addControl(campo.id, this.formBuilder.control(''))
         }
       })
     }

@@ -1,12 +1,21 @@
-import { HttpClient } from '@angular/common/http'
 import { Component, OnDestroy, OnInit } from "@angular/core"
 import { ActivatedRoute, Router } from '@angular/router'
-import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification } from '@po-ui/ng-components'
-import { FormBuilder } from '@angular/forms'
+import { PoPageAction } from '@po-ui/ng-components'
 import { Subscription } from 'rxjs'
-import { environment } from "src/environments/environment"
 import { RestService } from "src/app/services/rest.service"
-import { LanguagesService } from 'src/app/services/languages.service'
+import { DomSanitizer } from "@angular/platform-browser"
+import { environment } from "src/environments/environment"
+import { HttpClient } from "@angular/common/http"
+import { PoTreeViewItemHeaderComponent } from "@po-ui/ng-components/lib/components/po-tree-view/po-tree-view-item-header/po-tree-view-item-header.component"
+
+const ZOOM_STEP: number = 0.1
+const DEFAULT_ZOOM: number = 0.5
+
+interface IResponse {
+  solicitacaoFisico: any
+  statusCode: number
+  data: any
+}
 
 @Component({
   selector: "app-documento-digital-edit",
@@ -14,209 +23,180 @@ import { LanguagesService } from 'src/app/services/languages.service'
   styleUrls: ["./documento-digital-edit.component.scss"],
 })
 export class DocumentoDigitalEditComponent implements OnInit, OnDestroy {
-  public id: string
-  public readonly = false
-  public clienteId = ''
-  public departamentoId = ''
-  public result: any
-  public literals: any = {}
-
-  documentoDigitalForm = this.formBuilder.group({
-    clienteId: null,
-    departamentoId: null,
-    tipoDocumentoId: null,
-    nomeArquivo: '',
-    nomeArquivoOrigem: '',
-    conteudoEmTexto: '',
-    numeroPaginas: 0,
-    solicitacaoFisico: false,
-    dataSolicitacao: null,
-    solicitanteId: null,
-  })
-
-  public readonly serviceApi = `${environment.baseUrl}/documentos-digitais`
-  public clienteIdService = `${environment.baseUrl}/clientes/select`
-  public departamentoIdService = `${environment.baseUrl}/departamentos/select`
-  public tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select`
-  public solicitanteIdService = `${environment.baseUrl}/solicitantes/select`
+  id: string
+  page: number = 1
+  scale = DEFAULT_ZOOM
+  totalPages: number = 0
+  isLoaded: boolean = false
+  src: any = ''
+  nomeArquivo: string
+  solicitacaoFisico: boolean = false
+  textoBotao = ''
+  items: any
+  
 
   subscriptions = new Subscription()
 
-  public readonly pageActions: Array<PoPageAction> = []
+  public pageActions: Array<PoPageAction> = [
+    {
+      label: 'Download',
+      action: this.downloadFile.bind(this),
+      icon: 'fa-solid fa-download'
+    },
+    {
+      label: 'Solicitar Físico',
+      action: this.solicitarDocumento.bind(this)
+    },
+    {
+      label: 'Voltar',
+      action: this.goBack.bind(this)
+    }
+  ]
 
   constructor(
-    private formBuilder: FormBuilder,
-    public httpClient: HttpClient,
-    public restService: RestService,
+    private restService: RestService,
     private activatedRoute: ActivatedRoute,
+    private sanitizer: DomSanitizer,
     private router: Router,
-    private poNotification: PoNotificationService,
-    private languagesService: LanguagesService
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit(): void {
-    this.getLiterals()
-
     this.id = this.activatedRoute.snapshot.paramMap.get("id")
-
-    this.pageButtonsBuilder(this.getPageType(this.activatedRoute.snapshot.routeConfig.path))
-
-    if (this.id) {
-      this.subscriptions.add(this.getDocumentoDigital(this.id))
-    }
+    this.loadPage()
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
   }
 
-  getLiterals() {
-    this.languagesService.getLiterals({ type: 'edit', module: 'digitalizacao', options: 'documentoDigital'})
-      .subscribe({
-        next: res => this.literals = res
-      })
-  }
 
-  getPageType(route: string): string {
-    switch (route) {
-      case 'new':
-        return 'new'
-      case 'new/:id':
-        return 'new'
-      case 'edit':
-        return 'edit'
-      case 'edit/:id':
-        return 'edit'
-      case 'view/:id':
-        return 'view'
-    }
-  }
-
-  pageButtonsBuilder(pageType: string): null {
-    if (pageType === 'view') {
-      this.readonly = true
-
-      this.pageActions.push(
-        {
-          label: this.literals.return,
-          action: this.goBack.bind(this),
-        }
-      )
-      return
+  loadPage () {
+    const payload = {
+      id: this.id,
+      page: this.page,
     }
 
-    this.pageActions.push(
-      {
-        label: this.literals.save,
-        action: () => this.save(this.documentoDigitalForm.value)
-      },
-      {
-        label: this.literals.saveAndNew,
-        action: () => this.save(this.documentoDigitalForm.value, true)
-      },
-      {
-        label: this.literals.cancel,
-        action: this.goBack.bind(this),
-      }
+    this.subscriptions.add(
+      this.restService
+        .post("/documentos-digitais/page", payload)
+        .subscribe({
+          next: (res: IResponse) => {
+            this.src = this.sanitizer.bypassSecurityTrustResourceUrl(res.data.image as string)
+            this.totalPages = res.data.totalPages
+            this.nomeArquivo = res.data.nomeArquivo
+            this.solicitacaoFisico = res.data.solicitacaoFisico
+            this.changeLabelSolicitacao()
+          }
+        })
     )
-
-    return
   }
 
-  getDocumentoDigital(id: string) {
-    this.restService
-      .get(`/documentos-digitais/${id}`)
-      .subscribe({
-        next: (result) => {
-          this.clienteId = result.clienteId
-          this.departamentoId = result.departamentoId
-          this.documentoDigitalForm.patchValue({
-            clienteId: result.clienteId,
-            departamentoId: result.departamentoId,
-            tipoDocumentoId: result.tipoDocumentoId,
-            nomeArquivo: result.nomeArquivo,
-            nomeArquivoOrigem: result.nomeArquivoOrigem,
-            numeroPaginas: result.numeroPaginas,
-            solicitacaoFisico: result.solicitacaoFisico,
-            dataSolicitacao: result.dataSolicitacao ? result.dataSolicitacao.substring(0, 10) : null,
-            solicitanteId: result.solicitanteId,
-          })
-        },
-        error: (error) => console.log(error)
-      })
-  }
-
-  clienteIdChange(event: string) {
-    this.departamentoIdService = `${environment.baseUrl}/departamentos/select?clienteId=${event}`
-    this.tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select?clienteId=${event}`
-  }
-
-  departamentoIdChange(event: string) {
-    this.solicitanteIdService = `${environment.baseUrl}/solicitantes/select?departamentoId=${event}`
-  }
-
-  save(data, willCreateAnother?: boolean) {
-    if (this.documentoDigitalForm.valid) {
-      if (this.id && this.getPageType(this.activatedRoute.snapshot.routeConfig.path) === 'edit') {
-        this.subscriptions.add(
-          this.restService
-            .put(`/documentos-digitais/${this.id}`, data)
-            .subscribe({
-              next: () => {
-                this.poNotification.success({
-                  message: this.literals.saveSuccess,
-                  duration: environment.poNotificationDuration
-                })
-
-                if (willCreateAnother) {
-                  this.documentoDigitalForm.reset()
-                  this.router.navigate(["documentos-digitais/new"])
-                } else {
-                  this.router.navigate(["documentos-digitais"])
-                }
-              },
-              error: (error) => console.log(error),
-            })
-        )
-      } else {
-        this.subscriptions.add(
-          this.restService
-            .post("/documentos-digitais", data)
-            .subscribe({
-              next: () => {
-                this.poNotification.success({
-                  message: this.literals.saveSuccess,
-                  duration: environment.poNotificationDuration
-                })
-
-                if (willCreateAnother) {
-                  this.documentoDigitalForm.reset()
-                  this.router.navigate(["documentos-digitais/new"])
-                } else {
-                  this.router.navigate(["documentos-digitais"])
-                }
-              },
-              error: (error) => console.log(error),
-            })
-        )
-      }
-    } else {
-      this.markAsDirty()
-      this.poNotification.warning({
-        message: this.literals.formError,
-        duration: environment.poNotificationDuration
-      })
+  changePage() {
+    if (this.page > this.totalPages) {
+      this.page = this.totalPages
     }
+    this.loadPage()
   }
 
-  markAsDirty() {
-    this.documentoDigitalForm.controls.clienteId.markAsDirty()
-    this.documentoDigitalForm.controls.departamentoId.markAsDirty()
-    this.documentoDigitalForm.controls.tipoDocumentoId.markAsDirty()
-    this.documentoDigitalForm.controls.solicitanteId.markAsDirty()
+  nextPage() {
+    if (this.page >= this.totalPages) return
+    
+    this.page++
+    this.loadPage()
   }
 
-  goBack() {
+  next50Page() {
+    this.page += 50
+
+    if (this.page > this.totalPages) this.page = this.totalPages
+
+    this.loadPage()
+  }
+
+  prevPage() {
+    this.page--
+    this.loadPage()
+  }
+
+  prev50Page() {
+    this.page -= 50
+
+    if (this.page <= 0) this.page = 1
+
+    this.loadPage()
+  }
+
+  public zoomIn() {
+    this.scale += ZOOM_STEP
+  }
+
+  public zoomOut() {
+    this.scale -= ZOOM_STEP
+  }
+  
+  public resetZoom() {
+    this.scale = DEFAULT_ZOOM;
+    const fileContainer = document.getElementById('file-container');
+    fileContainer.scrollTop = 0;
+    this.loadPage();
+  }
+  
+  
+
+  private goBack() {
     this.router.navigate(["documentos-digitais"])
+  }
+
+  downloadFile() {
+    this.subscriptions.add(
+      this.restService
+        .post('/documentos-digitais/pdf', { id: this.id }, { responseType: 'text' })
+        .subscribe({
+          next: (res: IResponse) => {
+            const byteCharacters = atob(res.data.replace('data:binary/octet-stream;base64,', ''));
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+              byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            document.body.appendChild(a);
+            a.setAttribute('style', 'display: none');
+            a.href = url;
+            a.target = '_blank';
+            a.download = this.nomeArquivo;
+            a.click();
+            URL.revokeObjectURL(url);
+            a.remove();
+          },
+          error: (err) => console.log(err)
+        })
+    )
+  }
+
+  changeLabelSolicitacao () {
+    this.pageActions[1].label = this.solicitacaoFisico ? 'Cancelar Solicitação': 'Solicitar Físico'
+  }
+
+  solicitarDocumento () {
+    this.solicitacaoFisico = !this.solicitacaoFisico
+    this.changeSolicitacaoStatus()
+  }
+
+  changeSolicitacaoStatus () {
+    this.subscriptions.add(
+      this.httpClient
+      .patch(`${environment.baseUrl}/documentos-digitais/solicitar-documento-fisico/`, {ids: [this.id]})
+      .subscribe({
+        next: (res: any[]) => {
+          this.solicitacaoFisico = res[0].data.solicitacaoFisico
+          this.changeLabelSolicitacao()
+        },
+        error: (err) => console.log(err)
+      })
+    )
   }
 }

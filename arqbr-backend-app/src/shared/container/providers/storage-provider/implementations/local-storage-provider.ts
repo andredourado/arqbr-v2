@@ -17,6 +17,10 @@ class LocalStorageProvider implements IStorageProvider {
     return process.env.APP_API_URL
   }
 
+  async load(file: string, folder: string): Promise<string> {
+    throw new Error('Method not implemented.')
+  }
+
   async delete(file: string, folder: string): Promise<void> {
     const filename = resolve(`${upload.tmpFolder}/${folder}`, file)
 

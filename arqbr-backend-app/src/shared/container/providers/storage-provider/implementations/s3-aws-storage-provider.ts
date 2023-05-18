@@ -36,6 +36,10 @@ class S3AwsStorageProvider implements IStorageProvider {
     return file
   }
 
+  async load(file: string, folder: string): Promise<string> {
+    throw new Error('Method not implemented.')
+  }
+
   get url(): string {
     return process.env.AWS_BUCKET_URL
   }

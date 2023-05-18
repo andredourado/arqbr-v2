@@ -4,6 +4,7 @@ import mime from 'mime'
 import { resolve } from 'path'
 import upload from '@config/upload'
 import { IStorageProvider } from '../i-storage-provider'
+import { log } from 'handlebars'
 
 class S3DigitalOceanStorageProvider implements IStorageProvider {
   private client: S3
@@ -39,6 +40,28 @@ class S3DigitalOceanStorageProvider implements IStorageProvider {
 
   get url(): string {
     return process.env.AWS_BUCKET_URL
+  }
+
+  async load(file: string, folder: string): Promise<any> {
+    const params = {
+      Bucket: `${process.env.AWS_BUCKET}/${folder}`,
+      Key: file,
+    }
+    
+    const image = await new Promise((resolve, reject) => {
+      this.client.getObject(params, (err, data) => {
+        if (err) {
+          reject(err)
+        } else {
+          const base64Data = data.Body.toString('base64')
+          const mimeType = data.ContentType
+          resolve(`data:${mimeType};base64,${base64Data}`)
+        }
+      })
+    })
+
+    // console.log(image)
+    return image
   }
 
   async delete(file: string, folder: string): Promise<void> {

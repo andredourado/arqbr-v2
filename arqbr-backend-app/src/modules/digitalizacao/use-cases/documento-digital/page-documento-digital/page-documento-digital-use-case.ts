@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe'
-import { IVersaoDocumentoRepository } from '@modules/digitalizacao/repositories/i-versao-documento-repository'
 import { HttpResponse, ok } from '@shared/helpers/http'
 import { IStorageProvider } from '@shared/container/providers/storage-provider/i-storage-provider'
 import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories/i-documento-digital-repository'
@@ -22,10 +21,12 @@ class PageDocumentoDigitalUseCase {
     page = 0
   }: IRequest): Promise<HttpResponse> {
     const documentoDigital = await this.documentoDigitalRepository.get(id)
-    console.log(documentoDigital)
+    if (documentoDigital.statusCode != 200) {
+      return documentoDigital
+    }
 
     const newPage = 'page_' + String(page).padStart(6, '0') + '.png'
-    const url = 'arquivos-pdf-paginas/' + documentoDigital.data.nomeArquivo.replace(/\.[^/.]+$/, "")
+    const url = 'arquivos-pdf-paginas/' + documentoDigital?.data?.nomeArquivo?.replace(/\.[^/.]+$/, "")
     const image = await this.storageProvider.load(newPage, url)
 
     const response = {
