@@ -102,7 +102,6 @@ async function create() {
     ('c139ef3e-4d86-491a-b2c9-8f5f9e6ffec1', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Pedidos', 'ARQBR_1025011025_46', 'Pedido de Demissão', ''),
     ('71f75a55-a6f7-4284-b383-2955322beb52', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Recibos', 'ARQBR_1025011025_47', 'Recibo de Férias', ''),
     ('6db96b41-079e-41ef-bf3a-a0842501515c', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Listas', 'ARQBR_1025011025_48', 'Lista de presença', ''),
-    
     ('6a8dfcb9-4da5-42c0-990d-b432c2d5954e', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Comprovantes Bancários', 'ARQBR_1025011034_2', 'Comprovante de transferência', ''),
     ('5e281785-2e26-4744-bc16-65d96f9f1186', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Contratos', 'ARQBR_1025011034_5', 'Comprovante de transferência', ''),
     ('c52b1079-c049-42bd-be33-48fb408c1a1d', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Comprovantes de Pagamentos', 'ARQBR_1025011034_10', 'Comprovante de Pagamento,Comprovante de Entrega,Detalhes da Fatura,O que está sendo cobrado ', ''),
