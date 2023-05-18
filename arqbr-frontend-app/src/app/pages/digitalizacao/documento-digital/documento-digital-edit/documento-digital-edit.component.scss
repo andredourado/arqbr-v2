@@ -57,11 +57,14 @@
   width: 100%;
   max-height: calc(100vh - 283px);
   overflow-y: scroll;
-
-  img {
-    width: 100%;
-  }
 }
+
+.image-container img {
+  width: 100%;
+  position: sticky;
+  transform-origin: top;
+}
+
 
 ::-webkit-scrollbar {
   width: 6px;

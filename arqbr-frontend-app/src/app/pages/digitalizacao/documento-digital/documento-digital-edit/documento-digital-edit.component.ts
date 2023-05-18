@@ -9,7 +9,7 @@ import { HttpClient } from "@angular/common/http"
 import { PoTreeViewItemHeaderComponent } from "@po-ui/ng-components/lib/components/po-tree-view/po-tree-view-item-header/po-tree-view-item-header.component"
 
 const ZOOM_STEP: number = 0.1
-const DEFAULT_ZOOM: number = 0.5
+const DEFAULT_ZOOM: number = 0.6
 
 interface IResponse {
   solicitacaoFisico: any
