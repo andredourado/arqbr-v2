@@ -3,6 +3,7 @@ import { paises } from "./paises"
 import { estados } from "./estados"
 import { cidades } from "./cidades"
 import { ceps } from "./ceps"
+import { campos } from "./campo"
 
 async function seeder() {
   await admin()
@@ -10,6 +11,7 @@ async function seeder() {
   await estados()
   await cidades()
   await ceps()
+  await campos()
 }
 
 seeder()
