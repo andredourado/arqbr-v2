@@ -1,5 +1,4 @@
-const { S3Client, ListObjectsV2Command, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { promises: fs, writeFileSync, readFileSync, createWriteStream } = require('fs')
+const { promises: fs, readFileSync } = require('fs')
 const path = require('path')
 const { v4: uuidv4 } = require('uuid');
 
@@ -21,10 +20,10 @@ const readDocumentsCsvFile = (csvFilePath) => {
     const obj = []
 
     for (const line of lines) {
-      const [
-        cost_center, 
+      const [ 
         document_code, 
         document_description,
+        quebra,
         field_name_1,
         field_title_1,
         field_strategy_1,
@@ -37,9 +36,9 @@ const readDocumentsCsvFile = (csvFilePath) => {
       ] = line.split(';')
 
       obj.push(`
-        ${cost_center};
         ${document_code};
         ${document_description};
+        ${quebra};
         ${field_name_1};
         ${field_title_1};
         ${field_strategy_1};
@@ -66,19 +65,26 @@ const readDocumentsCsvFile = (csvFilePath) => {
 const writeSeedFiles = async (documents, documentsFilePath, fieldsFilePath) => {
   let documentsOutput = ''
   let fieldsOutput = ''
+  const departaments = {
+    '1025011034': 'b0b0a92b-0519-4b8d-893e-3a981852cddc',
+    '1025011025': '9ee9bffe-ba28-4b28-aad9-ddb15232130a',
+    '1025011015': 'a82280dc-85cc-45b3-8253-69919b0df1d7'
+  }
 
   try {
     for await ( let document of documents) {
       const documentUUID = generateUUID()
 
       const [
-        cost_center, 
         document_code, 
         document_description,
+        quebra,
         field_definition_1,
         field_definition_2,
         field_definition_3,
       ] = document.split(';')
+
+      cost_center = document_code.substr(6, 10)
 
       if (cost_center.trim() !== '') {
         const splitted_field_definition_1 = field_definition_1.trim().replace('\n', '').split('|')
@@ -99,9 +105,10 @@ const writeSeedFiles = async (documents, documentsFilePath, fieldsFilePath) => {
 
         documentsOutput += `('${documentUUID}',`
         documentsOutput += ` '27cff971-6f84-41d8-926c-d209b30df79b',`
-        documentsOutput += ` 'departamento',`
-        documentsOutput += ` '${document_description.trim().replace('\n', '')}',` 
-        documentsOutput += ` '${document_code.trim().replace('\n', '')}',),` 
+        documentsOutput += ` '${departaments[cost_center]}',`
+        documentsOutput += ` '${document_description}',` 
+        documentsOutput += ` '${document_code}',` 
+        documentsOutput += ` '${quebra}',` 
         documentsOutput += ` '', false, 'now()', 'now()'),\n` 
 
         fieldsOutput += `${generateUUID()},`
