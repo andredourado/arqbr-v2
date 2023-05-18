@@ -68,7 +68,6 @@ const writeSeedFiles = async (documents, documentsFilePath) => {
         documentsOutput += ` '${document_code}',` 
         documentsOutput += ` '${quebra}',` 
         documentsOutput += ` '', false, 'now()', 'now()'),\n` 
-
       }
     }
 
