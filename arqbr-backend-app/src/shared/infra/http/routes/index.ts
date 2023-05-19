@@ -41,6 +41,7 @@ import { tiposDocumentoRoutes } from './digitalizacao/tipos-documento-routes'
 import { camposDocumentoRoutes } from './digitalizacao/campos-documento-routes'
 import { documentosDigitaisRoutes } from './digitalizacao/documentos-digitais-routes'
 import { documentosDigitaisCamposRoutes } from './digitalizacao/documentos-digitais-campos-routes'
+import { quebraManualRoutes } from './digitalizacao/quebra-manual-routes'
 import { unidadesRoutes } from './armazenamento/unidades-routes'
 import { plantasRoutes } from './armazenamento/plantas-routes'
 import { posicoesRoutes } from './armazenamento/posicoes-routes'
@@ -89,6 +90,7 @@ router.use('/tipos-documento', tiposDocumentoRoutes)
 router.use('/campos-documento', camposDocumentoRoutes)
 router.use('/documentos-digitais', documentosDigitaisRoutes)
 router.use('/documentos-digitais-campos', documentosDigitaisCamposRoutes)
+router.use('/quebra-manual', documentosDigitaisCamposRoutes)
 router.use('/unidades', unidadesRoutes)
 router.use('/plantas', plantasRoutes)
 router.use('/posicoes', posicoesRoutes)
