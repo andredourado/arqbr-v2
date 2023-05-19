@@ -141,8 +141,6 @@ export class DocumentoDigitalEditComponent implements OnInit, OnDestroy {
     fileContainer.scrollTop = 0;
     this.loadPage();
   }
-  
-  
 
   private goBack() {
     this.router.navigate(["documentos-digitais"])

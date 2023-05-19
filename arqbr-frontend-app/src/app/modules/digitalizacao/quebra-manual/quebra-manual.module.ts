@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
+import { QuebraManualListComponent } from 'src/app/pages/digitalizacao/quebra-manual/quebra-manual-list/quebra-manual-list.component'
 import { QuebraManualEditComponent } from 'src/app/pages/digitalizacao/quebra-manual/quebra-manual-edit/quebra-manual-edit.component'
 import { AuthGuard } from 'src/app/services/auth.guard'
 
 const routesQuebraManual = [
   {
     path: "",
-    component: QuebraManualEditComponent,
+    component: QuebraManualListComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -8,13 +8,35 @@ import { environment } from "src/environments/environment"
 import { RestService } from "src/app/services/rest.service"
 import { LanguagesService } from 'src/app/services/languages.service'
 
+const ZOOM_STEP: number = 0.1
+const DEFAULT_ZOOM: number = 0.6
+
+interface IResponse {
+  solicitacaoFisico: any
+  statusCode: number
+  data: any
+}
+
 @Component({
   selector: "app-quebra-manual-edit",
   templateUrl: "./quebra-manual-edit.component.html",
   styleUrls: ["./quebra-manual-edit.component.scss"],
 })
 export class QuebraManualEditComponent implements OnInit, OnDestroy {
-  public id: string
+  id: string
+  page: number = 1
+  scale = DEFAULT_ZOOM
+  totalPages: number = 0
+  isLoaded: boolean = false
+  src: any = ''
+  nomeArquivo: string
+  solicitacaoFisico: boolean = false
+  textoBotao = ''
+  items: any
+  public isLoading = false
+  public listHeight: number
+
+  
   public readonly = false
   public result: any
   public literals: any = {}
@@ -24,6 +46,17 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
     campoDocumentoId: null,
     conteudo: '',
   })
+
+  public fields: Array<any> = [
+    { property: '', label: 'Tipo Documento' },
+    { property: '', label: 'Página Inicial' },
+    { property: '', label: 'Página Final' },
+    { property: '', label: 'Nome Arquivo' }
+  ]
+
+  public tableActions: PoPageAction[] = [
+    { label: 'Visualizar',  icon: 'fa-solid fa-eye' }
+  ]
 
   public readonly serviceApi = `${environment.baseUrl}/quebra-manual`
   public documentoDigitalIdService = `${environment.baseUrl}/documentos-digitais/select`
@@ -65,7 +98,62 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
     }
   }
 
+  loadPage () {
+    const payload = {
+      id: this.id,
+      page: this.page,
+    }
+  }
+
+  changePage() {
+    if (this.page > this.totalPages) {
+      this.page = this.totalPages
+    }
+    this.loadPage()
+  }
+
+  nextPage() {
+    if (this.page >= this.totalPages) return
+    
+    this.page++
+    this.loadPage()
+  }
+
+  next50Page() {
+    this.page += 50
+
+    if (this.page > this.totalPages) this.page = this.totalPages
+
+    this.loadPage()
+  }
+
+  prevPage() {
+    this.page--
+    this.loadPage()
+  }
+
+  prev50Page() {
+    this.page -= 50
+
+    if (this.page <= 0) this.page = 1
+
+    this.loadPage()
+  }
+
+  public zoomIn() {
+    this.scale += ZOOM_STEP
+  }
+
+  public zoomOut() {
+    this.scale -= ZOOM_STEP
+  }
   
+  public resetZoom() {
+    this.scale = DEFAULT_ZOOM;
+    const fileContainer = document.getElementById('file-container');
+    fileContainer.scrollTop = 0;
+    this.loadPage();
+  }
 
  
   save(data, willCreateAnother?: boolean) {
@@ -130,5 +218,7 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
 
   goBack() {
     this.router.navigate(["quebra-manual"])
-  }
+  } 
 }
+
+
