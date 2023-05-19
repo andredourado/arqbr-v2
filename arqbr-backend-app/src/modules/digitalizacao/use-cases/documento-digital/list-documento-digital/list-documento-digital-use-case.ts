@@ -1,6 +1,8 @@
 import { inject, injectable } from 'tsyringe'
 import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories/i-documento-digital-repository'
 import { IDocumentoDigitalDTO } from '@modules/digitalizacao/dtos/i-documento-digital-dto';
+import { User } from '@modules/security/infra/typeorm/entities/user';
+import { Solicitante } from '@modules/clientes/infra/typeorm/entities/solicitante';
 
 interface IRequest {
   search: string,
@@ -8,6 +10,9 @@ interface IRequest {
   rowsPerPage: number,
   order: string,
   filter?: string
+  tipoDocumentoId?: string,
+  user?: User,
+  solicitante?: Solicitante
 }
 
 interface ResponseProps {
@@ -27,21 +32,28 @@ class ListDocumentoDigitalUseCase {
     page = 0,
     rowsPerPage = 50,
     order = '',
-    filter
+    filter,
+    tipoDocumentoId,
+    user,
+    solicitante
   }: IRequest): Promise<ResponseProps> {
-    const newPage = page !== 0 ? page - 1 : 0
-
     const documentosDigitais = await this.documentoDigitalRepository.list(
       search,
-      newPage,
+      page,
       rowsPerPage,
       order,
-      filter
+      filter,
+      tipoDocumentoId,
+      user,
+      solicitante
     )
 
     const countDocumentosDigitais = await this.documentoDigitalRepository.count(
       search,
-      filter
+      filter,
+      tipoDocumentoId,
+      user,
+      solicitante
     )
 
     const numeroDocumentoDigital = page * rowsPerPage

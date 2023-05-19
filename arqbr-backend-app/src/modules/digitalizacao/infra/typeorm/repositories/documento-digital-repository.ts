@@ -67,6 +67,7 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
     let columnName: string
     let columnDirection: 'ASC' | 'DESC'
 
+
     if ((typeof(order) === 'undefined') || (order === "")) {
       columnName = 'nome'
       columnDirection = 'ASC'
@@ -86,7 +87,8 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
 
     columnOrder[index] = columnDirection
 
-    const offset = rowsPerPage * page
+    page-- 
+    const offset = rowsPerPage * (page)
 
     try {
       let query = this.repository.createQueryBuilder('doc')
@@ -129,12 +131,11 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
       // }
 
       let documentosDigitais = await query
-        .take(rowsPerPage)
-        .skip(offset)
+        .offset(offset)
         .limit(rowsPerPage)
         .take(rowsPerPage)
         .getRawMany()
-
+        
       return ok(documentosDigitais)
     } catch (err) {
       return serverError(err)

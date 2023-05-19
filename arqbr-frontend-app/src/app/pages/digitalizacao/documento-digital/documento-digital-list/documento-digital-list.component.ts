@@ -38,9 +38,9 @@ export class DocumentoDigitalListComponent implements OnInit, OnDestroy {
   @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
   public fields: Array<any> = [
     { property: "id", key: true, visible: false },
-    { property: 'nomeArquivo', label: 'Nome do Arquivo' },
+    { property: 'nomeArquivo', label: 'Nome do Arquivo', width: '25%' },
     {
-      property: 'solicitacaoFisico', type: 'label', label: 'Solicitado pelo Cliente', labels: <Array<any>>[
+      property: 'solicitacaoFisico', type: 'label', label: 'Solicitado pelo Cliente', width: '15%', labels: <Array<any>>[
         {
           value: true,
           label: 'Solicitado',
