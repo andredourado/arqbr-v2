@@ -57,7 +57,6 @@ class DocumentoDigitalCampoRepository implements IDocumentoDigitalCampoRepositor
     }
 
     const referenceArray = [
-      "documentoDigitalNip",
       "campoDocumentoNomeCampo",
       "conteudo",
     ]
@@ -74,7 +73,7 @@ class DocumentoDigitalCampoRepository implements IDocumentoDigitalCampoRepositor
         .select([
           'doc.id as "id"',
           'a.id as "documentoDigitalId"',
-          'a.nip as "documentoDigitalNip"',
+          'a.nomeArquivo as "nomeArquivo"',
           'b.id as "campoDocumentoId"',
           'b.nomeCampo as "campoDocumentoNomeCampo"',
           'doc.conteudo as "conteudo"',
@@ -89,10 +88,8 @@ class DocumentoDigitalCampoRepository implements IDocumentoDigitalCampoRepositor
 
       const documentosDigitaisCampos = await query
         .andWhere(new Brackets(query => {
-          query.andWhere('CAST(a.nip AS VARCHAR) ilike :search', { search: `%${search}%` })
           query.orWhere('CAST(doc.conteudo AS VARCHAR) ilike :search', { search: `%${search}%` })
         }))
-        .addOrderBy('a.nip', columnOrder[0])
         .addOrderBy('b.nomeCampo', columnOrder[1])
         .addOrderBy('doc.conteudo', columnOrder[2])
         .offset(offset)
@@ -164,7 +161,7 @@ class DocumentoDigitalCampoRepository implements IDocumentoDigitalCampoRepositor
 
       const documentosDigitaisCampos = await query
         .andWhere(new Brackets(query => {
-          query.andWhere('CAST(a.nip AS VARCHAR) ilike :search', { search: `%${search}%` })
+          // query.andWhere('CAST(a.nip AS VARCHAR) ilike :search', { search: `%${search}%` })
           query.orWhere('CAST(doc.conteudo AS VARCHAR) ilike :search', { search: `%${search}%` })
         }))
         .getRawMany()
@@ -183,7 +180,7 @@ class DocumentoDigitalCampoRepository implements IDocumentoDigitalCampoRepositor
         .select([
           'doc.id as "id"',
           'doc.documentoDigitalId as "documentoDigitalId"',
-          'a.nip as "documentoDigitalNip"',
+          // 'a.nip as "documentoDigitalNip"',
           'doc.campoDocumentoId as "campoDocumentoId"',
           'b.nomeCampo as "campoDocumentoNomeCampo"',
           'doc.conteudo as "conteudo"',

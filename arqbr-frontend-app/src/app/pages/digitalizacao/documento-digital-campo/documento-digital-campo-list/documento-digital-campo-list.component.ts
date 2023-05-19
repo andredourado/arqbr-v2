@@ -24,7 +24,7 @@ export class DocumentoDigitalCampoListComponent implements OnInit {
       .subscribe({
         next: () => this.initialFields = [
           { property: "id", key: true, visible: false },
-          { property: 'documentoDigitalNip', label: this.literals.fields.list['documentoDigitalNip'] },
+          { property: 'nomeArquivo', label: this.literals.fields.list['nomeArquivo'] },
           { property: 'campoDocumentoNomeCampo', label: this.literals.fields.list['campoDocumentoNomeCampo'] },
           { property: 'conteudo', label: this.literals.fields.list['conteudo'] }
         ]

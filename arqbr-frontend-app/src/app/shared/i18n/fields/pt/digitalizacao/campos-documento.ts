@@ -4,13 +4,13 @@ export const camposDocumentoFields = {
     tipoDocumentoId: 'Tipo de Documento',
     nomeCampo: 'Nome do Campo',
     titulo: 'Título',
-    metodoExtracao: 'Título',
+    metodoExtracao: 'Método',
   },
   form: {
     tipoDocumentoId: 'Tipo de Documento',
     nomeCampo: 'Nome do Campo',
     titulo: 'Título',
-    metodoExtracao: 'Título',
+    metodoExtracao: 'Método',
     desabilitado: 'Desabilitado',
   }
 }

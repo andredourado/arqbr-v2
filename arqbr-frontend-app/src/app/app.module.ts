@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { RouterModule } from "@angular/router"
-import { PoPageModule, PoI18nModule } from "@po-ui/ng-components"
+import { PoPageModule, PoI18nModule, PoModule } from "@po-ui/ng-components"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { DefaultComponent } from "./_layouts/default/default.component"
@@ -204,6 +204,7 @@ import { i18nConfig } from './shared/i18n'
     PoPageModule,
     FormsModule,
     ReactiveFormsModule,
+    PoModule,
     PoI18nModule.config(i18nConfig)
   ],
   providers: [

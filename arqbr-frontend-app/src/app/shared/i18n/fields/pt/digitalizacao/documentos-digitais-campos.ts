@@ -1,6 +1,6 @@
 export const documentosDigitaisCamposFields = {
   list: {
-    documentoDigitalNip: 'Documento Digital',
+    nomeArquivo: 'Documento Digital',
     documentoDigitalId: 'Documento Digital',
     campoDocumentoNomeCampo: 'Campo',
     campoDocumentoId: 'Campo',

@@ -148,10 +148,10 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
       const documentosDigitais = await this.repository.createQueryBuilder('doc')
         .select([
           'doc.id as "value"',
-          'doc.nip as "label"',
+          'doc.nomeArquivo as "label"',
         ])
-        .where('doc.nip ilike :filter', { filter: `${filter}%` })
-        .addOrderBy('doc.nip')
+        .where('doc.nomeArquivo ilike :filter', { filter: `${filter}%` })
+        .addOrderBy('doc.nomeArquivo')
         .getRawMany()
 
       return ok(documentosDigitais)
@@ -167,7 +167,7 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
       const documentoDigital = await this.repository.createQueryBuilder('doc')
         .select([
           'doc.id as "value"',
-          'doc.nip as "label"',
+          'doc.nomeArquivo as "label"',
         ])
         .where('doc.id = :id', { id: `${id}` })
         .getRawOne()

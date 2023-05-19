@@ -36,7 +36,7 @@ export class DocumentoDigitalListComponent implements OnInit, OnDestroy {
   @ViewChild(PoPageSlideComponent, { static: true }) pageSlide: PoPageSlideComponent;
 
   @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
-  public readonly fields: Array<any> = [
+  public fields: Array<any> = [
     { property: "id", key: true, visible: false },
     { property: 'nomeArquivo', label: 'Nome do Arquivo' },
     {
@@ -48,7 +48,9 @@ export class DocumentoDigitalListComponent implements OnInit, OnDestroy {
         }
       ]
     },
-    // {property: 'solicitacaoFisico', type: 'label', label: 'Título'},
+    { property: '', label: 'Campo 1' },
+    { property: '', label: 'Campo 2' },
+    { property: '', label: 'Campo 3' },
   ]
   public pageActions: Array<PoPageAction> = [
     {
