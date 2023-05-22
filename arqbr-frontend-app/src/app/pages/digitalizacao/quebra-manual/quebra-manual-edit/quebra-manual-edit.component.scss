@@ -154,12 +154,12 @@
 
 .table-div {
   width: 100%;
-  height: calc(100% - 20px);
+  height: calc(100% - 300px);
   margin-bottom: 20px;
   margin-left: -2px;
   border: 1px solid #0c9abe;
   
-  .squares-table {
+  .quebras-table {
     border-collapse: collapse;
     user-select: none;
     width: 100%;
@@ -181,7 +181,7 @@
       background-color: white;
       max-height: calc(100vh - 500px);
       overflow-y: scroll;
-      width: 100%;
+      width: 90%;
 
       .square-name {
         border-left: 1px solid #83a9b333;
@@ -189,7 +189,7 @@
         padding-left: 8px;
       }
       
-      .titulo {
+      .inicial {
         border-left: 1px solid #83a9b333;
         color: #0c9abe;
         font-family: 'NunitoSans';
@@ -197,23 +197,23 @@
         width: 250px;
       }
 
-      .metodo {
+      .final {
         border-left: 1px solid #83a9b333;
         color: #0c9abe;
         font-family: 'NunitoSans';
         padding-left: 8px;
       }
     
-      .page-number { 
-        font-family: 'NunitoSans';
-        padding: 0px 8px;
-      }
-    
-      .nome-campo {
+      .documento {
         color: #0c9abe;
         font-family: 'NunitoSans';
         padding: 0px 8px;
-        width: 150px;
+        width: 170px;
+      }
+
+      .page-number { 
+        font-family: 'NunitoSans';
+        padding: 0px 8px;
       }
     }
   
@@ -264,7 +264,7 @@
 }
 
 .button-filter {
-  margin-top: 25px;
+  margin-top: 24px;
   height: 44px; 
   width: 44px; 
   background-color: white; 
@@ -274,12 +274,15 @@
   color: #0C9ABE;
   cursor: pointer;
 }
+
 .botaozinho{
   display: flex;
   justify-content: end;
   align-items: end;
   padding: 10px;
+  gap: 5px;
 }
+
 .button {
   font-size: large;
   height: 44px; 

@@ -64,6 +64,33 @@ class S3DigitalOceanStorageProvider implements IStorageProvider {
     return image
   }
 
+  async loadFiles(folder: string): Promise<any> {
+    const params = {
+      Bucket: process.env.AWS_BUCKET,
+      Prefix: folder
+    }
+    
+    const documentos: any[] = await new Promise((resolve, reject) => {
+      this.client.listObjectsV2(params, (err, data) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(data.Contents)
+        }
+      })
+    })
+
+    const newDocumentos = documentos.map(documento => {
+      const file = documento.Key.replace(`${folder}/`, '')
+      return {
+        label: file,
+        value: file
+      }
+    })
+
+    return newDocumentos
+  }
+
   async delete(file: string, folder: string): Promise<void> {
     await this.client
       .deleteObject({

@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnDestroy, OnInit } from "@angular/core"
 import { ActivatedRoute, Router } from '@angular/router'
-import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification } from '@po-ui/ng-components'
+import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification, PoComboOption } from '@po-ui/ng-components'
 import { FormBuilder } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { environment } from "src/environments/environment"
 import { RestService } from "src/app/services/rest.service"
-import { LanguagesService } from 'src/app/services/languages.service'
+import { DomSanitizer } from '@angular/platform-browser'
+import { v4 as uuidV4 } from 'uuid'
+
 
 const ZOOM_STEP: number = 0.1
 const DEFAULT_ZOOM: number = 0.6
@@ -15,6 +17,13 @@ interface IResponse {
   solicitacaoFisico: any
   statusCode: number
   data: any
+}
+
+type QuebraType = {
+  id?: string,
+  documento?: string,
+  paginaInicial?: string,
+  paginaFinal?: string
 }
 
 @Component({
@@ -33,26 +42,27 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
   solicitacaoFisico: boolean = false
   textoBotao = ''
   items: any
+  public clienteId = ''
   public isLoading = false
   public listHeight: number
+  public quebras: QuebraType[] = []
+  private quebraId: string
 
-  
   public readonly = false
   public result: any
   public literals: any = {}
 
-  quebraManualForm = this.formBuilder.group({
-    documentoDigitalId: null,
-    campoDocumentoId: null,
-    conteudo: '',
+  searchForm = this.formBuilder.group({
+    clienteId: null,
+    departamentoId: null,
+    caixa: null,
   })
 
-  public fields: Array<any> = [
-    { property: '', label: 'Tipo Documento' },
-    { property: '', label: 'Página Inicial' },
-    { property: '', label: 'Página Final' },
-    { property: '', label: 'Nome Arquivo' }
-  ]
+  quebraForm = this.formBuilder.group({
+    tipoDocumentoId: null,
+    paginaInicial: '',
+    paginaFinal: '',
+  })
 
   public tableActions: PoPageAction[] = [
     { label: 'Visualizar',  icon: 'fa-solid fa-eye' }
@@ -61,6 +71,10 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
   public readonly serviceApi = `${environment.baseUrl}/quebra-manual`
   public documentoDigitalIdService = `${environment.baseUrl}/documentos-digitais/select`
   public campoDocumentoIdService = `${environment.baseUrl}/campos-documento/select`
+  public clienteIdService = `${environment.baseUrl}/clientes/select`
+  public departamentoIdService = `${environment.baseUrl}/departamentos/select`
+  public tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select`
+  public caixasOptions: PoComboOption[] = []
 
   subscriptions = new Subscription()
 
@@ -73,10 +87,12 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private poNotification: PoNotificationService,
-    private languagesService: LanguagesService
+    private sanitizer: DomSanitizer,
+
   ) { }
 
   ngOnInit(): void {
+    this.loadQuebraManualDocumentos()
   }
 
   ngOnDestroy(): void {
@@ -98,12 +114,45 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadPage () {
+  clienteIdChange(event: string) {
+    this.departamentoIdService = `${environment.baseUrl}/departamentos/select?clienteId=${event}`
+    this.tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select?clienteId=${event}`
+  }
+
+  loadQuebraManualDocumentos() {
+    this.subscriptions.add(
+      this.restService
+        .get('/quebras-manuais/list') 
+        .subscribe({
+          next: (res: IResponse) => {
+            this.caixasOptions = res.data
+          }
+        })
+    )
+  }
+
+  caixaChange(caixa: string) {
+    this.id = caixa
+    this.page = 1
+    this.loadPage()
+  }
+ 
+  loadPage() {
     const payload = {
       id: this.id,
       page: this.page,
     }
-  }
+
+    this.subscriptions.add(
+      this.restService
+        .get("/quebras-manuais/open/" + this.id)
+        .subscribe({
+          next: (res: IResponse) => {
+            this.src = (res.data as string)
+          }
+        })
+    )
+  } 
 
   changePage() {
     if (this.page > this.totalPages) {
@@ -155,9 +204,50 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
     this.loadPage();
   }
 
+  addQuebra() { 
+    if (this.quebraForm.valid) {
+      const payload = {
+        id: this.quebraId ?? uuidV4(),
+        tipoDocumento: this.quebraForm.value.tipoDocumentoId,
+        paginaInicial: this.quebraForm.value.paginaInicial,
+        paginaFinal: this.quebraForm.value.paginaFinal,
+      }
+
+      if (this.quebraId) {
+        let quebraIndex: number
+        this.quebras.map((text, index) => {
+          if (text.id === this.quebraId) quebraIndex = index
+        })
+        this.quebras[quebraIndex] = payload
+      } else this.quebras.push(payload)
+      
+      this.quebraForm.reset()
+      this.quebraId = null
+    } else {
+        this.poNotification.warning({
+        message: "Erro ao salvar",
+        duration: environment.poNotificationDuration
+      })
+    }
+    console.log(this.quebras)
+  }
+
+  deleteQuebra() {
+    if(this.quebraId) {
+      let indexTextById: number
+      this.quebras.map((quebra, quebraIndex) => {
+        if(quebra.id === this.quebraId) indexTextById = quebraIndex
+      })
+
+      this.quebras.splice(indexTextById, 1)
+      this.quebraForm.reset()
+      this.quebraId = null
+    }
+  }
+
  
   save(data, willCreateAnother?: boolean) {
-    if (this.quebraManualForm.valid) {
+    if (this.quebraForm.valid) {
       if (this.id && this.getPageType(this.activatedRoute.snapshot.routeConfig.path) === 'edit') {
         this.subscriptions.add(
           this.restService
@@ -170,7 +260,7 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
                 })
 
                 if (willCreateAnother) {
-                  this.quebraManualForm.reset()
+                  this.quebraForm.reset()
                   this.router.navigate(["quebra-manual/new"])
                 } else {
                   this.router.navigate(["quebra-manual"])
@@ -191,7 +281,7 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
                 })
 
                 if (willCreateAnother) {
-                  this.quebraManualForm.reset()
+                  this.quebraForm.reset()
                   this.router.navigate(["quebra-manual/new"])
                 } else {
                   this.router.navigate(["quebra-manual"])
@@ -211,9 +301,10 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
   }
 
   markAsDirty() {
-    this.quebraManualForm.controls.documentoDigitalId.markAsDirty()
-    this.quebraManualForm.controls.campoDocumentoId.markAsDirty()
-    this.quebraManualForm.controls.conteudo.markAsDirty()
+    this.searchForm.controls.clienteId.markAsDirty()
+    this.searchForm.controls.departamentoId.markAsDirty()
+    this.searchForm.controls.caixa.markAsDirty()
+    this.quebraForm.controls.tipoDocumentoId.markAsDirty()
   }
 
   goBack() {

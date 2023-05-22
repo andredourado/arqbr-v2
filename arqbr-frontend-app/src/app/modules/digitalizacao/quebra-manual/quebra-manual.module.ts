@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/app/services/auth.guard'
 const routesQuebraManual = [
   {
     path: "",
-    component: QuebraManualListComponent,
+    component: QuebraManualEditComponent,
     canActivate: [AuthGuard],
   },
   {

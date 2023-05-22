@@ -1,19 +1,31 @@
 <po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
   <div class="campos">
-    <form [formGroup]="quebraManualForm">
+    <form [formGroup]="searchForm">
       <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
-        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"  name="" p-clean
-          [p-disabled]="readonly" [p-filter-service]="" p-label="Cliente" p-required> </po-combo>
+        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        p-clean 
+        [p-disabled]="readonly"
+        formControlName="clienteId"
+        name="clienteId" 
+        (p-change)="clienteIdChange($event)" 
+        [p-filter-service]="clienteIdService" 
+        p-label="Cliente"
+        p-required> </po-combo>
       </div>
 
       <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
-        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"  name="" p-clean
-          [p-disabled]="" [p-filter-service]="" p-label="Centro de Custo" p-required> </po-combo>
+        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" p-clean [p-disabled]="readonly"
+        formControlName="departamentoId" name="departamentoId" [p-filter-service]="departamentoIdService" p-label="Centro de Custo" p-required> </po-combo>
       </div>
 
       <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
-        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"  name="" p-clean
-          [p-disabled]="readonly" [p-filter-service]="" p-label="Caixas" p-required> </po-combo>
+        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="caixa" p-clean [p-disabled]="readonly"
+          formControlName="caixa"
+          [p-options]="caixasOptions"
+          p-label="Caixa"
+          p-required
+          (p-change)="caixaChange($event)"
+        > </po-combo>
       </div>
 
       <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding po-mt-1">
@@ -72,38 +84,49 @@
       </div>
     </div>
     <div class="campo-quebras">
-      <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean
-          [p-disabled]="readonly" p-label="Tipos de Documentos" p-required> </po-combo>
-      </div>
+      <form [formGroup]="quebraForm">
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean [p-disabled]="readonly"
+          formControlName="tipoDocumentoId" name="tipoDocumentoId" [p-filter-service]="tipoDocumentoIdService" p-label="Tipos de Documentos" p-required> </po-combo>
+        </div>
 
-      <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-        <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean
-          [p-disabled]="readonly" p-label="Página Inicial" p-required> </po-input>
-      </div>
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean [p-disabled]="readonly"
+            p-label="Página Inicial" p-required> </po-input>
+        </div>
 
-      <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-        <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean
-          [p-disabled]="readonly" p-label="Página Final" p-required> </po-input>
-      </div>
-      <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
-        <button type="button" class="button">QUEBRA</button>
-      </div>
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean [p-disabled]="readonly"
+            p-label="Página Final" p-required> </po-input>
+        </div>
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
+          <po-button (p-click)="addQuebra()" p-label="Quebra" p-kind="primary"> </po-button>
+          <po-button (p-click)="deleteQuebra()" p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <po-table
-    #table
-    [p-actions]="tableActions"
-    p-actions-right
-    [p-columns]="fields"
-    p-container
-    [p-height]="listHeight"
-    p-infinite-scroll
-    p-infinite-scroll-distance="90"
-    [p-items]="items"
-    p-selectable
-  > </po-table>
+  <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
+    <table class="quebras-table">
+      <thead>
+        <th>Quebras</th>
+      </thead>
+      <div class="table-body">
+        <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <td class="po-font-text-large documento">Tipo do Documento</td>
+          <td class="po-font-text-large inicial">Página Inicial</td>
+          <td class="po-font-text-large final">Página Final</td>
+        </tr>
+        <tr *ngFor="let quebra of quebras; let quebraIndex = index"
+          class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <td class="po-font-text-large documento"></td>
+          <td class="po-font-text-large inicial"></td>
+          <td class="po-font-text-large final"></td>
+        </tr>
+      </div>
+    </table>
+  </div>
 
   <po-loading-overlay *ngIf="isLoading" [p-screen-lock]="true" p-text="Carregando"> </po-loading-overlay>
 </po-page-default>
