@@ -1,32 +1,32 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { QuebraManualEditComponent } from 'src/app/pages/digitalizacao/quebra-manual/quebra-manual-edit/quebra-manual-edit.component'
+import { AjusteManualEditComponent } from 'src/app/pages/digitalizacao/ajuste-manual/ajuste-manual-edit/ajuste-manual-edit.component'
 import { AuthGuard } from 'src/app/services/auth.guard'
 
-const routesQuebraManual = [
+const routesAjusteManual = [
   {
     path: "",
-    component: QuebraManualEditComponent,
+    component: AjusteManualEditComponent,
     canActivate: [AuthGuard],
   },
   {
     path: "new",
-    component: QuebraManualEditComponent,
+    component: AjusteManualEditComponent,
     canActivate: [AuthGuard],
   },
   {
     path: "new/:id",
-    component: QuebraManualEditComponent,
+    component: AjusteManualEditComponent,
     canActivate: [AuthGuard],
   },
   {
     path: "edit/:id",
-    component: QuebraManualEditComponent,
+    component: AjusteManualEditComponent,
     canActivate: [AuthGuard],
   },
   {
     path: "view/:id",
-    component: QuebraManualEditComponent,
+    component: AjusteManualEditComponent,
     canActivate: [AuthGuard],
   },
 ]
@@ -34,9 +34,9 @@ const routesQuebraManual = [
 @NgModule({
   declarations: [],
   imports: [
-    [RouterModule.forChild(routesQuebraManual)]
+    [RouterModule.forChild(routesAjusteManual)]
   ],
   exports: [RouterModule]
 })
 
-export class QuebraManualModule { }
+export class AjusteManualModule { }

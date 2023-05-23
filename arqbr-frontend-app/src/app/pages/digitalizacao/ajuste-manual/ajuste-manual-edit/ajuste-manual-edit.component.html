@@ -1,0 +1,160 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <div class="campos">
+    <form [formGroup]="searchForm">
+      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+          p-clean 
+          [p-disabled]="readonly"
+          formControlName="clienteId"
+          name="clienteId" 
+          (p-change)="clienteIdChange($event)" 
+          [p-filter-service]="clienteIdService" 
+          p-label="Cliente"
+          p-required
+        > </po-combo>
+      </div>
+
+      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        p-clean [p-disabled]="readonly"
+        formControlName="departamentoId"
+        name="departamentoId"
+        [p-filter-service]="departamentoIdService"
+        p-label="Centro de Custo"
+        p-required
+        > </po-combo>
+      </div>
+
+      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+        <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+          name="caixa"
+          p-clean
+          [p-disabled]="readonly"
+          formControlName="caixa"
+          p-label="Caixa"
+          p-required
+        > </po-input>
+      </div>
+
+      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding po-mt-1">
+        <button type="button" class="fa-solid fa-magnifying-glass fa-lg button-filter"
+        (click)="searchCaixas()"
+        > </button>
+      </div>
+    </form>
+  </div>
+
+  <div id="sideMenu" class="po-sm-12 po-md-12 po-lg-12 po-xl-12 side-menu">
+    <div class="page-body shadow">
+      <div class="image-container">
+        <img [src]="src" [style.transform]="'scale(' + scale + ')'">
+      </div>
+
+      <po-divider></po-divider>
+      <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+        <nav>
+          <div class="zoom-component">
+            <div (click)="zoomIn()" class="nav-component button-zoom fa-solid fa-magnifying-glass-plus nav-icon"></div>
+
+            <div (click)="zoomOut()" class="nav-component fa-solid fa-magnifying-glass-minus nav-icon"></div>
+
+            <div (click)="resetZoom()" class="nav-component button-zoom fa-solid fa-rotate-right nav-icon"></div>
+          </div>
+
+          <div class="pass-page">
+            <div class="number-pages-avance pass-page-margin">
+              <button (click)="prev50Page()" [disabled]="page === 1"
+                class="previous nav-component pass-botton fa-solid fa-angles-left nav-icon"></button>
+              <p>-50</p>
+            </div>
+
+            <button (click)="prevPage()" [disabled]="page === 1"
+              class="previous nav-component pass-botton fa-solid fa-angle-left nav-icon pass-page-margin"></button>
+
+            <div class="contador">
+              <div class="contador-input">
+                <po-number name="page" [(ngModel)]="page" p-maxlength="4" (keyup.enter)="changePage()"></po-number>
+              </div>
+
+              <div class="number-pages nav-component pass-botton pass-page-margin">
+                <p>/ {{ totalPages }}</p>
+              </div>
+            </div>
+
+            <button (click)="nextPage()" [disabled]="page === totalPages"
+              class="next nav-component pass-botton fa-solid fa-angle-right nav-icon pass-page-margin"></button>
+
+            <div class="number-pages-avance pass-page-margin">
+              <p>+50</p>
+              <button (click)="next50Page()" [disabled]="page === totalPages"
+                class="next nav-component pass-botton fa-solid fa-angles-right nav-icon"></button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="campo-quebras">
+      <form [formGroup]="quebraForm">
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
+            name="tipoDocumentoId"
+            p-clean 
+            [p-disabled]="readonly"
+            formControlName="tipoDocumentoId" 
+            name="tipoDocumentoId"
+            [p-filter-service]="tipoDocumentoIdService"
+            p-label="Tipos de Documentos"
+            p-required
+          > </po-combo>
+        </div>
+
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            name="paginaInicial" 
+            p-clean 
+            [p-disabled]="readonly"
+            p-label="Página Inicial" 
+            p-required
+            > </po-input>
+        </div>
+
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
+            name="paginaFinal" 
+            p-clean 
+            [p-disabled]="readonly"
+            p-label="Página Final" 
+            p-required
+          > </po-input>
+        </div>
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
+          <po-button (p-click)="addQuebra()" p-label="Quebra" p-kind="primary"> </po-button>
+          <po-button (p-click)="deleteQuebra()" p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
+    <table class="quebras-table">
+      <thead>
+        <th>Quebras</th>
+      </thead>
+      <div class="table-body">
+        <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <td class="po-font-text-large documento">Tipo do Documento</td>
+          <td class="po-font-text-large inicial">Página Inicial</td>
+          <td class="po-font-text-large final">Página Final</td>
+        </tr>
+        <tr *ngFor="let quebra of quebras; let quebraIndex = index"
+          class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+          <td class="po-font-text-large documento"></td>
+          <td class="po-font-text-large inicial"></td>
+          <td class="po-font-text-large final"></td>
+        </tr>
+      </div>
+    </table>
+  </div>
+
+  <po-loading-overlay *ngIf="isLoading" [p-screen-lock]="true" p-text="Carregando"> </po-loading-overlay>
+</po-page-default>

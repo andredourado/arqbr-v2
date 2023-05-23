@@ -175,6 +175,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/digitalizacao/quebra-manual/quebra-manual.module').then(m => m.QuebraManualModule),
       },
       {
+        path: 'ajuste-manual',
+        loadChildren: () => import('./modules/digitalizacao/ajuste-manual/ajuste-manual.module').then(m => m.AjusteManualModule),
+      },
+      {
         path: 'unidades',
         loadChildren: () => import('./modules/armazenamento/unidade/unidade.module').then(m => m.UnidadeModule),
       },

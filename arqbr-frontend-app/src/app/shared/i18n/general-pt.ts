@@ -26,6 +26,7 @@ import { camposDocumentoFields } from './fields/pt/digitalizacao/campos-document
 import { documentosDigitaisFields } from './fields/pt/digitalizacao/documentos-digitais'
 import { documentosDigitaisCamposFields } from './fields/pt/digitalizacao/documentos-digitais-campos'
 import { quebraManualFields } from './fields/pt/digitalizacao/quebra-manual'
+import { ajusteManualFields } from './fields/pt/digitalizacao/ajuste-manual'
 import { unidadesFields } from './fields/pt/armazenamento/unidades'
 import { plantasFields } from './fields/pt/armazenamento/plantas'
 import { posicoesFields } from './fields/pt/armazenamento/posicoes'
@@ -298,6 +299,10 @@ export const generalPt = {
   digitalizacao_quebraManual: {
     title: 'Quebra Manual',
     fields: quebraManualFields
+  },
+  digitalizacao_ajusteManual: {
+    title: 'Ajuste Manual',
+    fields: ajusteManualFields
   },
   armazenamento_unidade: {
     title: 'Unidades',

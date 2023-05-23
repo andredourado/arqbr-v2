@@ -91,6 +91,7 @@ import { DocumentoDigitalCampoEditComponent } from "./pages/digitalizacao/docume
 import { DocumentoDigitalCampoListComponent } from "./pages/digitalizacao/documento-digital-campo/documento-digital-campo-list/documento-digital-campo-list.component"
 import { QuebraManualEditComponent } from "./pages/digitalizacao/quebra-manual/quebra-manual-edit/quebra-manual-edit.component"
 import { QuebraManualListComponent } from "./pages/digitalizacao/quebra-manual/quebra-manual-list/quebra-manual-list.component"
+import { AjusteManualEditComponent } from "./pages/digitalizacao/ajuste-manual/ajuste-manual-edit/ajuste-manual-edit.component"
 import { UnidadeEditComponent } from "./pages/armazenamento/unidade/unidade-edit/unidade-edit.component"
 import { UnidadeListComponent } from "./pages/armazenamento/unidade/unidade-list/unidade-list.component"
 import { PlantaEditComponent } from "./pages/armazenamento/planta/planta-edit/planta-edit.component"
@@ -188,6 +189,7 @@ import { i18nConfig } from './shared/i18n'
     DocumentoDigitalCampoListComponent,
     QuebraManualEditComponent,
     QuebraManualListComponent,
+    AjusteManualEditComponent,
     UnidadeEditComponent,
     UnidadeListComponent,
     PlantaEditComponent,
