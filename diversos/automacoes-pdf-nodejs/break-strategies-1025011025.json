@@ -12,6 +12,28 @@
 				"field_name": "referencia",
 				"field_title": "Referência",
 				"method": "regex_date_mm_yyyy"
+			},
+			{
+				"field_name": "cooperado",
+				"field_title": "Cooperado",
+				"method": "search_text_get_line",
+				"search_text": [
+					"Demonstrativo"
+				],
+				"line": 2,
+				"extraction_start": "-",
+				"extraction_length": 50 
+			},
+			{
+				"field_name": "colaborador",
+				"field_title": "Colaborador",
+				"method": "search_text_get_line",
+				"search_text": [
+					"Demonstrativo"
+				],
+				"line": 4,
+				"extraction_start": "        ",
+				"extraction_length": 50 
 			}
 		] 
 	},
@@ -27,6 +49,17 @@
 				"field_name": "referencia",
 				"field_title": "Referência",
 				"method": "regex_date_mm_yyyy"
+			},
+			{
+				"field_name": "cooperado",
+				"field_title": "Cooperado",
+				"method": "search_text_get_line",
+				"search_text": [
+					"GUIA DA "
+				],
+				"line": 3,
+				"extraction_start": 0,
+				"extraction_length": 50 
 			}
 		] 
 	},
@@ -44,6 +77,17 @@
 				"field_name": "referencia",
 				"field_title": "Referência",
 				"method": "regex_date_mm_yyyy"
+			},
+			{
+				"field_name": "cooperado",
+				"field_title": "Cooperado",
+				"method": "search_text_get_line",
+				"search_text": [
+					"GUIA DE"
+				],
+				"line": 5,
+				"extraction_start": "|",
+				"extraction_length": 50 
 			}
 		] 
 	}
