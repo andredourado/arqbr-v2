@@ -13,6 +13,9 @@ class S3AwsStorageProvider implements IStorageProvider {
       region: process.env.AWS_BUCKET_REGION,
     })
   }
+  numberPages(folder: string): Promise<number> {
+    throw new Error('Method not implemented.')
+  }
 
   async save(file: string, folder: string): Promise<string> {
     const originalName = resolve(upload.tmpFolder, file)

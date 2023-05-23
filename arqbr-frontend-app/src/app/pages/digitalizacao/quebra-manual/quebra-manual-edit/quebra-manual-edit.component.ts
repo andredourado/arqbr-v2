@@ -17,6 +17,7 @@ interface IResponse {
   solicitacaoFisico: any
   statusCode: number
   data: any
+  items: any
 }
 
 type QuebraType = {
@@ -32,7 +33,7 @@ type QuebraType = {
   styleUrls: ["./quebra-manual-edit.component.scss"],
 })
 export class QuebraManualEditComponent implements OnInit, OnDestroy {
-  id: string
+  file: string
   page: number = 1
   scale = DEFAULT_ZOOM
   totalPages: number = 0
@@ -92,7 +93,7 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.loadQuebraManualDocumentos()
+    // this.loadQuebraManualDocumentos()
   }
 
   ngOnDestroy(): void {
@@ -119,36 +120,27 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
     this.tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select?clienteId=${event}`
   }
 
-  loadQuebraManualDocumentos() {
-    this.subscriptions.add(
-      this.restService
-        .get('/quebras-manuais/list') 
-        .subscribe({
-          next: (res: IResponse) => {
-            this.caixasOptions = res.data
-          }
-        })
-    )
-  }
-
-  caixaChange(caixa: string) {
-    this.id = caixa
-    this.page = 1
-    this.loadPage()
+  searchCaixas() {
+    const { caixa } = this.searchForm.value
+    if (caixa && caixa != '') {
+      this.file = caixa as string
+      this.loadPage()
+    }
   }
  
   loadPage() {
     const payload = {
-      id: this.id,
-      page: this.page,
+      file: this.file,
+      page: this.page
     }
 
     this.subscriptions.add(
       this.restService
-        .get("/quebras-manuais/open/" + this.id)
+        .post("/quebras-manuais/open", payload)
         .subscribe({
           next: (res: IResponse) => {
-            this.src = (res.data as string)
+            this.src = this.sanitizer.bypassSecurityTrustResourceUrl(res.data.image as string)
+            this.totalPages = res.data.numberPages
           }
         })
     )
@@ -157,6 +149,9 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
   changePage() {
     if (this.page > this.totalPages) {
       this.page = this.totalPages
+    }
+    if (this.page < 1) {
+      this.page = 1
     }
     this.loadPage()
   }
@@ -248,10 +243,10 @@ export class QuebraManualEditComponent implements OnInit, OnDestroy {
  
   save(data, willCreateAnother?: boolean) {
     if (this.quebraForm.valid) {
-      if (this.id && this.getPageType(this.activatedRoute.snapshot.routeConfig.path) === 'edit') {
+      if (this.file && this.getPageType(this.activatedRoute.snapshot.routeConfig.path) === 'edit') {
         this.subscriptions.add(
           this.restService
-            .put(`/quebra-manual/${this.id}`, data)
+            .put(`/quebra-manual/${this.file}`, data)
             .subscribe({
               next: () => {
                 this.poNotification.success({

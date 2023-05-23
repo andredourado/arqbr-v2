@@ -3,33 +3,43 @@
     <form [formGroup]="searchForm">
       <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
-        p-clean 
-        [p-disabled]="readonly"
-        formControlName="clienteId"
-        name="clienteId" 
-        (p-change)="clienteIdChange($event)" 
-        [p-filter-service]="clienteIdService" 
-        p-label="Cliente"
-        p-required> </po-combo>
-      </div>
-
-      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
-        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" p-clean [p-disabled]="readonly"
-        formControlName="departamentoId" name="departamentoId" [p-filter-service]="departamentoIdService" p-label="Centro de Custo" p-required> </po-combo>
-      </div>
-
-      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
-        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="caixa" p-clean [p-disabled]="readonly"
-          formControlName="caixa"
-          [p-options]="caixasOptions"
-          p-label="Caixa"
+          p-clean 
+          [p-disabled]="readonly"
+          formControlName="clienteId"
+          name="clienteId" 
+          (p-change)="clienteIdChange($event)" 
+          [p-filter-service]="clienteIdService" 
+          p-label="Cliente"
           p-required
-          (p-change)="caixaChange($event)"
         > </po-combo>
       </div>
 
+      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        p-clean [p-disabled]="readonly"
+        formControlName="departamentoId"
+        name="departamentoId"
+        [p-filter-service]="departamentoIdService"
+        p-label="Centro de Custo"
+        p-required
+        > </po-combo>
+      </div>
+
+      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+        <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+          name="caixa"
+          p-clean
+          [p-disabled]="readonly"
+          formControlName="caixa"
+          p-label="Caixa"
+          p-required
+        > </po-input>
+      </div>
+
       <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding po-mt-1">
-        <button type="button" class="fa-solid fa-magnifying-glass fa-lg button-filter"> </button>
+        <button type="button" class="fa-solid fa-magnifying-glass fa-lg button-filter"
+        (click)="searchCaixas()"
+        > </button>
       </div>
     </form>
   </div>
@@ -86,18 +96,36 @@
     <div class="campo-quebras">
       <form [formGroup]="quebraForm">
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean [p-disabled]="readonly"
-          formControlName="tipoDocumentoId" name="tipoDocumentoId" [p-filter-service]="tipoDocumentoIdService" p-label="Tipos de Documentos" p-required> </po-combo>
+          <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
+            name="tipoDocumentoId"
+            p-clean 
+            [p-disabled]="readonly"
+            formControlName="tipoDocumentoId" 
+            name="tipoDocumentoId"
+            [p-filter-service]="tipoDocumentoIdService"
+            p-label="Tipos de Documentos"
+            p-required
+          > </po-combo>
         </div>
 
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean [p-disabled]="readonly"
-            p-label="Página Inicial" p-required> </po-input>
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            name="paginaInicial" 
+            p-clean 
+            [p-disabled]="readonly"
+            p-label="Página Inicial" 
+            p-required
+            > </po-input>
         </div>
 
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" name="" p-clean [p-disabled]="readonly"
-            p-label="Página Final" p-required> </po-input>
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
+            name="paginaFinal" 
+            p-clean 
+            [p-disabled]="readonly"
+            p-label="Página Final" 
+            p-required
+          > </po-input>
         </div>
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
           <po-button (p-click)="addQuebra()" p-label="Quebra" p-kind="primary"> </po-button>
