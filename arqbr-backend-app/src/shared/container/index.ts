@@ -78,6 +78,8 @@ import { ITipoDocumentoRepository } from '@modules/digitalizacao/repositories/i-
 import { TipoDocumentoRepository } from '@modules/digitalizacao/infra/typeorm/repositories/tipo-documento-repository'
 import { ICampoDocumentoRepository } from '@modules/digitalizacao/repositories/i-campo-documento-repository'
 import { CampoDocumentoRepository } from '@modules/digitalizacao/infra/typeorm/repositories/campo-documento-repository'
+import { ICaixaQuebraRepository } from '@modules/digitalizacao/repositories/i-caixa-quebra-repository'
+import { CaixaQuebraRepository } from '@modules/digitalizacao/infra/typeorm/repositories/caixa-quebra-repository'
 import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories/i-documento-digital-repository'
 import { DocumentoDigitalRepository } from '@modules/digitalizacao/infra/typeorm/repositories/documento-digital-repository'
 import { IDocumentoDigitalCampoRepository } from '@modules/digitalizacao/repositories/i-documento-digital-campo-repository'
@@ -127,6 +129,7 @@ container.registerSingleton<IVolumeRepository>('VolumeRepository', VolumeReposit
 container.registerSingleton<IRastreamentoVolumeRepository>('RastreamentoVolumeRepository', RastreamentoVolumeRepository)
 container.registerSingleton<ITipoDocumentoRepository>('TipoDocumentoRepository', TipoDocumentoRepository)
 container.registerSingleton<ICampoDocumentoRepository>('CampoDocumentoRepository', CampoDocumentoRepository)
+container.registerSingleton<ICaixaQuebraRepository>('CaixaQuebraRepository', CaixaQuebraRepository)
 container.registerSingleton<IDocumentoDigitalRepository>('DocumentoDigitalRepository', DocumentoDigitalRepository)
 container.registerSingleton<IDocumentoDigitalCampoRepository>('DocumentoDigitalCampoRepository', DocumentoDigitalCampoRepository)
 container.registerSingleton<IUnidadeRepository>('UnidadeRepository', UnidadeRepository)

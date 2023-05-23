@@ -39,6 +39,7 @@ import { volumesRoutes } from './coleta/volumes-routes'
 import { rastreamentoVolumesRoutes } from './coleta/rastreamento-volumes-routes'
 import { tiposDocumentoRoutes } from './digitalizacao/tipos-documento-routes'
 import { camposDocumentoRoutes } from './digitalizacao/campos-documento-routes'
+import { caixasQuebrasRoutes } from './digitalizacao/caixas-quebras-routes'
 import { documentosDigitaisRoutes } from './digitalizacao/documentos-digitais-routes'
 import { documentosDigitaisCamposRoutes } from './digitalizacao/documentos-digitais-campos-routes'
 import { quebraManualRoutes } from './digitalizacao/quebra-manual-routes'
@@ -88,6 +89,7 @@ router.use('/volumes', volumesRoutes)
 router.use('/rastreamento-volumes', rastreamentoVolumesRoutes)
 router.use('/tipos-documento', tiposDocumentoRoutes)
 router.use('/campos-documento', camposDocumentoRoutes)
+router.use('/caixas-quebras', caixasQuebrasRoutes)
 router.use('/documentos-digitais', documentosDigitaisRoutes)
 router.use('/documentos-digitais-campos', documentosDigitaisCamposRoutes)
 router.use('/quebras-manuais', quebraManualRoutes)

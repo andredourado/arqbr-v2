@@ -163,6 +163,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/digitalizacao/campo-documento/campo-documento.module').then(m => m.CampoDocumentoModule),
       },
       {
+        path: 'caixas-quebras',
+        loadChildren: () => import('./modules/digitalizacao/caixa-quebra/caixa-quebra.module').then(m => m.CaixaQuebraModule),
+      },
+      {
         path: 'documentos-digitais',
         loadChildren: () => import('./modules/digitalizacao/documento-digital/documento-digital.module').then(m => m.DocumentoDigitalModule),
       },
