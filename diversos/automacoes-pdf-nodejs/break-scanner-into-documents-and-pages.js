@@ -10,6 +10,13 @@ const { createWorker } = require('tesseract.js')
 dotenv.config()
 
 //
+// checks if parameter is a number
+//
+function isNumber(val) {
+  return true
+}
+
+//
 // read variables from .env file
 //
 const readDotenvVariables = () => {
@@ -110,7 +117,7 @@ const readCostCenterBoxesCsvFile = (csvFilePath) => {
     const obj = {}
     for (const line of lines) {
       const [key, value] = line.split(';')
-      obj[key] = value
+      obj[key.replace(/\D/g,'')] = value
     }
     return obj
   } catch (error) {
@@ -151,7 +158,7 @@ const extractRestOfFileName = (pdfFileName) => {
 //
 const extractFileNameData = (pdfFileName, costCenterBoxes) => {
   const fileName = path.basename(pdfFileName)
-  const boxNumber = extractBoxNumber(fileName)
+  const boxNumber = parseInt(extractBoxNumber(fileName)).toString()
   const restOfFileName = extractRestOfFileName(fileName)
 
   let costCenter = costCenterBoxes[boxNumber]
@@ -187,7 +194,7 @@ const getDocumentsBreakStrategies = (costCenter, documentBreakStrategiesDir) => 
 }
 
 //
-// xxxx
+// writes a stream to a file
 //
 const writeToFile = (fileStream) => {
   return new Promise(async (resolve, reject) => {
@@ -206,85 +213,176 @@ const readPdfFileFromS3 = async (s3Client, bucketName, prefix, fileKey) => {
     Key: prefix + path.basename(fileKey)
   }
 
-  const getObjectCommand = new GetObjectCommand(getObjectParams)
-  const objectResponse = await s3Client.send(getObjectCommand);
-  const objectStream = objectResponse.Body;
+  try {
+    const getObjectCommand = new GetObjectCommand(getObjectParams)
+    const objectResponse = await s3Client.send(getObjectCommand);
+    const objectStream = objectResponse.Body;
 
-  if (objectStream) {
-    try {      
-      const localFilePath = '/tmp/teste.pdf'
+    if (objectStream) {
+      try {      
+        const localFilePath = '/tmp/teste.pdf'
+      
+        const fileStream = createWriteStream(localFilePath)
+
+        await objectStream.pipe(fileStream)
+
+        await writeToFile(fileStream)
+          .then(async () => {
+            try {
+              const pdf = await pdfjsLib.getDocument(localFilePath, { verbosity: 0 }).promise
+              const numPages = pdf.numPages
     
-      const fileStream = createWriteStream(localFilePath)
-
-      await objectStream.pipe(fileStream)
-
-      await writeToFile(fileStream)
-        .then(async () => {
-          try {
-            const pdf = await pdfjsLib.getDocument(localFilePath, { verbosity: 0 }).promise
-            const numPages = pdf.numPages
-  
-            const pages = Array.from({length: numPages}, (_, i) => i + 1)
-            
-            for await (let i of pages) {
-              const page = await pdf.getPage(i)
-  
-              const viewport = page.getViewport({ scale: 5.0 })
-              const canvas = createCanvas(viewport.width, viewport.height)
-              const canvasContext = canvas.getContext('2d')
-  
-              const renderContext = {
-                canvasContext,
-                viewport,
-              }
+              const pages = Array.from({length: numPages}, (_, i) => i + 1)
               
-              await page.render(renderContext).promise
-  
-              const image = canvas.toDataURL('image/png')
-              const worker = await createWorker()
-  
-              try {
-                await worker.loadLanguage('por')
-                await worker.initialize('por')
-  
-                try {
-                  const { data: { text } } = await worker.recognize(image, {
-                    tessedit_create_txt: '1',
-                    tessedit_create_hocr: '0',
-                    config: 'hocr',
-                    preserve_interword_spaces: '1'
-                  });
-  
-                  output.push(text)
-                } catch (err) {
-                  console.error(`Error performing OCR: ${err}`)
+              for await (let i of pages) {
+                console.log('Page: ' + parseInt(i))
+                const page = await pdf.getPage(i)
+    
+                const viewport = page.getViewport({ scale: 5.0 })
+                const canvas = createCanvas(viewport.width, viewport.height)
+                const canvasContext = canvas.getContext('2d')
+    
+                const renderContext = {
+                  canvasContext,
+                  viewport,
                 }
-  
-                await worker.terminate()
-              } catch (err) {
-                console.error(`Error initializing Tesseract worker: ${err}`)
+                
+                await page.render(renderContext).promise
+    
+                const image = canvas.toDataURL('image/png')
+                const worker = await createWorker()
+    
+                try {
+                  await worker.loadLanguage('por')
+                  await worker.initialize('por')
+    
+                  try {
+                    const { data: { text } } = await worker.recognize(image, {
+                      tessedit_create_txt: '1',
+                      tessedit_create_hocr: '0',
+                      config: 'hocr',
+                      preserve_interword_spaces: '1'
+                    });
+    
+                    output.push(text)
+                  } catch (err) {
+                    console.error(`Error performing OCR: ${err}`)
+                  }
+    
+                  await worker.terminate()
+                } catch (err) {
+                  console.error(`Error initializing Tesseract worker: ${err}`)
+                }
               }
+            } catch (err) {
+              console.error(`Error parsing PDF document: ${err}`)
             }
-          } catch (err) {
-            console.error(`Error parsing PDF document: ${err}`)
-          }
-        })
-        .catch(err => console.log(err))
-    } catch (err) {
-      console.log('ERRORRRRR: ', err)
+          })
+          .catch(err => console.log(err))
+      } catch (err) {
+        console.log('ERROR: ', err)
+      }
     }
+  } catch (err) {
+    //console.log('ERROR: ', err)
   }
 
   return output
 }
 
 //
-// xxxx
+// extracts patterns regex from text
+//
+const formatAndValidateDate = (text, format) => {
+  let output = text.replace(' ', '')
+  let parts = []
+
+  if (output.length !== format.length) {
+    output = ''
+  }
+
+  switch (format) {
+    case 'mm/yyyy':
+      if (!output.includes('/')) {
+        output = ''
+      } else {
+        parts = output.split('/')
+
+        if ((!isNumber(parts[0])) || (!isNumber(parts[1]))) {
+          output = ''
+        } else {
+          if ((parseInt(parts[0]) > 13) || (parseInt(parts[1]) < 1500)) {
+            output = ''
+          }
+        }
+      }
+  }
+
+  return output
+}
+
+//
+// extracts patterns regex from text
+//
+const extractByRegex = (text, pattern, occurence=0) => {
+  const regex = pattern
+  const matches = []
+  let match
+
+  while ((match = regex.exec(text)) !== null) {
+    matches.push(match[0])
+  }
+
+  console.log(matches, matches.length, matches[occurence])
+
+  if (matches.length > 0) {
+    return matches[occurence]
+  } else {
+    return ''
+  }
+}
+
+//
+// identifies document fields and its contents
+//
+const findDocumentFieldsContents = (pageText, fields) => {
+  output = []
+
+  if ((!pageText.toUpperCase().includes('XXX-SEPARADOR-XXX')) && (!pageText.toUpperCase().includes('COMPROVANTE DE PAGAMENTO'))) {
+    const regexDateMmYyyy = /\b(\[\s*\d{1,2}\s*\/\s*\d{4}\]\d|\]\d{1,2}\s*\/\s*\d{4}\[|\[\s*\d{1,2}\s*\/\s*\d{2}\]\d|\]\d{1,2}\s*\/\s*\d{2}\[)\b|\b(\d{1,2}\s*\/\s*\d{4}|\[\s*\d{1,2}\s*\/\s*\d{2}\]\d)\b/g
+
+    fields.forEach(field => {
+      let tempFieldContent = {
+        fieldName: field.field_name,
+        fieldTitle: field.field_title,
+        content: ''
+      }
+
+      switch (field.method) {
+        case 'regex_date_mm_yyyy':
+          tempFieldContent.content = formatAndValidateDate(extractByRegex(pageText, regexDateMmYyyy), 'mm/yyyy')
+          output.push(tempFieldContent)
+          break
+
+        default:
+          output.push(tempFieldContent)
+          break
+      }
+    })
+  }
+
+  return output
+}
+
+//
+// identifies which page must break documents according to document break strategies
 //
 const findBreakStrategies = (pageNumber, pageText, documentsBreakStrategies) => {
   output = {
     page: pageNumber,
-    document: ''
+    document: '',
+    description: '',
+    fields: []
   }
   let shouldBreak = false
 
@@ -292,10 +390,36 @@ const findBreakStrategies = (pageNumber, pageText, documentsBreakStrategies) => 
     const pageBreaks = strategy.breaks
 
     pageBreaks.forEach(pageBreak => {
-      if (pageText.includes(pageBreak)) {
+      if (!pageText.toUpperCase().includes('XXX-SEPARADOR-XXX')) {
+        if (!pageText.toUpperCase().includes('COMPROVANTE DE PAGAMENTO')) {
+          if (pageText.toUpperCase().includes(pageBreak)) {
+            output = {
+              page: pageNumber,
+              document: strategy.document,
+              description: strategy.description,
+              fields: findDocumentFieldsContents(pageText, strategy.fields)
+            }
+
+            shouldBreak = true
+            return
+          }
+        } else {
+          output = {
+            page: pageNumber,
+            document: 'COMPROVANTE DE PAGAMENTO',
+            description: '',
+            fields: [] 
+          }
+  
+          shouldBreak = true
+          return
+        }
+      } else {
         output = {
           page: pageNumber,
-          document: strategy.document
+          document: 'SEPARADOR',
+          description: '',
+          fields: []  
         }
 
         shouldBreak = true
@@ -312,7 +436,7 @@ const findBreakStrategies = (pageNumber, pageText, documentsBreakStrategies) => 
 }
 
 //
-// xxxx
+// analyze each page returning which document and its fields contents
 //
 const analyzeDocumentTypes = (pages, documentsBreakStrategies) => {
   let output = []
@@ -322,7 +446,9 @@ const analyzeDocumentTypes = (pages, documentsBreakStrategies) => {
     console.log(page);
     console.log();
 
-    output.push(findBreakStrategies(index, page, documentsBreakStrategies))
+    const documentTypes = findBreakStrategies(index, page, documentsBreakStrategies)
+
+    output.push(documentTypes)
   });
 
   return output
@@ -345,29 +471,30 @@ const analyzeDocumentTypes = (pages, documentsBreakStrategies) => {
   const arquivosPdfFromScanner = await getS3Objects(s3Client, 'vamilly-arqbr', 'arquivos-pdf-scanner/')
 
   // break into splitted-files
-  for await (const file of arquivosPdfFromScanner) {
+  //for await (let file of arquivosPdfFromScanner) {
+    const tempFileKey = 'arquivos-pdf-scanner/ARQBRCX01-000000167.pdf'  
+    //const tempFileKey = file.key 
     try {
-      if (!await fileExists(dotEnvVars.arqbrAlreadySplittedFilesDir, file.Key)) {
-        const fileNameData = extractFileNameData(file.Key, costCenterBoxes)
+      //if (!await fileExists(dotEnvVars.arqbrAlreadySplittedFilesDir, tempFileKey)) {
+        const fileNameData = extractFileNameData(tempFileKey, costCenterBoxes)
         const documentsBreakStrategies = getDocumentsBreakStrategies(fileNameData.costCenter, dotEnvVars.arqbrDocumentBreakStrategiesDir)
   
-        console.log('>>>>>>>', file.Key)
-        
-        //console.log(documentsBreakStrategies)
+        console.log('>>>>>>>', fileNameData.costCenter, tempFileKey)
   
-        const pages = await readPdfFileFromS3(s3Client, 'vamilly-arqbr', 'arquivos-pdf-scanner/', file.Key)
+        const pages = await readPdfFileFromS3(s3Client, 'vamilly-arqbr', 'arquivos-pdf-scanner/', tempFileKey)
         const documentTypes = analyzeDocumentTypes(pages, documentsBreakStrategies)
 
-        console.log(documentTypes)
+        console.log(JSON.stringify(documentTypes, "\t"))
 
-        await createEmptyFile(dotEnvVars.arqbrAlreadySplittedFilesDir, file.Key)
-      } else {
-        console.log(path.basename(file.Key) + ' already processed!')
-      }
+        await createEmptyFile(dotEnvVars.arqbrAlreadySplittedFilesDir, tempFileKey)
+      //} else {
+      //  console.log(path.basename(tempFileKey) + ' already processed!')
+      //}
+        return
     } catch (err) {
       console.log('ERRO: ', err)
     }
-  }
+  //}
   
 
   // break into pages
