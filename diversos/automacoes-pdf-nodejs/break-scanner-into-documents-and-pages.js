@@ -325,7 +325,11 @@ const formatAndValidateDate = (text, format) => {
 // extracts patterns regex from text
 //
 const extractByRegex = (text, pattern, occurence=0) => {
-  const regex = pattern
+  const patterns = {
+    'mm/yyyy': /\b(\[\s*\d{1,2}\s*\/\s*\d{4}\]\d|\]\d{1,2}\s*\/\s*\d{4}\[|\[\s*\d{1,2}\s*\/\s*\d{2}\]\d|\]\d{1,2}\s*\/\s*\d{2}\[)\b|\b(\d{1,2}\s*\/\s*\d{4}|\[\s*\d{1,2}\s*\/\s*\d{2}\]\d)\b/g
+  }
+
+  const regex = patterns[pattern]
   const matches = []
   let match
 
@@ -343,14 +347,47 @@ const extractByRegex = (text, pattern, occurence=0) => {
 }
 
 //
+// search for a text then gets by line skipping from a string inside line for a specific length
+//
+const extractBySearchTextGetLine = (text, field) => {
+  let targetLine = ''
+  lines = text.replace(/(^[ \t]*\n)/gm, "").split("\n")
+
+  for (let index = 0; index < lines.length; index++) {
+    field.search_text.forEach(searchText => {
+      if (lines[index].toUpperCase().includes(searchText.toUpperCase())) {
+        targetLine = lines[index + field.line]
+        return
+      }
+    })
+
+    if (targetLine !== '') {
+      break
+    }
+  }
+
+  let tempResult = targetLine.substring(targetLine.indexOf(field.extraction_start) + field.extraction_start.length, field.extraction_length).trim()
+
+  tempResult = tempResult.replace(/[|!;\[\]]/g, '')
+
+  if (tempResult.includes(field.extraction_start)) {
+    tempResult = tempResult.substring(tempResult.indexOf(field.extraction_start) + field.extraction_start.length, field.extraction_length).trim()
+  }
+  
+  if (tempResult.includes('   ')) {
+    tempResult = tempResult.substring(tempResult.indexOf('   ') + 3, field.extraction_length).trim()
+  }
+
+  return tempResult
+}
+
+//
 // identifies document fields and its contents
 //
 const findDocumentFieldsContents = (pageText, fields) => {
   output = []
 
   if ((!pageText.toUpperCase().includes('XXX-SEPARADOR-XXX')) && (!pageText.toUpperCase().includes('COMPROVANTE DE PAGAMENTO'))) {
-    const regexDateMmYyyy = /\b(\[\s*\d{1,2}\s*\/\s*\d{4}\]\d|\]\d{1,2}\s*\/\s*\d{4}\[|\[\s*\d{1,2}\s*\/\s*\d{2}\]\d|\]\d{1,2}\s*\/\s*\d{2}\[)\b|\b(\d{1,2}\s*\/\s*\d{4}|\[\s*\d{1,2}\s*\/\s*\d{2}\]\d)\b/g
-
     fields.forEach(field => {
       let tempFieldContent = {
         fieldName: field.field_name,
@@ -360,7 +397,12 @@ const findDocumentFieldsContents = (pageText, fields) => {
 
       switch (field.method) {
         case 'regex_date_mm_yyyy':
-          tempFieldContent.content = formatAndValidateDate(extractByRegex(pageText, regexDateMmYyyy), 'mm/yyyy')
+          tempFieldContent.content = formatAndValidateDate(extractByRegex(pageText, 'mm/yyyy'), 'mm/yyyy')
+          output.push(tempFieldContent)
+          break
+
+        case 'search_text_get_line':
+          tempFieldContent.content = extractBySearchTextGetLine(pageText, field)
           output.push(tempFieldContent)
           break
 
@@ -406,9 +448,7 @@ const findBreakStrategies = (pageNumber, pageText, documentsBreakStrategies) => 
         } else {
           output = {
             page: pageNumber,
-            document: 'COMPROVANTE DE PAGAMENTO',
-            description: '',
-            fields: [] 
+            document: 'COMPROVANTE DE PAGAMENTO'
           }
   
           shouldBreak = true
@@ -417,9 +457,7 @@ const findBreakStrategies = (pageNumber, pageText, documentsBreakStrategies) => 
       } else {
         output = {
           page: pageNumber,
-          document: 'SEPARADOR',
-          description: '',
-          fields: []  
+          document: 'SEPARADOR' 
         }
 
         shouldBreak = true
@@ -463,10 +501,10 @@ const analyzeDocumentTypes = (pages, documentsBreakStrategies) => {
   // read .env variables
   dotEnvVars = readDotenvVariables()
 
-  // read csv files
+  // read csv file with relation of boxes and cost centers
   const costCenterBoxes = await readCostCenterBoxesCsvFile(dotEnvVars.arqbrCostCenterBoxes)
 
-  // read scanned files from digitalocean spaces S3
+  // reads a list of scanned files from digitalocean spaces S3
   const s3Client = createS3Client(S3Client, dotEnvVars)
   const arquivosPdfFromScanner = await getS3Objects(s3Client, 'vamilly-arqbr', 'arquivos-pdf-scanner/')
 
@@ -476,16 +514,23 @@ const analyzeDocumentTypes = (pages, documentsBreakStrategies) => {
     //const tempFileKey = file.key 
     try {
       //if (!await fileExists(dotEnvVars.arqbrAlreadySplittedFilesDir, tempFileKey)) {
+        // read data structure for file
         const fileNameData = extractFileNameData(tempFileKey, costCenterBoxes)
+
+        // read documents break stategies
         const documentsBreakStrategies = getDocumentsBreakStrategies(fileNameData.costCenter, dotEnvVars.arqbrDocumentBreakStrategiesDir)
   
         console.log('>>>>>>>', fileNameData.costCenter, tempFileKey)
   
+        // read box scanned file from s3
         const pages = await readPdfFileFromS3(s3Client, 'vamilly-arqbr', 'arquivos-pdf-scanner/', tempFileKey)
+
+        // analyze box file then returns pages group breaks and fields contents
         const documentTypes = analyzeDocumentTypes(pages, documentsBreakStrategies)
 
-        console.log(JSON.stringify(documentTypes, "\t"))
+        console.log(JSON.stringify(documentTypes, 4))
 
+        // creates empty file for control if file was already processed
         await createEmptyFile(dotEnvVars.arqbrAlreadySplittedFilesDir, tempFileKey)
       //} else {
       //  console.log(path.basename(tempFileKey) + ' already processed!')
