@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe'
-import { IVersaoDocumentoRepository } from '@modules/digitalizacao/repositories/i-versao-documento-repository'
 import { HttpResponse, ok } from '@shared/helpers/http'
 import { IStorageProvider } from '@shared/container/providers/storage-provider/i-storage-provider'
 import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories/i-documento-digital-repository'

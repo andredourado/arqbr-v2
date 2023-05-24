@@ -1,9 +1,26 @@
-import { IDocumentoDigitalDTO } from '@modules/digitalizacao/dtos/i-documento-digital-dto'
+import { IDocumentoDigitalDTO, ISolicitacao } from '@modules/digitalizacao/dtos/i-documento-digital-dto'
 import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories/i-documento-digital-repository'
 import { DocumentoDigital } from '@modules/digitalizacao/infra/typeorm/entities/documento-digital'
 import { ok, notFound, HttpResponse } from '@shared/helpers'
+import { Solicitante } from '@modules/clientes/infra/typeorm/entities/solicitante'
+import { User } from '@modules/security/infra/typeorm/entities/user'
 
 class DocumentoDigitalRepositoryInMemory implements IDocumentoDigitalRepository {
+  countPages(user: User, solicitante: Solicitante): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
+  countProcessing(user: User, solicitante: Solicitante): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
+  countByTipoDocumento(user: User, solicitante: Solicitante): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
+  countByDepartamento(): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
+  getDocumentosSolicitados(rowsPerPage: number): Promise<HttpResponse<ISolicitacao[]>> {
+    throw new Error('Method not implemented.')
+  }
   documentosDigitais: DocumentoDigital[] = []
 
   // create

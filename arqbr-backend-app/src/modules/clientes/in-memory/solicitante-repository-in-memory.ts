@@ -4,6 +4,9 @@ import { Solicitante } from '@modules/clientes/infra/typeorm/entities/solicitant
 import { ok, notFound, HttpResponse } from '@shared/helpers'
 
 class SolicitanteRepositoryInMemory implements ISolicitanteRepository {
+  getByEmail(email: string): Promise<Solicitante> {
+    throw new Error('Method not implemented.')
+  }
   solicitantes: Solicitante[] = []
 
   // create

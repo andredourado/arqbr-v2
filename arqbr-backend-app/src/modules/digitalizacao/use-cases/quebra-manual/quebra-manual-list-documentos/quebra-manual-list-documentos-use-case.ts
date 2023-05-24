@@ -1,5 +1,5 @@
 import { IStorageProvider } from "@shared/container/providers/storage-provider/i-storage-provider";
-import { HttpResponse, ok } from "@shared/helpers";
+import { HttpResponse, noContent, ok } from "@shared/helpers";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
@@ -10,8 +10,8 @@ class QuebraManualListDocumentosUseCase {
   ) { }
 
   async execute(): Promise<HttpResponse> {
-    const documentos = await this.storageProvider.loadFiles('arquivos-pdf-scanner')
-    return ok(documentos)
+    // const documentos = await this.storageProvider.loadFiles('arquivos-pdf-scanner')
+    return noContent()
   }
 }
 
