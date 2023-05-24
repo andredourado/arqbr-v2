@@ -23,6 +23,7 @@ import { volumesFields } from './fields/pt/coleta/volumes'
 import { rastreamentoVolumesFields } from './fields/pt/coleta/rastreamento-volumes'
 import { tiposDocumentoFields } from './fields/pt/digitalizacao/tipos-documento'
 import { camposDocumentoFields } from './fields/pt/digitalizacao/campos-documento'
+import { caixasQuebrasFields } from './fields/pt/digitalizacao/caixas-quebras'
 import { documentosDigitaisFields } from './fields/pt/digitalizacao/documentos-digitais'
 import { documentosDigitaisCamposFields } from './fields/pt/digitalizacao/documentos-digitais-campos'
 import { quebraManualFields } from './fields/pt/digitalizacao/quebra-manual'
@@ -287,6 +288,10 @@ export const generalPt = {
   digitalizacao_campoDocumento: {
     title: 'Campos de Documento',
     fields: camposDocumentoFields
+  },
+  digitalizacao_caixaQuebra: {
+    title: 'Quebras de Caixas',
+    fields: caixasQuebrasFields
   },
   digitalizacao_documentoDigital: {
     title: 'Documentos Digitais',

@@ -1,0 +1,166 @@
+<po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
+  <form [formGroup]="caixaQuebraForm">
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="clienteId"
+        name="clienteId"
+        (p-change)="clienteIdChange($event)"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="clienteIdService"
+        [p-label]="this.literals.fields.form['clienteId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="departamentoId"
+        name="departamentoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="departamentoIdService"
+        [p-label]="this.literals.fields.form['departamentoId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-combo
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="tipoDocumentoId"
+        name="tipoDocumentoId"
+        p-clean
+        [p-disabled]="readonly"
+        [p-filter-service]="tipoDocumentoIdService"
+        [p-label]="this.literals.fields.form['tipoDocumentoId']"
+        p-required
+      > </po-combo>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        formControlName="nomeArquivoOrigem"
+        name="nomeArquivoOrigem"
+        p-clean
+        [p-label]="this.literals.fields.form['nomeArquivoOrigem']"
+        p-maxlength="1024"
+        [p-readonly]="readonly"
+        p-required
+      > </po-input>
+    </div>
+
+    
+
+  </form>
+
+  <div id="sideMenu" class="po-sm-12 po-md-12 po-lg-12 po-xl-12 side-menu">
+    <div class="page-body shadow">
+      <div class="image-container">
+        <img [src]="src" [style.transform]="'scale(' + scale + ')'">
+      </div>
+
+      <po-divider></po-divider>
+      <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+        <nav>
+          <div class="zoom-component">
+            <div (click)="zoomIn()" class="nav-component button-zoom fa-solid fa-magnifying-glass-plus nav-icon"></div>
+
+            <div (click)="zoomOut()" class="nav-component fa-solid fa-magnifying-glass-minus nav-icon"></div>
+
+            <div (click)="resetZoom()" class="nav-component button-zoom fa-solid fa-rotate-right nav-icon"></div>
+          </div>
+
+          <div class="pass-page">
+            <div class="number-pages-avance pass-page-margin">
+              <button (click)="prev50Page()" [disabled]="page === 1"
+                class="previous nav-component pass-botton fa-solid fa-angles-left nav-icon"></button>
+              <p>-50</p>
+            </div>
+
+            <button (click)="prevPage()" [disabled]="page === 1"
+              class="previous nav-component pass-botton fa-solid fa-angle-left nav-icon pass-page-margin"></button>
+
+            <div class="contador">
+              <div class="contador-input">
+                <po-number name="page" [(ngModel)]="page" p-maxlength="4" (keyup.enter)="changePage()"></po-number>
+              </div>
+
+              <div class="number-pages nav-component pass-botton pass-page-margin">
+                <p>/ {{ totalPages }}</p>
+              </div>
+            </div>
+
+            <button (click)="nextPage()" [disabled]="page === totalPages"
+              class="next nav-component pass-botton fa-solid fa-angle-right nav-icon pass-page-margin"></button>
+
+            <div class="number-pages-avance pass-page-margin">
+              <p>+50</p>
+              <button (click)="next50Page()" [disabled]="page === totalPages"
+                class="next nav-component pass-botton fa-solid fa-angles-right nav-icon"></button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="campo-quebras">
+      <form>
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-6 no-padding">
+          <po-number
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+            formControlName="sequencia"
+            name="sequencia"
+            p-clean
+            [p-label]="this.literals.fields.form['sequencia']"
+            p-maxlength="10"
+            [p-readonly]="readonly"
+            p-required
+          > </po-number>
+        </div>
+    
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-6 no-padding">
+          <po-number
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+            formControlName="paginaInicial"
+            name="paginaInicial"
+            p-clean
+            [p-label]="this.literals.fields.form['paginaInicial']"
+            p-maxlength="10"
+            [p-readonly]="readonly"
+          > </po-number>
+        </div>
+    
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-6  no-padding">
+          <po-number
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+            formControlName="paginaFinal"
+            name="paginaFinal"
+            p-clean
+            [p-label]="this.literals.fields.form['paginaFinal']"
+            p-maxlength="10"
+            [p-readonly]="readonly"
+          > </po-number>
+        </div>
+    
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-6 no-padding">
+          <po-input
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+            formControlName="status"
+            name="status"
+            p-clean
+            [p-label]="this.literals.fields.form['status']"
+            p-maxlength="20"
+            [p-readonly]="readonly"
+          > </po-input>
+        </div>
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
+          <po-button  p-label="Quebra" p-kind="primary"> </po-button>
+          <po-button  p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</po-page-default>

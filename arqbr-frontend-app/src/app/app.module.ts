@@ -85,12 +85,12 @@ import { TipoDocumentoEditComponent } from "./pages/digitalizacao/tipo-documento
 import { TipoDocumentoListComponent } from "./pages/digitalizacao/tipo-documento/tipo-documento-list/tipo-documento-list.component"
 import { CampoDocumentoEditComponent } from "./pages/digitalizacao/campo-documento/campo-documento-edit/campo-documento-edit.component"
 import { CampoDocumentoListComponent } from "./pages/digitalizacao/campo-documento/campo-documento-list/campo-documento-list.component"
+import { CaixaQuebraEditComponent } from "./pages/digitalizacao/caixa-quebra/caixa-quebra-edit/caixa-quebra-edit.component"
+import { CaixaQuebraListComponent } from "./pages/digitalizacao/caixa-quebra/caixa-quebra-list/caixa-quebra-list.component"
 import { DocumentoDigitalEditComponent } from "./pages/digitalizacao/documento-digital/documento-digital-edit/documento-digital-edit.component"
 import { DocumentoDigitalListComponent } from "./pages/digitalizacao/documento-digital/documento-digital-list/documento-digital-list.component"
 import { DocumentoDigitalCampoEditComponent } from "./pages/digitalizacao/documento-digital-campo/documento-digital-campo-edit/documento-digital-campo-edit.component"
 import { DocumentoDigitalCampoListComponent } from "./pages/digitalizacao/documento-digital-campo/documento-digital-campo-list/documento-digital-campo-list.component"
-import { QuebraManualEditComponent } from "./pages/digitalizacao/quebra-manual/quebra-manual-edit/quebra-manual-edit.component"
-import { QuebraManualListComponent } from "./pages/digitalizacao/quebra-manual/quebra-manual-list/quebra-manual-list.component"
 import { AjusteManualEditComponent } from "./pages/digitalizacao/ajuste-manual/ajuste-manual-edit/ajuste-manual-edit.component"
 import { UnidadeEditComponent } from "./pages/armazenamento/unidade/unidade-edit/unidade-edit.component"
 import { UnidadeListComponent } from "./pages/armazenamento/unidade/unidade-list/unidade-list.component"
@@ -183,12 +183,12 @@ import { i18nConfig } from './shared/i18n'
     TipoDocumentoListComponent,
     CampoDocumentoEditComponent,
     CampoDocumentoListComponent,
+    CaixaQuebraEditComponent,
+    CaixaQuebraListComponent,
     DocumentoDigitalEditComponent,
     DocumentoDigitalListComponent,
     DocumentoDigitalCampoEditComponent,
     DocumentoDigitalCampoListComponent,
-    QuebraManualEditComponent,
-    QuebraManualListComponent,
     AjusteManualEditComponent,
     UnidadeEditComponent,
     UnidadeListComponent,
