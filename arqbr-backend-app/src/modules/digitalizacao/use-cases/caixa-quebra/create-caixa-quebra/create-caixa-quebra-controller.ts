@@ -10,10 +10,8 @@ class CreateCaixaQuebraController {
       departamentoId,
       tipoDocumentoId,
       nomeArquivoOrigem,
-      sequencia,
-      paginaInicial,
-      paginaFinal,
-      status
+      status,
+      quebras
     } = request.body
 
     const createCaixaQuebraUseCase = container.resolve(CreateCaixaQuebraUseCase)
@@ -23,10 +21,8 @@ class CreateCaixaQuebraController {
         departamentoId,
         tipoDocumentoId,
         nomeArquivoOrigem,
-        sequencia,
-        paginaInicial,
-        paginaFinal,
-        status
+        status,
+        quebras
       })
       .then(caixaQuebraResult => {
         return caixaQuebraResult

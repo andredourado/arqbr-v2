@@ -4,6 +4,7 @@ import { ICaixaQuebraRepository } from '@modules/digitalizacao/repositories/i-ca
 import { CaixaQuebra } from '@modules/digitalizacao/infra/typeorm/entities/caixa-quebra'
 import { noContent, serverError, ok, notFound, HttpResponse } from '@shared/helpers'
 import { AppError } from '@shared/errors/app-error'
+import { newObjectBuilder } from '@utils/new-object-constructor'
 
 class CaixaQuebraRepository implements ICaixaQuebraRepository {
   private repository: Repository<CaixaQuebra>
@@ -19,31 +20,31 @@ class CaixaQuebraRepository implements ICaixaQuebraRepository {
     departamentoId,
     tipoDocumentoId,
     nomeArquivoOrigem,
-    sequencia,
-    paginaInicial,
-    paginaFinal,
+    quebras,
     status
   }: ICaixaQuebraDTO): Promise<HttpResponse> {
-    const caixaQuebra = this.repository.create({
-      clienteId,
-      departamentoId,
-      tipoDocumentoId,
-      nomeArquivoOrigem,
-      sequencia,
-      paginaInicial,
-      paginaFinal,
-      status
-    })
+    await this.repository.delete({ nomeArquivoOrigem })
 
-    const result = await this.repository.save(caixaQuebra)
-      .then(caixaQuebraResult => {
-        return ok(caixaQuebraResult)
-      })
-      .catch(error => {
-        return serverError(error)
-      })
+    try {
+      for await (let quebra of quebras) {
+        const caixaQuebra = this.repository.create({
+          clienteId,
+          departamentoId,
+          tipoDocumentoId,
+          nomeArquivoOrigem,
+          sequencia: quebras.indexOf(quebra) + 1,
+          paginaInicial: quebra.paginaInicial,
+          paginaFinal: quebra.paginaFinal,
+          status
+        })
 
-    return result
+        await this.repository.save(caixaQuebra)
+      }
+
+      return noContent()
+    } catch (error) {
+      return serverError(error)
+    }
   }
 
 
@@ -198,32 +199,35 @@ class CaixaQuebraRepository implements ICaixaQuebraRepository {
   // get
   async get (id: string): Promise<HttpResponse> {
     try {
+      const quebra = await this.repository.findOne(id)
+
       const caixaQuebra = await this.repository.createQueryBuilder('cai')
         .select([
           'cai.id as "id"',
           'cai.clienteId as "clienteId"',
-          'a.nomeFantasia as "clienteNomeFantasia"',
           'cai.departamentoId as "departamentoId"',
-          'b.nome as "departamentoNome"',
           'cai.tipoDocumentoId as "tipoDocumentoId"',
-          'c.descricao as "tipoDocumentoDescricao"',
           'cai.nomeArquivoOrigem as "nomeArquivoOrigem"',
-          'cai.sequencia as "sequencia"',
           'cai.paginaInicial as "paginaInicial"',
           'cai.paginaFinal as "paginaFinal"',
           'cai.status as "status"',
         ])
-        .leftJoin('cai.clienteId', 'a')
-        .leftJoin('cai.departamentoId', 'b')
-        .leftJoin('cai.tipoDocumentoId', 'c')
-        .where('cai.id = :id', { id })
-        .getRawOne()
+        .where('cai.nomeArquivoOrigem = :nomeArquivoOrigem', { nomeArquivoOrigem: quebra.nomeArquivoOrigem })
+        .addOrderBy('cai.sequencia', 'ASC')
+        .getRawMany()
 
       if (typeof caixaQuebra === 'undefined') {
         return noContent()
       }
 
-      return ok(caixaQuebra)
+      const newCaixaQuebra = newObjectBuilder({
+        data: caixaQuebra,
+        ref: 'clienteId',
+        variablesToArray: [ 'paginaInicial', 'paginaFinal' ],
+        nameArrayVariable: 'quebras'
+      })
+
+      return ok(newCaixaQuebra[0])
     } catch (err) {
       return serverError(err)
     }

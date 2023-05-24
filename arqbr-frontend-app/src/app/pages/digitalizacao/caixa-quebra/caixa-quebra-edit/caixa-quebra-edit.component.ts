@@ -55,14 +55,10 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
     departamentoId: null,
     tipoDocumentoId: null,
     nomeArquivoOrigem: '',
-    sequencia: 0,
-    paginaInicial: 0,
-    paginaFinal: 0,
-    status: '',
+    status: null,
   })
 
   quebraForm = this.formBuilder.group({
-    tipoDocumentoId: null,
     paginaInicial: '',
     paginaFinal: '',
   })
@@ -241,17 +237,14 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
       .get(`/caixas-quebras/${id}`)
       .subscribe({
         next: (result) => {
-          this.clienteId = result.clienteId
           this.caixaQuebraForm.patchValue({
             clienteId: result.clienteId,
             departamentoId: result.departamentoId,
             tipoDocumentoId: result.tipoDocumentoId,
             nomeArquivoOrigem: result.nomeArquivoOrigem,
-            sequencia: result.sequencia,
-            paginaInicial: result.paginaInicial,
-            paginaFinal: result.paginaFinal,
             status: result.status,
           })
+          this.quebras = result.quebras
         },
         error: (error) => console.log(error)
       })
@@ -264,114 +257,74 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
 
   addQuebra() { 
     if (this.quebraForm.valid) {
+      const { paginaInicial, paginaFinal } = this.quebraForm.value
       const payload = {
-        id: this.quebraId ?? uuidV4(),
-        tipoDocumento: this.quebraForm.value.tipoDocumentoId,
-        paginaInicial: this.quebraForm.value.paginaInicial,
-        paginaFinal: this.quebraForm.value.paginaFinal,
+        paginaInicial,
+        paginaFinal
       }
-      if (this.quebraId) {
-        let quebraIndex: number
-        this.quebras.map((text, index) => {
-          if (text.id === this.quebraId) quebraIndex = index
-        })
-        this.quebras[quebraIndex] = payload
-      } else this.quebras.push(payload)
-      
+      this.quebras.push(payload)
       this.quebraForm.reset()
-      this.quebraId = null
-    } else {
-        this.poNotification.warning({
-        message: "Erro ao salvar",
-        duration: environment.poNotificationDuration
-      })
+
+      return 
     }
-    console.log(this.quebras)
+
+    this.quebraForm.markAllAsTouched()
+    this.quebraForm.controls.paginaInicial.markAsDirty()
+    this.quebraForm.controls.paginaFinal.markAsDirty()
   }
 
   deleteQuebra() {
-    if(this.quebraId) {
-      let indexTextById: number
-      this.quebras.map((quebra, quebraIndex) => {
-        if(quebra.id === this.quebraId) indexTextById = quebraIndex
-      })
-      this.quebras.splice(indexTextById, 1)
-      this.caixaQuebraForm.reset()
-      this.quebraId = null
-    }
-  }
-
-  tableTextClick(index: number) {
-    this.quebraForm.patchValue({
-      tipoDocumentoId: this.quebras[index].tipoDocumentoId,
-      paginaInicial: this.quebras[index].paginaInicial,
-      paginaFinal: this.quebras[index].paginaFinal
-  })
-    
-    this.tipoDocumentoId = this.quebras[index].tipoDocumentoId
-    this.quebraId = this.quebras[index].id
+    this.quebras.pop()
   }
 
   save(data, willCreateAnother?: boolean) {
-    if (this.caixaQuebraForm.valid) {
-      if (this.id && this.getPageType(this.activatedRoute.snapshot.routeConfig.path) === 'edit') {
-        this.subscriptions.add(
-          this.restService
-            .put(`/caixas-quebras/${this.id}`, data)
-            .subscribe({
-              next: () => {
-                this.poNotification.success({
-                  message: this.literals.saveSuccess,
-                  duration: environment.poNotificationDuration
-                })
-
-                if (willCreateAnother) {
-                  this.caixaQuebraForm.reset()
-                  this.router.navigate(["caixas-quebras/new"])
-                } else {
-                  this.router.navigate(["caixas-quebras"])
-                }
-              },
-              error: (error) => console.log(error),
-            })
-        )
-      } else {
-        this.subscriptions.add(
-          this.restService
-            .post("/caixas-quebras", data)
-            .subscribe({
-              next: () => {
-                this.poNotification.success({
-                  message: this.literals.saveSuccess,
-                  duration: environment.poNotificationDuration
-                })
-
-                if (willCreateAnother) {
-                  this.caixaQuebraForm.reset()
-                  this.router.navigate(["caixas-quebras/new"])
-                } else {
-                  this.router.navigate(["caixas-quebras"])
-                }
-              },
-              error: (error) => console.log(error),
-            })
-        )
+    if (this.caixaQuebraForm.valid && this.quebras.length > 0) {
+      const payload = {
+        clienteId: data.clienteId,
+        departamentoId: data.departamentoId,
+        tipoDocumentoId: data.tipoDocumentoId,
+        nomeArquivoOrigem: data.nomeArquivoOrigem,
+        status: data.status,
+        quebras: this.quebras
       }
-    } else {
+
+      this.subscriptions.add(
+        this.restService
+          .post("/caixas-quebras", payload)
+          .subscribe({
+            next: () => {
+              this.poNotification.success({
+                message: this.literals.saveSuccess,
+                duration: environment.poNotificationDuration
+              })
+
+              if (willCreateAnother) {
+                this.caixaQuebraForm.reset()
+                this.quebras = []
+                this.router.navigate(["caixas-quebras/new"])
+              } else {
+                this.router.navigate(["caixas-quebras"])
+              }
+            },
+            error: (error) => console.log(error),
+          })
+      )
+
+      return
+    }
+      
       this.markAsDirty()
       this.poNotification.warning({
         message: this.literals.formError,
         duration: environment.poNotificationDuration
       })
     }
-  }
 
   markAsDirty() {
     this.caixaQuebraForm.controls.clienteId.markAsDirty()
     this.caixaQuebraForm.controls.departamentoId.markAsDirty()
     this.caixaQuebraForm.controls.tipoDocumentoId.markAsDirty()
     this.caixaQuebraForm.controls.nomeArquivoOrigem.markAsDirty()
-    this.caixaQuebraForm.controls.sequencia.markAsDirty()
   }
 
   goBack() {

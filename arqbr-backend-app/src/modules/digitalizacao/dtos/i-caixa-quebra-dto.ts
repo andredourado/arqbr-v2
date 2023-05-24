@@ -8,6 +8,7 @@ interface ICaixaQuebraDTO {
   paginaInicial?: number
   paginaFinal?: number
   status?: string
+  quebras?: any[]
   createdAt?: Date
   updatedAt?: Date
 }

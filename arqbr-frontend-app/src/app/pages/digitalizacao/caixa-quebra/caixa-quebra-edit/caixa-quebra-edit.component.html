@@ -59,6 +59,7 @@
         formControlName="status"
         name="status"
         p-clean
+        p-disabled
         [p-label]="this.literals.fields.form['status']"
         p-maxlength="20"
         [p-readonly]="readonly"
@@ -123,45 +124,32 @@
       </div>
     </div>
     <div class="campo-quebras">
-      <form>
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+      <form [formGroup]="quebraForm">
+        <div class="po-sm-12 po-md-12 po-lg-6 po-xl-6 no-padding  po-required">
           <po-number
-            class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
-            formControlName="sequencia"
-            name="sequencia"
-            p-clean
-            [p-label]="this.literals.fields.form['sequencia']"
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+            formControlName="paginaInicial"
+            name="paginaInicial"
+            [p-label]="this.literals.fields.form['paginaInicial']"
+            p-maxlength="10"
+            [p-readonly]="readonly"
+            p-required
+          > </po-number>
+        </div>  
+    
+        <div class="po-sm-12 po-md-12  po-lg-6 po-xl-6 no-padding po-required">
+          <po-number
+            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+            formControlName="paginaFinal"
+            name="paginaFinal"
+            [p-label]="this.literals.fields.form['paginaFinal']"
             p-maxlength="10"
             [p-readonly]="readonly"
             p-required
           > </po-number>
         </div>
-    
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-number
-            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
-            formControlName="paginaInicial"
-            name="paginaInicial"
-            p-clean
-            [p-label]="this.literals.fields.form['paginaInicial']"
-            p-maxlength="10"
-            [p-readonly]="readonly"
-          > </po-number>
-        </div>  
-    
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-number
-            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
-            formControlName="paginaFinal"
-            name="paginaFinal"
-            p-clean
-            [p-label]="this.literals.fields.form['paginaFinal']"
-            p-maxlength="10"
-            [p-readonly]="readonly"
-          > </po-number>
-        </div>
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
-          <po-button  p-label="Quebra" p-kind="primary"> </po-button>
+          <po-button (p-click)="addQuebra()" p-label="Quebra" p-kind="primary"> </po-button>
         </div>
 
         <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
@@ -171,20 +159,20 @@
             </thead>
             <div class="table-body">
               <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-                <td class="po-font-text-large documento">Tipo do Documento</td>
+                <td class="po-font-text-large documento">Seq</td>
                 <td class="po-font-text-large inicial">Página Inicial</td>
                 <td class="po-font-text-large final">Página Final</td>
               </tr>
               <tr *ngFor="let quebra of quebras; let quebraIndex = index"
                 class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-                <td class="po-font-text-large documento"></td>
-                <td class="po-font-text-large inicial"></td>
-                <td class="po-font-text-large final"></td>
+                <td class="po-font-text-large documento">{{ quebraIndex + 1 }}</td>
+                <td class="po-font-text-large inicial">{{ quebra.paginaInicial }}</td>
+                <td class="po-font-text-large final">{{ quebra.paginaFinal }}</td>
               </tr>
             </div>
           </table>
           <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
-            <po-button  p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
+            <po-button (p-click)="deleteQuebra()" p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
           </div>
         </div>
       </form>

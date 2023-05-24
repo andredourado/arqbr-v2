@@ -8,10 +8,8 @@ interface IRequest {
   departamentoId: string
   tipoDocumentoId: string
   nomeArquivoOrigem: string
-  sequencia: number
-  paginaInicial: number
-  paginaFinal: number
   status: string
+  quebras: any[]
 }
 
 @injectable()
@@ -26,20 +24,16 @@ class CreateCaixaQuebraUseCase {
     departamentoId,
     tipoDocumentoId,
     nomeArquivoOrigem,
-    sequencia,
-    paginaInicial,
-    paginaFinal,
-    status
+    status,
+    quebras
   }: IRequest): Promise<CaixaQuebra> {
     const result = await this.caixaQuebraRepository.create({
         clienteId,
         departamentoId,
         tipoDocumentoId,
         nomeArquivoOrigem,
-        sequencia,
-        paginaInicial,
-        paginaFinal,
-        status
+        status,
+        quebras
       })
       .then(caixaQuebraResult => {
         return caixaQuebraResult
