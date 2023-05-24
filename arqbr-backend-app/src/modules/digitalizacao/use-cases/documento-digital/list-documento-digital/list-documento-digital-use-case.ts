@@ -9,7 +9,7 @@ interface IRequest {
   page: number,
   rowsPerPage: number,
   order: string,
-  filter?: string
+  filter?: any
   tipoDocumentoId?: string,
   user?: User,
   solicitante?: Solicitante

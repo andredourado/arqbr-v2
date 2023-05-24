@@ -109,15 +109,29 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
         .leftJoin('doc.tipoDocumentoId', 'a')
         .leftJoin('doc.clienteId', 'b')
         .leftJoin('doc.departamentoId', 'c')
+      
+      if (filter != null) {
+        Object.entries(filter).forEach(([key, value], index) => {
+          if (value != null && value != '') {
+            if (key != 'texto') {
+              query = query
+                .innerJoin('documentos_digitais_campos', `d${index}`, `d${index}.documentoDigitalId = doc.id and d${index}.campoDocumentoId = '${key}' and d${index}.conteudo iLike '%${value}%'`)
+            }
+          }
+        })
+      }
 
       if (filter != null) {
         Object.entries(filter).forEach(([key, value]) => {
           if (value != null && value != '') {
-            query = query
-              .andWhere('doc.conteudoEmTexto ilike :conteudo', { conteudo: `%${value}%` })
+            if (key === 'texto') {
+              query = query
+                .andWhere('doc.conteudoEmTexto ilike :conteudo', { conteudo: `%${value}%` })
+            }
           }
         })
       }
+      console.log(query.getSql())
 
       if (tipoDocumentoId) {
         query = query

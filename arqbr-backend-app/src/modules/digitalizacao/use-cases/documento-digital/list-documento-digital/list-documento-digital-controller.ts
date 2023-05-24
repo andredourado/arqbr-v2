@@ -9,7 +9,8 @@ class ListDocumentoDigitalController {
       page,
       pageSize,
       order,
-      filter
+      filter,
+      tipoDocumentoId
     } = request.body
 
     const listDocumentoDigitalUseCase = container.resolve(ListDocumentoDigitalUseCase)
@@ -19,7 +20,8 @@ class ListDocumentoDigitalController {
       page: Number(page) as number,
       rowsPerPage: Number(pageSize) as number,
       order: order as string,
-      filter: filter as string
+      filter: filter as any,
+      tipoDocumentoId: tipoDocumentoId as string
     })
 
     return response.json(documentosDigitais)
