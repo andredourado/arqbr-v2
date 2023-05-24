@@ -7,6 +7,17 @@ import { Subscription } from 'rxjs'
 import { environment } from "src/environments/environment"
 import { RestService } from "src/app/services/rest.service"
 import { LanguagesService } from 'src/app/services/languages.service'
+import { DomSanitizer } from '@angular/platform-browser'
+
+const ZOOM_STEP: number = 0.1
+const DEFAULT_ZOOM: number = 0.6
+
+interface IResponse {
+  solicitacaoFisico: any
+  statusCode: number
+  data: any
+  items: any
+}
 
 @Component({
   selector: "app-caixa-quebra-edit",
@@ -19,6 +30,15 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
   public clienteId = ''
   public result: any
   public literals: any = {}
+
+  src: any = ''
+  scale = DEFAULT_ZOOM
+  page: number = 1
+  file: string
+  totalPages: number = 0
+  isLoaded: boolean = false
+
+
 
   caixaQuebraForm = this.formBuilder.group({
     clienteId: null,
@@ -47,7 +67,9 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private poNotification: PoNotificationService,
-    private languagesService: LanguagesService
+    private languagesService: LanguagesService,
+    private sanitizer: DomSanitizer,
+
   ) { }
 
   ngOnInit(): void {
@@ -86,6 +108,85 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
       case 'view/:id':
         return 'view'
     }
+  }
+
+  searchCaixas() {
+    const { nomeArquivoOrigem } = this.caixaQuebraForm.value
+    if (nomeArquivoOrigem && nomeArquivoOrigem != '') {
+      this.file = nomeArquivoOrigem as string
+      this.loadPage()
+    }
+  }
+ 
+  loadPage() {
+    const payload = {
+      file: this.file,
+      page: this.page
+    }
+
+    this.subscriptions.add(
+      this.restService
+        .post("/quebras-manuais/open", payload)
+        .subscribe({
+          next: (res: IResponse) => {
+            this.src = this.sanitizer.bypassSecurityTrustResourceUrl(res.data.image as string)
+            this.totalPages = res.data.numberPages
+          }
+        })
+    )
+  } 
+
+  changePage() {
+    if (this.page > this.totalPages) {
+      this.page = this.totalPages
+    }
+    if (this.page < 1) {
+      this.page = 1
+    }
+    this.loadPage()
+  }
+
+  nextPage() {
+    if (this.page >= this.totalPages) return
+    
+    this.page++
+    this.loadPage()
+  }
+
+  next50Page() {
+    this.page += 50
+
+    if (this.page > this.totalPages) this.page = this.totalPages
+
+    this.loadPage()
+  }
+
+  prevPage() {
+    this.page--
+    this.loadPage()
+  }
+
+  prev50Page() {
+    this.page -= 50
+
+    if (this.page <= 0) this.page = 1
+
+    this.loadPage()
+  }
+
+  public zoomIn() {
+    this.scale += ZOOM_STEP
+  }
+
+  public zoomOut() {
+    this.scale -= ZOOM_STEP
+  }
+  
+  public resetZoom() {
+    this.scale = DEFAULT_ZOOM;
+    const fileContainer = document.getElementById('file-container');
+    fileContainer.scrollTop = 0;
+    this.loadPage();
   }
 
   pageButtonsBuilder(pageType: string): null {
