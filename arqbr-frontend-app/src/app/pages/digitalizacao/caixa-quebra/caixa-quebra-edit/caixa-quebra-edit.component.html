@@ -1,6 +1,6 @@
 <po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
   <form [formGroup]="caixaQuebraForm">
-    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
       <po-combo
         class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
         formControlName="clienteId"
@@ -14,7 +14,7 @@
       > </po-combo>
     </div>
 
-    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
       <po-combo
         class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
         formControlName="departamentoId"
@@ -27,7 +27,7 @@
       > </po-combo>
     </div>
 
-    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
       <po-combo
         class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
         formControlName="tipoDocumentoId"
@@ -40,7 +40,7 @@
       > </po-combo>
     </div>
 
-    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
       <po-input
         class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
         formControlName="nomeArquivoOrigem"
@@ -53,7 +53,23 @@
       > </po-input>
     </div>
 
-    
+    <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+      <po-input
+        class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+        formControlName="status"
+        name="status"
+        p-clean
+        [p-label]="this.literals.fields.form['status']"
+        p-maxlength="20"
+        [p-readonly]="readonly"
+      > </po-input>
+    </div>
+
+    <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding po-mt-1">
+      <button type="button" class="fa-solid fa-magnifying-glass fa-lg button-filter"
+      (click)="searchCaixas()"
+      > </button>
+    </div>
 
   </form>
 
@@ -108,7 +124,7 @@
     </div>
     <div class="campo-quebras">
       <form>
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-6 no-padding">
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
           <po-number
             class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
             formControlName="sequencia"
@@ -121,7 +137,7 @@
           > </po-number>
         </div>
     
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-6 no-padding">
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
           <po-number
             class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
             formControlName="paginaInicial"
@@ -131,9 +147,9 @@
             p-maxlength="10"
             [p-readonly]="readonly"
           > </po-number>
-        </div>
+        </div>  
     
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-6  no-padding">
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
           <po-number
             class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
             formControlName="paginaFinal"
@@ -144,21 +160,32 @@
             [p-readonly]="readonly"
           > </po-number>
         </div>
-    
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-6 no-padding">
-          <po-input
-            class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
-            formControlName="status"
-            name="status"
-            p-clean
-            [p-label]="this.literals.fields.form['status']"
-            p-maxlength="20"
-            [p-readonly]="readonly"
-          > </po-input>
-        </div>
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
           <po-button  p-label="Quebra" p-kind="primary"> </po-button>
-          <po-button  p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
+        </div>
+
+        <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
+          <table class="quebras-table">
+            <thead>
+              <th>Quebras</th>
+            </thead>
+            <div class="table-body">
+              <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+                <td class="po-font-text-large documento">Tipo do Documento</td>
+                <td class="po-font-text-large inicial">Página Inicial</td>
+                <td class="po-font-text-large final">Página Final</td>
+              </tr>
+              <tr *ngFor="let quebra of quebras; let quebraIndex = index"
+                class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+                <td class="po-font-text-large documento"></td>
+                <td class="po-font-text-large inicial"></td>
+                <td class="po-font-text-large final"></td>
+              </tr>
+            </div>
+          </table>
+          <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
+            <po-button  p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
+          </div>
         </div>
       </form>
     </div>

@@ -8,15 +8,23 @@ import { environment } from "src/environments/environment"
 import { RestService } from "src/app/services/rest.service"
 import { LanguagesService } from 'src/app/services/languages.service'
 import { DomSanitizer } from '@angular/platform-browser'
+import { v4 as uuidV4 } from 'uuid'
 
 const ZOOM_STEP: number = 0.1
-const DEFAULT_ZOOM: number = 0.6
+const DEFAULT_ZOOM: number = 0.5
 
 interface IResponse {
   solicitacaoFisico: any
   statusCode: number
   data: any
   items: any
+}
+
+type QuebraType = {
+id?: string,
+tipoDocumentoId?: string,
+paginaInicial?: string,
+paginaFinal?: string
 }
 
 @Component({
@@ -30,6 +38,7 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
   public clienteId = ''
   public result: any
   public literals: any = {}
+  public quebras: QuebraType[] = []
 
   src: any = ''
   scale = DEFAULT_ZOOM
@@ -37,8 +46,9 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
   file: string
   totalPages: number = 0
   isLoaded: boolean = false
-
-
+  private quebraId: string
+  public name: string
+  public tipoDocumentoId: string
 
   caixaQuebraForm = this.formBuilder.group({
     clienteId: null,
@@ -49,6 +59,12 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
     paginaInicial: 0,
     paginaFinal: 0,
     status: '',
+  })
+
+  quebraForm = this.formBuilder.group({
+    tipoDocumentoId: null,
+    paginaInicial: '',
+    paginaFinal: '',
   })
 
   public readonly serviceApi = `${environment.baseUrl}/caixas-quebras`
@@ -244,6 +260,56 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
   clienteIdChange(event: string) {
     this.departamentoIdService = `${environment.baseUrl}/departamentos/select?clienteId=${event}`
     this.tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select?clienteId=${event}`
+  }
+
+  addQuebra() { 
+    if (this.quebraForm.valid) {
+      const payload = {
+        id: this.quebraId ?? uuidV4(),
+        tipoDocumento: this.quebraForm.value.tipoDocumentoId,
+        paginaInicial: this.quebraForm.value.paginaInicial,
+        paginaFinal: this.quebraForm.value.paginaFinal,
+      }
+      if (this.quebraId) {
+        let quebraIndex: number
+        this.quebras.map((text, index) => {
+          if (text.id === this.quebraId) quebraIndex = index
+        })
+        this.quebras[quebraIndex] = payload
+      } else this.quebras.push(payload)
+      
+      this.quebraForm.reset()
+      this.quebraId = null
+    } else {
+        this.poNotification.warning({
+        message: "Erro ao salvar",
+        duration: environment.poNotificationDuration
+      })
+    }
+    console.log(this.quebras)
+  }
+
+  deleteQuebra() {
+    if(this.quebraId) {
+      let indexTextById: number
+      this.quebras.map((quebra, quebraIndex) => {
+        if(quebra.id === this.quebraId) indexTextById = quebraIndex
+      })
+      this.quebras.splice(indexTextById, 1)
+      this.caixaQuebraForm.reset()
+      this.quebraId = null
+    }
+  }
+
+  tableTextClick(index: number) {
+    this.quebraForm.patchValue({
+      tipoDocumentoId: this.quebras[index].tipoDocumentoId,
+      paginaInicial: this.quebras[index].paginaInicial,
+      paginaFinal: this.quebras[index].paginaFinal
+  })
+    
+    this.tipoDocumentoId = this.quebras[index].tipoDocumentoId
+    this.quebraId = this.quebras[index].id
   }
 
   save(data, willCreateAnother?: boolean) {
