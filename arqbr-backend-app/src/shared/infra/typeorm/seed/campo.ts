@@ -44,13 +44,14 @@ async function create() {
       id, 
       cliente_id, 
       nome, 
+      identificador,
       desabilitado,
       created_at, 
       updated_at
     ) values 
-    ('a82280dc-85cc-45b3-8253-69919b0df1d7', '27cff971-6f84-41d8-926c-d209b30df79b', 'CONTABILIDADE', false, 'now()', 'now()'), 
-    ('b0b0a92b-0519-4b8d-893e-3a981852cddc', '27cff971-6f84-41d8-926c-d209b30df79b', 'Financeiro', false, 'now()', 'now()'), 
-    ('9ee9bffe-ba28-4b28-aad9-ddb15232130a', '27cff971-6f84-41d8-926c-d209b30df79b', 'Folha de Pagamento Coop.', false, 'now()', 'now()')`
+    ('a82280dc-85cc-45b3-8253-69919b0df1d7', '27cff971-6f84-41d8-926c-d209b30df79b', 'CONTABILIDADE', '1025011015', false, 'now()', 'now()'), 
+    ('b0b0a92b-0519-4b8d-893e-3a981852cddc', '27cff971-6f84-41d8-926c-d209b30df79b', 'Financeiro', '1025011034', false, 'now()', 'now()'), 
+    ('9ee9bffe-ba28-4b28-aad9-ddb15232130a', '27cff971-6f84-41d8-926c-d209b30df79b', 'Folha de Pagamento Coop.', '1025011025', false, 'now()', 'now()')`
   )
 
   // tipoDocumentoId
@@ -64,7 +65,13 @@ async function create() {
       identificador,
       estrategia_quebra,
       prazo_descarte_anos
-    ) values     
+    ) values   
+    ('8a9d5e40-8697-4f62-b8f7-dba7641e96be', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Documentos Folha de Pagamento', 'ARQBR_1025011025_1', null, ''),  
+    ('3de70f9b-b8ba-4fe9-9376-adfbca05f981', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Contribuição Individual', 'ARQBR_1025011025_2', null, ''),  
+    ('ff562c3f-5871-4315-9cf0-5e032ffe77a1', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'SEFIP / RE', 'ARQBR_1025011025_3', null, ''),  
+    ('df5d271f-2487-476b-a5c6-060836b0db97', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'RAIS', 'ARQBR_1025011025_4', null, ''),  
+    ('5fc840ce-a653-4c0f-9285-5d3bc258c738', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'DIRF', 'ARQBR_1025011025_5', null, ''),  
+    ('af7a7c43-d5fc-4498-8a37-7a95c84aa0f6', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Livro de Registro de Empregados', 'ARQBR_1025011025_6', null, ''),  
     ('0d758d72-9aec-4a37-a976-e287c094f409', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Documentos relativos a seguros ', 'ARQBR_1025011025_7', 'SEGURO DE VIDA,RELAÇÃO DE FUNCIONÁRIOS PARA SEGURO DE VIDA,Riscos Pessoais,Relação de funcionarios para atualização do seguro', ''),
     ('0c619fd9-e1d3-4582-a4df-da1dcc7c5b4b', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'CAGED ', 'ARQBR_1025011025_8', 'CAGED', ''),
     ('d3588772-b54e-42b9-9c59-beada6cae181', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'RPCI Recibo de Pagamento a Contribuinte Individual', 'ARQBR_1025011025_10', 'Contribuinte Individual,RPCI', ''),
@@ -102,8 +109,15 @@ async function create() {
     ('c139ef3e-4d86-491a-b2c9-8f5f9e6ffec1', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Pedidos', 'ARQBR_1025011025_46', 'Pedido de Demissão', ''),
     ('71f75a55-a6f7-4284-b383-2955322beb52', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Recibos', 'ARQBR_1025011025_47', 'Recibo de Férias', ''),
     ('6db96b41-079e-41ef-bf3a-a0842501515c', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Listas', 'ARQBR_1025011025_48', 'Lista de presença', ''),
+    ('d974f0cc-f167-4f93-bf8c-e4195636f287', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Movimentos de Caixa', 'ARQBR_1025011034_1', '', ''),
     ('6a8dfcb9-4da5-42c0-990d-b432c2d5954e', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Comprovantes Bancários', 'ARQBR_1025011034_2', 'Comprovante de transferência', ''),
+    ('76e12e88-6a4d-4365-bfe9-be3c8b89b900', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Contratos de Cambio', 'ARQBR_1025011034_3', '', ''),
+    ('893d5e01-2746-4ac6-9750-8f25bd4fed0a', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Movimento de Bancos', 'ARQBR_1025011034_4', '', ''),
     ('5e281785-2e26-4744-bc16-65d96f9f1186', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Contratos', 'ARQBR_1025011034_5', 'Comprovante de transferência', ''),
+    ('25dad4a1-fb0a-42c3-ba85-ab829c4492f0', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Francesinha', 'ARQBR_1025011034_6', '', ''),
+    ('1b85ffb9-d35e-452d-9471-52070f2bca08', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Instrumento de Processo', 'ARQBR_1025011034_7', '', ''),
+    ('16baafe7-f7f3-464e-bac1-614877d11e4c', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Composição Recebimento de Mercado Externo', 'ARQBR_1025011034_8', '', ''),
+    ('a1282ec1-6d01-446b-8c97-cdc72cd5d620', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Notas de entradas', 'ARQBR_1025011034_9', '', ''),
     ('c52b1079-c049-42bd-be33-48fb408c1a1d', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Comprovantes de Pagamentos', 'ARQBR_1025011034_10', 'Comprovante de Pagamento,Comprovante de Entrega,Detalhes da Fatura,O que está sendo cobrado ', ''),
     ('253b608b-64c6-4ff8-8765-31878a93cfe4', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Guias', 'ARQBR_1025011034_13', 'Guia Nacional de Recolhimento de Tributos Estaduais,GNRE,Guia em anexo,GRU,GRPR,GRRF,Guia de Recolhimento de licenciamento anual de veiculos,Guia da Previdência Social,GPS,Guia de arrecadação,Guia de recolhimento', ''),
     ('34846e2a-53df-4db6-bd23-eaf3df3dd777', '27cff971-6f84-41d8-926c-d209b30df79b', 'b0b0a92b-0519-4b8d-893e-3a981852cddc', 'Dívida ativa', 'ARQBR_1025011034_14', 'Parcelamento da dívida', ''),
