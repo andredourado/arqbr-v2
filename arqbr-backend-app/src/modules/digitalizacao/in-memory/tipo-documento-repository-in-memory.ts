@@ -105,6 +105,11 @@ class TipoDocumentoRepositoryInMemory implements ITipoDocumentoRepository {
   }
 
 
+  getByIdentificador(identificador: string): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
+
+
   // update
   async update ({
     id,
