@@ -93,6 +93,11 @@ class DepartamentoRepositoryInMemory implements IDepartamentoRepository {
     }
   }
 
+  
+  getByIdentificador(identificador: string): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
+
 
   // update
   async update ({

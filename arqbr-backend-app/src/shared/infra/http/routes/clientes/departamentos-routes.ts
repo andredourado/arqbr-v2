@@ -5,6 +5,7 @@ import { CountDepartamentoController } from '@modules/clientes/use-cases/departa
 import { SelectDepartamentoController } from '@modules/clientes/use-cases/departamento/select-departamento/select-departamento-controller'
 import { IdSelectDepartamentoController } from '@modules/clientes/use-cases/departamento/id-select-departamento/id-select-departamento-controller'
 import { GetDepartamentoController } from '@modules/clientes/use-cases/departamento/get-departamento/get-departamento-controller'
+import { GetDepartamentoByIdentificadorController } from '@modules/clientes/use-cases/departamento/get-departamento-by-identificador/get-departamento-by-identificador-controller'
 import { UpdateDepartamentoController } from '@modules/clientes/use-cases/departamento/update-departamento/update-departamento-controller'
 import { DeleteDepartamentoController } from '@modules/clientes/use-cases/departamento/delete-departamento/delete-departamento-controller'
 import { MultiDeleteDepartamentoController } from '@modules/clientes/use-cases/departamento/multi-delete-departamento/multi-delete-departamento-controller'
@@ -18,6 +19,7 @@ const countDepartamentoController = new CountDepartamentoController()
 const selectDepartamentoController = new SelectDepartamentoController()
 const idSelectDepartamentoController = new IdSelectDepartamentoController()
 const getDepartamentoController = new GetDepartamentoController()
+const getDepartamentoByIdentificadorController = new GetDepartamentoByIdentificadorController()
 const updateDepartamentoController = new UpdateDepartamentoController()
 const deleteDepartamentoController = new DeleteDepartamentoController()
 const multiDeleteDepartamentoController = new MultiDeleteDepartamentoController()
@@ -28,6 +30,7 @@ departamentosRoutes.post('/count', ensureAuthenticated, countDepartamentoControl
 departamentosRoutes.get('/select/:id', ensureAuthenticated, idSelectDepartamentoController.handle)
 departamentosRoutes.get('/select', ensureAuthenticated, selectDepartamentoController.handle)
 departamentosRoutes.get('/:id', ensureAuthenticated, getDepartamentoController.handle)
+departamentosRoutes.get('/identificador/:identificador', ensureAuthenticated, getDepartamentoByIdentificadorController.handle)
 departamentosRoutes.put('/:id', ensureAuthenticated, updateDepartamentoController.handle)
 departamentosRoutes.delete('/:id', ensureAuthenticated, deleteDepartamentoController.handle)
 departamentosRoutes.delete('/', ensureAuthenticated, multiDeleteDepartamentoController.handle)

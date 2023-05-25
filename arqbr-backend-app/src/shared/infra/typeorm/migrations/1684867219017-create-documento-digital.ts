@@ -60,7 +60,7 @@ export class CreateDocumentoDigital1684867219017 implements MigrationInterface {
           {
             name: 'solicitante_id',
             type: 'uuid',
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'created_at',

@@ -203,6 +203,22 @@ class DepartamentoRepository implements IDepartamentoRepository {
   }
 
 
+  // get by identificador
+  async getByIdentificador (identificador: string): Promise<HttpResponse> {
+    try {
+      const departamento = await this.repository.findOne({ identificador })
+
+      if (typeof departamento === 'undefined') {
+        return noContent()
+      }
+
+      return ok(departamento)
+    } catch (err) {
+      return serverError(err)
+    }
+  }
+
+
   // update
   async update ({
     id,

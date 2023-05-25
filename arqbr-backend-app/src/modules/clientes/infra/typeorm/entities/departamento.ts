@@ -15,6 +15,9 @@ class Departamento {
   @Column({ name: 'nome', nullable: true })
   nome?: string
 
+  @Column({ name: 'identificador', nullable: true })
+  identificador?: string
+
   @Column({ name: 'desabilitado', nullable: true, default: false })
   desabilitado?: boolean
 

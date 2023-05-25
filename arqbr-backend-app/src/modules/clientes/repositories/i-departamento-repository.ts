@@ -32,6 +32,10 @@ interface IDepartamentoRepository {
   get (id: string): Promise<HttpResponse>
 
 
+  // get
+  getByIdentificador (identificador: string): Promise<HttpResponse>
+
+
   // update
   update (data: IDepartamentoDTO): Promise<HttpResponse>
 

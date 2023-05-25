@@ -22,6 +22,11 @@ export class CreateDepartamento1684867219004 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'identificador',
+            type: 'varchar',
+            isNullable: false,
+          },
+          {
             name: 'desabilitado',
             type: 'boolean',
             default: false,
