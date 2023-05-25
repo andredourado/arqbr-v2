@@ -212,6 +212,34 @@ class CampoDocumentoRepository implements ICampoDocumentoRepository {
   }
 
 
+  // get by tipo documento
+  async getByTipoDocumento (tipoDocumentoId: string, nomeCampo: string): Promise<HttpResponse> {
+    try {
+      const campoDocumento = await this.repository
+        .createQueryBuilder('cam')
+        .select([
+          'cam.id as "id"',
+          'cam.tipoDocumentoId as "tipoDocumentoId"',
+          'cam.nomeCampo as "nomeCampo"',
+          'cam.titulo as "titulo"',
+          'cam.metodoExtracao as "metodoExtracao"',
+          'cam.desabilitado as "desabilitado"',
+        ])
+        .where('cam.tipoDocumentoId = :tipoDocumentoId', { tipoDocumentoId })
+        .andWhere('cam.nomeCampo = :nomeCampo', { nomeCampo })
+        .getRawOne()
+
+      if (typeof campoDocumento === 'undefined') {
+        return noContent()
+      }
+
+      return ok(campoDocumento)
+    } catch (err) {
+      return serverError(err)
+    }
+  }
+
+
   // update
   async update ({
     id,

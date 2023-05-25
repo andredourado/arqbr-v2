@@ -32,6 +32,10 @@ interface ICampoDocumentoRepository {
   get (id: string): Promise<HttpResponse>
 
 
+  // get by tipo documento
+  getByTipoDocumento (tipoDocumentoId: string, nomeCampo: string): Promise<HttpResponse>
+
+
   // update
   update (data: ICampoDocumentoDTO): Promise<HttpResponse>
 
