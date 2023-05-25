@@ -4,6 +4,9 @@ import { CampoDocumento } from '@modules/digitalizacao/infra/typeorm/entities/ca
 import { ok, notFound, HttpResponse } from '@shared/helpers'
 
 class CampoDocumentoRepositoryInMemory implements ICampoDocumentoRepository {
+  getByTipoDocumento(tipoDocumentoId: string, nomeCampo: string): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
   camposDocumento: CampoDocumento[] = []
 
   // create

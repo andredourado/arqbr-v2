@@ -246,6 +246,22 @@ class TipoDocumentoRepository implements ITipoDocumentoRepository {
   }
 
 
+  // get by identificador
+  async getByIdentificador (identificador: string): Promise<HttpResponse> {
+    try {
+      const tipoDocumento = await this.repository.findOne({ identificador })
+
+      if (typeof tipoDocumento === 'undefined') {
+        return noContent()
+      }
+
+      return ok(tipoDocumento)
+    } catch (err) {
+      return serverError(err)
+    }
+  }
+
+
   // update
   async update ({
     id,

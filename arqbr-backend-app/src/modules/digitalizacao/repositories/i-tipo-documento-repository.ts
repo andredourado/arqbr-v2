@@ -32,6 +32,10 @@ interface ITipoDocumentoRepository {
   get (id: string): Promise<HttpResponse>
 
 
+  // get
+  getByIdentificador (identificador: string): Promise<HttpResponse>
+
+
   // update
   update (data: ITipoDocumentoDTO): Promise<HttpResponse>
 
