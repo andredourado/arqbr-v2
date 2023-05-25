@@ -44,13 +44,14 @@ async function create() {
       id, 
       cliente_id, 
       nome, 
+      identificador,
       desabilitado,
       created_at, 
       updated_at
     ) values 
-    ('a82280dc-85cc-45b3-8253-69919b0df1d7', '27cff971-6f84-41d8-926c-d209b30df79b', 'CONTABILIDADE', false, 'now()', 'now()'), 
-    ('b0b0a92b-0519-4b8d-893e-3a981852cddc', '27cff971-6f84-41d8-926c-d209b30df79b', 'Financeiro', false, 'now()', 'now()'), 
-    ('9ee9bffe-ba28-4b28-aad9-ddb15232130a', '27cff971-6f84-41d8-926c-d209b30df79b', 'Folha de Pagamento Coop.', false, 'now()', 'now()')`
+    ('a82280dc-85cc-45b3-8253-69919b0df1d7', '27cff971-6f84-41d8-926c-d209b30df79b', 'CONTABILIDADE', '1025011015', false, 'now()', 'now()'), 
+    ('b0b0a92b-0519-4b8d-893e-3a981852cddc', '27cff971-6f84-41d8-926c-d209b30df79b', 'Financeiro', '1025011034', false, 'now()', 'now()'), 
+    ('9ee9bffe-ba28-4b28-aad9-ddb15232130a', '27cff971-6f84-41d8-926c-d209b30df79b', 'Folha de Pagamento Coop.', '1025011025', false, 'now()', 'now()')`
   )
 
   // tipoDocumentoId
@@ -64,7 +65,13 @@ async function create() {
       identificador,
       estrategia_quebra,
       prazo_descarte_anos
-    ) values     
+    ) values   
+    ('8a9d5e40-8697-4f62-b8f7-dba7641e96be', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Documentos Folha de Pagamento', 'ARQBR_1025011025_1', null, ''),  
+    ('3de70f9b-b8ba-4fe9-9376-adfbca05f981', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Contribuição Individual', 'ARQBR_1025011025_2', null, ''),  
+    ('ff562c3f-5871-4315-9cf0-5e032ffe77a1', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'SEFIP / RE', 'ARQBR_1025011025_3', null, ''),  
+    ('df5d271f-2487-476b-a5c6-060836b0db97', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'RAIS', 'ARQBR_1025011025_4', null, ''),  
+    ('5fc840ce-a653-4c0f-9285-5d3bc258c738', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'DIRF', 'ARQBR_1025011025_5', null, ''),  
+    ('af7a7c43-d5fc-4498-8a37-7a95c84aa0f6', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Livro de Registro de Empregados', 'ARQBR_1025011025_6', null, ''),  
     ('0d758d72-9aec-4a37-a976-e287c094f409', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Documentos relativos a seguros ', 'ARQBR_1025011025_7', 'SEGURO DE VIDA,RELAÇÃO DE FUNCIONÁRIOS PARA SEGURO DE VIDA,Riscos Pessoais,Relação de funcionarios para atualização do seguro', ''),
     ('0c619fd9-e1d3-4582-a4df-da1dcc7c5b4b', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'CAGED ', 'ARQBR_1025011025_8', 'CAGED', ''),
     ('d3588772-b54e-42b9-9c59-beada6cae181', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'RPCI Recibo de Pagamento a Contribuinte Individual', 'ARQBR_1025011025_10', 'Contribuinte Individual,RPCI', ''),
