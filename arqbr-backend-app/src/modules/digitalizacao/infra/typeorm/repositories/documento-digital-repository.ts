@@ -209,26 +209,37 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
           'doc.id as "id"',
         ])
         .distinct(true)
-      //   .leftJoin('doc.versaoDocumentoId', 'a')
-      //   .leftJoin('a.clienteId', 'b')
-      //   .leftJoin('solicitantes', 'c', 'c.clienteId = b.id')
-      //   .leftJoin('doc.clienteId', 'a')
-      //   .leftJoin('doc.departamentoId', 'b')
-      //   .leftJoin('doc.tipoDocumentoId', 'c')
+        .leftJoin('doc.tipoDocumentoId', 'a')
+        .leftJoin('doc.clienteId', 'b')
+        .leftJoin('doc.departamentoId', 'c')
+      
+      if (filter != null) {
+        Object.entries(filter).forEach(([key, value], index) => {
+          if (value != null && value != '') {
+            if (key != 'texto') {
+              query = query
+                .innerJoin('documentos_digitais_campos', `d${index}`, `d${index}.documentoDigitalId = doc.id and d${index}.campoDocumentoId = '${key}' and d${index}.conteudo iLike '%${value}%'`)
+            }
+          }
+        })
+      }
 
-      // if (filter != null) {
-      //   Object.entries(filter).forEach(([key, value]) => {
-      //     if (value != null && value != '') {
-      //       query = query
-      //         .andWhere('doc.conteudoEmTexto ilike :conteudo', { conteudo: `%${value}%` })
-      //     }
-      //   })
-      // }
+      if (filter != null) {
+        Object.entries(filter).forEach(([key, value]) => {
+          if (value != null && value != '') {
+            if (key === 'texto') {
+              query = query
+                .andWhere('doc.conteudoEmTexto ilike :conteudo', { conteudo: `%${value}%` })
+            }
+          }
+        })
+      }
+      console.log(query.getSql())
 
-      // if (tipoDocumentoId) {
-      //   query = query
-      //     .andWhere('a.tipoDocumentoId = :tipoDocumentoId', { tipoDocumentoId })
-      // }
+      if (tipoDocumentoId) {
+        query = query
+          .andWhere('doc.tipoDocumentoId = :tipoDocumentoId', { tipoDocumentoId })
+      }
 
       // if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
       //   query = query

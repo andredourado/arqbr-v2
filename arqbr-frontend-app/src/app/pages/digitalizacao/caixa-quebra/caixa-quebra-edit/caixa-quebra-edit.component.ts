@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnDestroy, OnInit } from "@angular/core"
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from "@angular/core"
 import { ActivatedRoute, Router } from '@angular/router'
-import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification } from '@po-ui/ng-components'
+import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification, PoTableComponent, PoTableColumn } from '@po-ui/ng-components'
 import { FormBuilder } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { environment } from "src/environments/environment"
@@ -33,12 +33,31 @@ paginaFinal?: string
   styleUrls: ["./caixa-quebra-edit.component.scss"],
 })
 export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
+  @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
+    columns: Array<PoTableColumn> = [
+      {
+        property: '{{ quebraIndex + 1 }}',
+        label: 'Seq',
+        width: '20%'
+      },
+      {
+        property: 'paginaInicial',
+        label: 'Página Inicial',
+        width: '40%'
+      },
+      {
+        property: 'paginaFinal',
+        label: 'Página Final'
+      }
+    ];
+  
   public id: string
   public readonly = false
   public clienteId = ''
   public result: any
   public literals: any = {}
   public quebras: QuebraType[] = []
+  public listHeight: number = 0
 
   src: any = ''
   scale = DEFAULT_ZOOM
@@ -46,7 +65,6 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
   file: string
   totalPages: number = 0
   isLoaded: boolean = false
-  private quebraId: string
   public name: string
   public tipoDocumentoId: string
 
@@ -85,6 +103,7 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.calculateListHeight()
     this.getLiterals()
 
     this.id = this.activatedRoute.snapshot.paramMap.get("id")
@@ -329,5 +348,13 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
 
   goBack() {
     this.router.navigate(["caixas-quebras"])
+  }
+  calculateListHeight() {
+    this.listHeight = window.innerHeight - 402
+  }
+
+  @HostListener("window:resize", ["$event"])
+  onResize(event?) {
+    this.calculateListHeight()
   }
 }

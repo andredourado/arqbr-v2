@@ -137,7 +137,7 @@
           > </po-number>
         </div>  
     
-        <div class="po-sm-12 po-md-12  po-lg-6 po-xl-6 no-padding po-required">
+        <div class="po-sm-12 po-md-12 po-lg-6 po-xl-6 no-padding po-required">
           <po-number
             class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
             formControlName="paginaFinal"
@@ -152,8 +152,7 @@
           <po-button (p-click)="addQuebra()" p-label="Quebra" p-kind="primary"> </po-button>
         </div>
 
-        <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
-          <table class="quebras-table">
+        <!--   <po-table class="quebras-table">
             <thead>
               <th>Quebras</th>
             </thead>
@@ -170,12 +169,23 @@
                 <td class="po-font-text-large final">{{ quebra.paginaFinal }}</td>
               </tr>
             </div>
-          </table>
+          </po-table >-->
+        
+          <po-table 
+            [p-auto-collapse]="true"
+            [p-height]="listHeight"
+            [p-columns]="columns"
+            p-container="string"
+            [p-hide-columns-manager]="true"
+            [p-items]="quebras"
+            [p-striped]="true"
+          > </po-table>
           <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
             <po-button (p-click)="deleteQuebra()" p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
           </div>
-        </div>
-      </form>
-    </div>
-  </div>
+        </form>
+      </div>
+   </div>
+
+  
 </po-page-default>

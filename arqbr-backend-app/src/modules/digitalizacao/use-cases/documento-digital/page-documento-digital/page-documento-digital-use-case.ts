@@ -26,7 +26,8 @@ class PageDocumentoDigitalUseCase {
     }
 
     const newPage = 'page_' + String(page).padStart(6, '0') + '.png'
-    const url = 'arquivos-pdf-paginas/' + documentoDigital?.data?.nomeArquivo?.replace(/\.[^/.]+$/, "")
+    const url = 'arquivos-pdf-paginas/' + documentoDigital?.data?.nomeArquivo?.replace(/\.[^/.]+$/, "").replace("ARQBR", "")
+    console.log(url)
     const image = await this.storageProvider.load(newPage, url)
 
     const response = {
