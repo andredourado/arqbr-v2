@@ -13,7 +13,7 @@ import { UpdateDocumentoDigitalController } from '@modules/digitalizacao/use-cas
 import { DeleteDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/delete-documento-digital/delete-documento-digital-controller'
 import { MultiDeleteDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/multi-delete-documento-digital/multi-delete-documento-digital-controller'
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensure-authenticated'
-// import { CountProcessingDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/count-processing-documento-digital /count-processing-documento-digital-controller'
+import { CountProcessingDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/count-processing-documento-digital/count-processing-documento-digital-controller'
 import { CountByDepartamentoDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/count-by-departamento-documento-digital/count-by-departamento-documento-digital-controller'
 import { SolicitarDocumentoFisicoController } from '@modules/digitalizacao/use-cases/documento-digital/solicitar-documento-fisico/solicitar-documento-fisico-controller'
 import { ListSolicitacaoController } from '@modules/digitalizacao/use-cases/documento-digital/list-solicitacao/list-solicitacao-controller'
@@ -27,7 +27,7 @@ const countPagesDocumentoDigitalController = new CountPagesDocumentoDigitalContr
 const countByTipoDocumentoDocumentoDigitalController = new CountByTipoDocumentoDocumentoDigitalController()
 const countByDepartamentoDocumentoDigitalController = new CountByDepartamentoDocumentoDigitalController()
 const selectDocumentoDigitalController = new SelectDocumentoDigitalController()
-// const countProcessingDocumentoDigitalController = new CountProcessingDocumentoDigitalController()
+const countProcessingDocumentoDigitalController = new CountProcessingDocumentoDigitalController()
 const pageDocumentoDigitalController = new PageDocumentoDigitalController()
 const getPdfDocumentoDigitalController = new GetPdfDocumentoDigitalController()
 const idSelectDocumentoDigitalController = new IdSelectDocumentoDigitalController()
@@ -49,7 +49,7 @@ documentosDigitaisRoutes.post('/page', ensureAuthenticated, pageDocumentoDigital
 documentosDigitaisRoutes.post('/pdf', ensureAuthenticated, getPdfDocumentoDigitalController.handle)
 documentosDigitaisRoutes.get('/select/:id', ensureAuthenticated, idSelectDocumentoDigitalController.handle)
 documentosDigitaisRoutes.get('/select', ensureAuthenticated, selectDocumentoDigitalController.handle)
-// documentosDigitaisRoutes.get('/processing', ensureAuthenticated, countProcessingDocumentoDigitalController.handle)
+documentosDigitaisRoutes.get('/processing', ensureAuthenticated, countProcessingDocumentoDigitalController.handle)
 documentosDigitaisRoutes.get('/:id', ensureAuthenticated, getDocumentoDigitalController.handle)
 documentosDigitaisRoutes.put('/:id', ensureAuthenticated, updateDocumentoDigitalController.handle)
 documentosDigitaisRoutes.delete('/:id', ensureAuthenticated, deleteDocumentoDigitalController.handle)

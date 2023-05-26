@@ -172,7 +172,7 @@ async function create() {
     ('680af7ec-6619-4dc7-9a67-f8e7ab38c0d2', '27cff971-6f84-41d8-926c-d209b30df79b', 'a82280dc-85cc-45b3-8253-69919b0df1d7', 'Documentos', 'ARQBR_1025011015_27', 'Documento de arrecadação', ''),
     ('9e6efc74-93a8-496d-8a46-0b8ebd4f1467', '27cff971-6f84-41d8-926c-d209b30df79b', 'a82280dc-85cc-45b3-8253-69919b0df1d7', 'Juros', 'ARQBR_1025011015_28', 'Juros S/ Capital Proprio', ''),
     ('b5b634d5-33aa-4e15-b6c7-d91d65835c11', '27cff971-6f84-41d8-926c-d209b30df79b', 'a82280dc-85cc-45b3-8253-69919b0df1d7', 'Orçamento', 'ARQBR_1025011015_29', 'VALORES ORIGINAIS SEM EQUALIZAÇÃO ', ''),
-    ('46f20939-3447-4b6c-a340-6904baf5e575', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Documento não identificado', 'ARQBR_1025011025_99', '', '')
+    ('46f20939-3447-4b6c-a340-6904baf5e575', '27cff971-6f84-41d8-926c-d209b30df79b', '9ee9bffe-ba28-4b28-aad9-ddb15232130a', 'Documento a classificar', 'ARQBR_1025011025_99', '', '')
   `
   )
 

@@ -152,23 +152,23 @@ export class DocumentoDigitalEditComponent implements OnInit, OnDestroy {
         .post('/documentos-digitais/pdf', { id: this.id }, { responseType: 'text' })
         .subscribe({
           next: (res: IResponse) => {
-            const byteCharacters = atob(res.data.replace('data:binary/octet-stream;base64,', ''));
-            const byteNumbers = new Array(byteCharacters.length);
+            const byteCharacters = atob(res.data.replace('data:application/octet-stream;base64,', ''))
+            const byteNumbers = new Array(byteCharacters.length)
             for (let i = 0; i < byteCharacters.length; i++) {
-              byteNumbers[i] = byteCharacters.charCodeAt(i);
+              byteNumbers[i] = byteCharacters.charCodeAt(i)
             }
-            const byteArray = new Uint8Array(byteNumbers);
-            const blob = new Blob([byteArray], { type: 'application/pdf' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            document.body.appendChild(a);
-            a.setAttribute('style', 'display: none');
-            a.href = url;
-            a.target = '_blank';
-            a.download = this.nomeArquivo;
-            a.click();
-            URL.revokeObjectURL(url);
-            a.remove();
+            const byteArray = new Uint8Array(byteNumbers)
+            const blob = new Blob([byteArray], { type: 'application/pdf' })
+            const url = URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            document.body.appendChild(a)
+            a.setAttribute('style', 'display: none')
+            a.href = url
+            a.target = '_blank'
+            a.download = this.nomeArquivo
+            a.click()
+            URL.revokeObjectURL(url)
+            a.remove()
           },
           error: (err) => console.log(err)
         })

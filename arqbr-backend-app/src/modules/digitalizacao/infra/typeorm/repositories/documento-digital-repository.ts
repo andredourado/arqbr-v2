@@ -109,6 +109,7 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
         .leftJoin('doc.tipoDocumentoId', 'a')
         .leftJoin('doc.clienteId', 'b')
         .leftJoin('doc.departamentoId', 'c')
+        .leftJoin('solicitantes', 'd', 'd.departamentoId = c.id')
       
       if (filter != null) {
         Object.entries(filter).forEach(([key, value], index) => {
@@ -131,20 +132,20 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
           }
         })
       }
-      console.log(query.getSql())
 
       if (tipoDocumentoId) {
         query = query
           .andWhere('doc.tipoDocumentoId = :tipoDocumentoId', { tipoDocumentoId })
       }
 
-      // if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
-      //   query = query
-      //     .andWhere('c.email = :email', { email: solicitante.email })
-      //     .andWhere('c.departamentoId = a.departamentoId')
-      // }
+      if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
+        query = query
+          .andWhere('d.email = :email', { email: solicitante.email })
+          .andWhere('d.departamentoId = doc.departamentoId')
+      }
 
       let documentosDigitais = await query
+        .addOrderBy('doc.nomeArquivo')
         .offset(offset)
         .limit(rowsPerPage)
         .take(rowsPerPage)
@@ -212,6 +213,7 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
         .leftJoin('doc.tipoDocumentoId', 'a')
         .leftJoin('doc.clienteId', 'b')
         .leftJoin('doc.departamentoId', 'c')
+        .leftJoin('solicitantes', 'd', 'd.departamentoId = c.id')
       
       if (filter != null) {
         Object.entries(filter).forEach(([key, value], index) => {
@@ -234,18 +236,17 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
           }
         })
       }
-      console.log(query.getSql())
 
       if (tipoDocumentoId) {
         query = query
           .andWhere('doc.tipoDocumentoId = :tipoDocumentoId', { tipoDocumentoId })
       }
 
-      // if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
-      //   query = query
-      //     .andWhere('c.email = :email', { email: solicitante.email })
-      //     .andWhere('c.departamentoId = a.departamentoId')
-      // }
+      if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
+        query = query
+          .andWhere('d.email = :email', { email: solicitante.email })
+          .andWhere('d.departamentoId = doc.departamentoId')
+      }
 
       const documentosDigitais = await query
         .getRawMany()
@@ -268,15 +269,15 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
         .select([
           'SUM(doc.numero_paginas::INT) as "numeroPaginas"',
         ])
-      //   .leftJoin('doc.versaoDocumentoId', 'a')
-      //   .leftJoin('a.clienteId', 'b')
-      //   .leftJoin('solicitantes', 'c', 'c.clienteId = b.id')
+        .leftJoin('doc.clienteId', 'a')
+        .leftJoin('doc.departamentoId', 'b')
+        .leftJoin('solicitantes', 'c', 'c.departamentoId = b.id')
 
-      // if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
-      //   query = query
-      //     .andWhere('c.email = :email', { email: solicitante.email })
-      //     .andWhere('c.departamentoId = a.departamentoId')
-      // }
+      if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
+        query = query
+          .andWhere('c.email = :email', { email: solicitante.email })
+          .andWhere('c.departamentoId = doc.departamentoId')
+      }
 
       const countPages = await query
         .getRawOne()
@@ -293,18 +294,19 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
     solicitante: Solicitante
   ): Promise<HttpResponse> {
     try {
+      console.log('coco')
       let query = this.repository.createQueryBuilder('doc')
         .select("count(distinct SUBSTRING(doc.nome_arquivo, 3, POSITION('_' IN doc.nome_arquivo) - 3))")
-      //   .leftJoin('doc.versaoDocumentoId', 'a')
-      //   .leftJoin('a.clienteId', 'b')
-      //   .leftJoin('solicitantes', 'c', 'c.clienteId = b.id')
+        .leftJoin('doc.clienteId', 'a')
+        .leftJoin('doc.departamentoId', 'b')
+        .leftJoin('solicitantes', 'c', 'c.departamentoId = b.id')
 
-      // if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
-      //   query = query
-      //     .andWhere('c.email = :email', { email: solicitante.email })
-      //     .andWhere('c.departamentoId = a.departamentoId')
-      // }
-
+      if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
+        query = query
+          .andWhere('c.email = :email', { email: solicitante.email })
+          .andWhere('c.departamentoId = doc.departamentoId')
+      }
+      
       const processing = await query
         .getRawOne()
 
@@ -323,23 +325,23 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
     try {
       let query = this.repository.createQueryBuilder('doc')
         .select([
-          // 'd.descricao as "tipoDocumento"',
-          // 'COUNT(d.id) as "quantidade"'
+          'a.descricao as "tipoDocumento"',
+          'COUNT(a.id) as "quantidade"'
         ])
-      //   .leftJoin('doc.versaoDocumentoId', 'a')
-      //   .leftJoin('a.clienteId', 'b')
-      //   .leftJoin('solicitantes', 'c', 'c.clienteId = b.id')
-      //   .leftJoin('a.tipoDocumentoId', 'd')
+        .leftJoin('doc.tipoDocumentoId', 'a')
+        .leftJoin('doc.clienteId', 'b')
+        .leftJoin('doc.departamentoId', 'c')
+        .leftJoin('solicitantes', 'd', 'd.departamentoId = c.id')
 
-      // if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
-      //   query = query
-      //     .andWhere('c.email = :email', { email: solicitante.email })
-      //     .andWhere('c.departamentoId = a.departamentoId')
-      // }
+        if (!user.isAdmin && !user.isSuperUser && !solicitante.gestorContrato) {
+          query = query
+            .andWhere('d.email = :email', { email: solicitante.email })
+            .andWhere('d.departamentoId = doc.departamentoId')
+        }
 
       const countPages = await query
-        // .groupBy('d.id')
-        // .orderBy('COUNT(d.id)', 'DESC')
+        .groupBy('a.id')
+        .orderBy('COUNT(a.id)', 'DESC')
         .take(5)
         .getRawMany()
 
@@ -355,14 +357,13 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
     try {
       let countByDepartamento = await this.repository.createQueryBuilder('doc')
         .select([
-          // 'b.nome as "departamento"',
-          // 'COUNT(doc.id) as "quantidade"'
+          'a.nome as "departamento"',
+          'COUNT(doc.id) as "quantidade"'
         ])
-        // .leftJoin('doc.versaoDocumentoId', 'a')
-        // .leftJoin('a.departamentoId', 'b')
-        // .groupBy('b.nome')
-        // .orderBy('COUNT(doc.id)', 'DESC')
-        // .take(5)
+        .leftJoin('doc.departamentoId', 'a')
+        .groupBy('a.nome')
+        .orderBy('COUNT(doc.id)', 'DESC')
+        .take(5)
         .getRawMany()
 
       return ok(countByDepartamento)

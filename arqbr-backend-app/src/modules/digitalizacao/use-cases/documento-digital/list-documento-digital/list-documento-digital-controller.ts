@@ -13,6 +13,8 @@ class ListDocumentoDigitalController {
       tipoDocumentoId
     } = request.body
 
+    const user = request.user
+
     const listDocumentoDigitalUseCase = container.resolve(ListDocumentoDigitalUseCase)
 
     const documentosDigitais = await listDocumentoDigitalUseCase.execute({
@@ -21,7 +23,8 @@ class ListDocumentoDigitalController {
       rowsPerPage: Number(pageSize) as number,
       order: order as string,
       filter: filter as any,
-      tipoDocumentoId: tipoDocumentoId as string
+      tipoDocumentoId: tipoDocumentoId as string,
+      user
     })
 
     return response.json(documentosDigitais)

@@ -13,7 +13,6 @@
         p-required
       > </po-combo>
     </div>
-
     <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
       <po-combo
         class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
@@ -26,7 +25,6 @@
         p-required
       > </po-combo>
     </div>
-
     <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
       <po-combo
         class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
@@ -39,7 +37,6 @@
         p-required
       > </po-combo>
     </div>
-
     <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
       <po-input
         class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
@@ -52,7 +49,6 @@
         p-required
       > </po-input>
     </div>
-
     <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
       <po-input
         class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
@@ -65,55 +61,43 @@
         [p-readonly]="readonly"
       > </po-input>
     </div>
-
     <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding po-mt-1">
       <button type="button" class="fa-solid fa-magnifying-glass fa-lg button-filter"
       (click)="searchCaixas()"
       > </button>
     </div>
-
   </form>
-
   <div id="sideMenu" class="po-sm-12 po-md-12 po-lg-12 po-xl-12 side-menu">
     <div class="page-body shadow">
       <div class="image-container">
         <img [src]="src" [style.transform]="'scale(' + scale + ')'">
       </div>
-
       <po-divider></po-divider>
       <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
         <nav>
           <div class="zoom-component">
             <div (click)="zoomIn()" class="nav-component button-zoom fa-solid fa-magnifying-glass-plus nav-icon"></div>
-
             <div (click)="zoomOut()" class="nav-component fa-solid fa-magnifying-glass-minus nav-icon"></div>
-
             <div (click)="resetZoom()" class="nav-component button-zoom fa-solid fa-rotate-right nav-icon"></div>
           </div>
-
           <div class="pass-page">
             <div class="number-pages-avance pass-page-margin">
               <button (click)="prev50Page()" [disabled]="page === 1"
                 class="previous nav-component pass-botton fa-solid fa-angles-left nav-icon"></button>
               <p>-50</p>
             </div>
-
             <button (click)="prevPage()" [disabled]="page === 1"
               class="previous nav-component pass-botton fa-solid fa-angle-left nav-icon pass-page-margin"></button>
-
             <div class="contador">
               <div class="contador-input">
                 <po-number name="page" [(ngModel)]="page" p-maxlength="4" (keyup.enter)="changePage()"></po-number>
               </div>
-
               <div class="number-pages nav-component pass-botton pass-page-margin">
                 <p>/ {{ totalPages }}</p>
               </div>
             </div>
-
             <button (click)="nextPage()" [disabled]="page === totalPages"
               class="next nav-component pass-botton fa-solid fa-angle-right nav-icon pass-page-margin"></button>
-
             <div class="number-pages-avance pass-page-margin">
               <p>+50</p>
               <button (click)="next50Page()" [disabled]="page === totalPages"
@@ -136,8 +120,8 @@
             p-required
           > </po-number>
         </div>  
-    
-        <div class="po-sm-12 po-md-12 po-lg-6 po-xl-6 no-padding po-required">
+
+        <div class="po-sm-12 po-md-12  po-lg-6 po-xl-6 no-padding po-required">
           <po-number
             class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
             formControlName="paginaFinal"
@@ -152,10 +136,12 @@
           <po-button (p-click)="addQuebra()" p-label="Quebra" p-kind="primary"> </po-button>
         </div>
 
-        <!--   <po-table class="quebras-table">
+        <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
+          <table class="quebras-table">
             <thead>
               <th>Quebras</th>
             </thead>
+  
             <div class="table-body">
               <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
                 <td class="po-font-text-large documento">Seq</td>
@@ -169,23 +155,12 @@
                 <td class="po-font-text-large final">{{ quebra.paginaFinal }}</td>
               </tr>
             </div>
-          </po-table >-->
-        
-          <po-table 
-            [p-auto-collapse]="true"
-            [p-height]="listHeight"
-            [p-columns]="columns"
-            p-container="string"
-            [p-hide-columns-manager]="true"
-            [p-items]="quebras"
-            [p-striped]="true"
-          > </po-table>
+          </table>
           <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
             <po-button (p-click)="deleteQuebra()" p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
           </div>
-        </form>
-      </div>
-   </div>
-
-  
+        </div>
+      </form>
+    </div>
+  </div>
 </po-page-default>

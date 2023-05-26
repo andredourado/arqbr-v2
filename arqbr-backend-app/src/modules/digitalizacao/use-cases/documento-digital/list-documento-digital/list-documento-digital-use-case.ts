@@ -3,6 +3,7 @@ import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories
 import { IDocumentoDigitalDTO } from '@modules/digitalizacao/dtos/i-documento-digital-dto';
 import { User } from '@modules/security/infra/typeorm/entities/user';
 import { Solicitante } from '@modules/clientes/infra/typeorm/entities/solicitante';
+import { ISolicitanteRepository } from '@modules/clientes/repositories/i-solicitante-repository';
 
 interface IRequest {
   search: string,
@@ -24,7 +25,9 @@ interface ResponseProps {
 class ListDocumentoDigitalUseCase {
   constructor(
     @inject('DocumentoDigitalRepository')
-    private documentoDigitalRepository: IDocumentoDigitalRepository
+    private documentoDigitalRepository: IDocumentoDigitalRepository,
+    @inject('SolicitanteRepository')
+    private solicitanteRepository: ISolicitanteRepository
   ) {}
 
   async execute({
@@ -35,8 +38,12 @@ class ListDocumentoDigitalUseCase {
     filter,
     tipoDocumentoId,
     user,
-    solicitante
   }: IRequest): Promise<ResponseProps> {
+
+    const solicitante = await this.solicitanteRepository.getByEmail(user.login)
+
+    if (!user.isAdmin && !user.isSuperUser && !solicitante) return
+
     const documentosDigitais = await this.documentoDigitalRepository.list(
       search,
       page,
