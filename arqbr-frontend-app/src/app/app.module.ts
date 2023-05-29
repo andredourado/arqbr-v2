@@ -92,6 +92,7 @@ import { DocumentoDigitalListComponent } from "./pages/digitalizacao/documento-d
 import { DocumentoDigitalCampoEditComponent } from "./pages/digitalizacao/documento-digital-campo/documento-digital-campo-edit/documento-digital-campo-edit.component"
 import { DocumentoDigitalCampoListComponent } from "./pages/digitalizacao/documento-digital-campo/documento-digital-campo-list/documento-digital-campo-list.component"
 import { AjusteManualEditComponent } from "./pages/digitalizacao/ajuste-manual/ajuste-manual-edit/ajuste-manual-edit.component"
+import { DefinicaoExtracaoEditComponent } from "./pages/digitalizacao/definicao-extracao/definicao-extracao-edit/definicao-extracao-edit.component"
 import { UnidadeEditComponent } from "./pages/armazenamento/unidade/unidade-edit/unidade-edit.component"
 import { UnidadeListComponent } from "./pages/armazenamento/unidade/unidade-list/unidade-list.component"
 import { PlantaEditComponent } from "./pages/armazenamento/planta/planta-edit/planta-edit.component"
@@ -190,6 +191,7 @@ import { i18nConfig } from './shared/i18n'
     DocumentoDigitalCampoEditComponent,
     DocumentoDigitalCampoListComponent,
     AjusteManualEditComponent,
+    DefinicaoExtracaoEditComponent,
     UnidadeEditComponent,
     UnidadeListComponent,
     PlantaEditComponent,

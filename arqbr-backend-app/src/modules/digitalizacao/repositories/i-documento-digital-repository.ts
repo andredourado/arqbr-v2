@@ -17,7 +17,8 @@ interface IDocumentoDigitalRepository {
     filter: any,
     tipoDocumentoId: string,
     user: User,
-    solicitante: Solicitante
+    solicitante: Solicitante,
+    conteudoEmTexto: string
   ): Promise<HttpResponse>
 
 

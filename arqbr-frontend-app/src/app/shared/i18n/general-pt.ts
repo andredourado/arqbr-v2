@@ -28,6 +28,7 @@ import { documentosDigitaisFields } from './fields/pt/digitalizacao/documentos-d
 import { documentosDigitaisCamposFields } from './fields/pt/digitalizacao/documentos-digitais-campos'
 import { quebraManualFields } from './fields/pt/digitalizacao/quebra-manual'
 import { ajusteManualFields } from './fields/pt/digitalizacao/ajuste-manual'
+import { definicaoExtracaoFields } from './fields/pt/digitalizacao/definicao-extracao'
 import { unidadesFields } from './fields/pt/armazenamento/unidades'
 import { plantasFields } from './fields/pt/armazenamento/plantas'
 import { posicoesFields } from './fields/pt/armazenamento/posicoes'
