@@ -110,6 +110,7 @@ class DepartamentoRepository implements IDepartamentoRepository {
           'dep.id as "value"',
           'dep.nome as "label"',
         ])
+        .innerJoin('documentos_digitais', 'a', 'a.departamentoId = dep.id')
 
         if (clienteId) {
           query = query

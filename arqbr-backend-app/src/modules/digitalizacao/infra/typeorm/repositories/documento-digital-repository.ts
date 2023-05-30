@@ -1,4 +1,4 @@
-import { Brackets, getRepository, Repository } from 'typeorm'
+import { getRepository, Repository } from 'typeorm'
 import { IDocumentoDigitalDTO, ISolicitacao } from '@modules/digitalizacao/dtos/i-documento-digital-dto'
 import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories/i-documento-digital-repository'
 import { DocumentoDigital } from '@modules/digitalizacao/infra/typeorm/entities/documento-digital'
@@ -6,6 +6,40 @@ import { noContent, serverError, ok, notFound, HttpResponse } from '@shared/help
 import { AppError } from '@shared/errors/app-error'
 import { User } from '@modules/security/infra/typeorm/entities/user'
 import { Solicitante } from '@modules/clientes/infra/typeorm/entities/solicitante'
+
+const createSubQuery = (query: any ,fieldNumber: number, tipoDocumentoId: string) => {
+  query = query.
+    select([
+      'dcd.id as documento_digital_id',
+      'c.id',
+      'c.conteudo'
+    ])
+    .from('documentos_digitais', 'dcd')
+    .leftJoin(contentQuery => {
+      return contentQuery
+        .select([
+          'fld.id',
+          'b.documento_digital_id',
+          'b.conteudo as conteudo'
+        ])
+        .from('documentos_digitais_campos', 'b')
+        .leftJoin(fieldQuery => {
+          return fieldQuery
+            .select([
+              'id',
+              'tipo_documento_id',
+              'row_number() over (order by nome_campo) seq'
+            ])
+            .from('campos_documento', 'cd')
+            .where(`tipo_documento_id = '${tipoDocumentoId}'`)
+            .limit(4)
+        }, 'fld', 'b.campo_documento_id = fld.id')
+        .where(`fld.seq = ${fieldNumber}`)
+    }, 'c', 'dcd.id = c.documento_digital_id')
+    .where(`dcd.tipo_documento_id = '${tipoDocumentoId}'`)
+
+  return query
+}
 
 class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
   private repository: Repository<DocumentoDigital>
@@ -105,7 +139,24 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
           'c.id as "departamentoId"',
           'c.nome as "departamentoNome"',
         ])
-        .distinct(true)
+
+      if (tipoDocumentoId) {
+        query = query
+          .addSelect([
+            'c1.conteudo as "campo1"',
+            'c2.conteudo as "campo2"',
+            'c3.conteudo as "campo3"'
+          ])
+      }
+
+      if (tipoDocumentoId) {
+        query = query
+          .leftJoin(subQuery => createSubQuery(subQuery, 1, tipoDocumentoId), 'c1', 'c1.documento_digital_id = doc.id')
+          .leftJoin(subQuery => createSubQuery(subQuery, 2, tipoDocumentoId), 'c2', 'c2.documento_digital_id = doc.id')
+          .leftJoin(subQuery => createSubQuery(subQuery, 3, tipoDocumentoId), 'c3', 'c3.documento_digital_id = doc.id')
+      }
+      
+      query = query
         .leftJoin('doc.tipoDocumentoId', 'a')
         .leftJoin('doc.clienteId', 'b')
         .leftJoin('doc.departamentoId', 'c')
@@ -143,12 +194,14 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
           .andWhere('d.email = :email', { email: solicitante.email })
           .andWhere('d.departamentoId = doc.departamentoId')
       }
-
-      let documentosDigitais = await query
+      
+      query = query
         .addOrderBy('doc.nomeArquivo')
         .offset(offset)
         .limit(rowsPerPage)
         .take(rowsPerPage)
+
+      let documentosDigitais = await query
         .getRawMany()
         
       return ok(documentosDigitais)
@@ -210,6 +263,8 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
           'doc.id as "id"',
         ])
         .distinct(true)
+
+      query = query
         .leftJoin('doc.tipoDocumentoId', 'a')
         .leftJoin('doc.clienteId', 'b')
         .leftJoin('doc.departamentoId', 'c')

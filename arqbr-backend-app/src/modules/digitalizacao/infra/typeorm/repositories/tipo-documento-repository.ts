@@ -132,7 +132,9 @@ class TipoDocumentoRepository implements ITipoDocumentoRepository {
           'cam.titulo as "titulo"',
           'cam.metodoExtracao as "metodoExtracao"'
         ])
+        .distinct(true)
         .leftJoin('campos_documento', 'cam', 'cam.tipoDocumentoId = tip.id')
+        .innerJoin('documentos_digitais', 'b', 'b.tipoDocumentoId = tip.id')
 
       if (clienteId) {
         query = query 
