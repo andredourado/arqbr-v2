@@ -294,7 +294,6 @@ class DocumentoDigitalRepository implements IDocumentoDigitalRepository {
     solicitante: Solicitante
   ): Promise<HttpResponse> {
     try {
-      console.log('coco')
       let query = this.repository.createQueryBuilder('doc')
         .select("count(distinct SUBSTRING(doc.nome_arquivo, 3, POSITION('_' IN doc.nome_arquivo) - 3))")
         .leftJoin('doc.clienteId', 'a')

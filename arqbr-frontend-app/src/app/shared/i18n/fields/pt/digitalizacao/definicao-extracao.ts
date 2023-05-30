@@ -1,14 +1,25 @@
 export const definicaoExtracaoFields = {
   list: {
-    nomeArquivo: 'Definição Extração',
-    documentoDigitalId: 'Definição Extração',
-    campoDocumentoNomeCampo: 'Campo',
-    campoDocumentoId: 'Campo',
-    conteudo: 'Conteúdo',
+    clienteId: 'Cliente',
+    departamentoNome: 'Centro de Custo',
+    departamentoId: 'Centro de Custo',
+    tipoDocumentoDescricao: 'Tipo de Documento',
+    tipoDocumentoId: 'Tipo de Documento',
+    pdf: 'PDF'
   },
   form: {
-    documentoDigitalId: 'Definição Extração',
-    campoDocumentoId: 'Campo',
-    conteudo: 'Conteúdo',
+    clienteId: 'Cliente',
+    departamentoNome: 'Centro de Custo',
+    departamentoId: 'Centro de Custo',
+    tipoDocumentoDescricao: 'Tipo de Documento',
+    tipoDocumentoId: 'Tipo de Documento',
+    pdf: 'PDF',
+    textoQuebra: 'Texto que Quebra a Página',
+    nomeCampo: 'Nome do Campo',
+    titulo: 'Título',
+    estrategia: 'Estratégia',  
+    texto: 'Texto',
+    inicio: 'Início',
+    comprimento: 'Comprimento'
   }
 }

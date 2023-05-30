@@ -310,6 +310,10 @@ export const generalPt = {
     title: 'Ajuste Manual',
     fields: ajusteManualFields
   },
+  digitalizacao_definicaoExtracao: {
+    title: 'Definição de Extrações',
+    fields: definicaoExtracaoFields
+  },
   armazenamento_unidade: {
     title: 'Unidades',
     fields: unidadesFields
