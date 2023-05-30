@@ -41,9 +41,9 @@ class ExtracaoDocumentoDigitalUseCase {
   }: IRequest): Promise<HttpResponse> {
     console.log(nomeArquivo)
     const text = await extractTextPromise(nomeArquivo, numeroPaginas)
-    console.log('@#$%¨&*(*¨%$@$$%¨¨$##$$%¨¨&&**()**&¨%$$#$%%¨¨&***&&¨%$##$%%¨¨&&*(*&¨%$%¨&*(*&¨%¨&*&¨%')
-    console.log(text)
-    console.log('@#$%¨&*(*¨%$@$$%¨¨$##$$%¨¨&&**()**&¨%$$#$%%¨¨&***&&¨%$##$%%¨¨&&*(*&¨%$%¨&*(*&¨%¨&*&¨%')
+    // console.log('@#$%¨&*(*¨%$@$$%¨¨$##$$%¨¨&&**()**&¨%$$#$%%¨¨&***&&¨%$##$%%¨¨&&*(*&¨%$%¨&*(*&¨%¨&*&¨%')
+    // console.log(text)
+    // console.log('@#$%¨&*(*¨%$@$$%¨¨$##$$%¨¨&&**()**&¨%$$#$%%¨¨&***&&¨%$##$%%¨¨&&*(*&¨%$%¨&*(*&¨%¨&*&¨%')
     return ok(text)
   }
 }

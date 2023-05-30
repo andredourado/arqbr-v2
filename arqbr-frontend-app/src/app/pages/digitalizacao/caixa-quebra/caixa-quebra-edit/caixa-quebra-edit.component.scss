@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 200%;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 340px);
 
   border-radius: 10px;
 
@@ -145,14 +145,14 @@
 }
 
 .side-menu {
-  height: calc(100vh - 150.5px);
+  height: calc(100vh - 340.5px);
   display: flex;
   gap: 20px;
   margin-top: 20px;
 }
 
 .table-div {
-  width: 100%;
+  width: 25rem;
   height: calc(100% - 300px);
   margin-bottom: 20px;
   margin-left: -2px;
@@ -162,7 +162,7 @@
     border-collapse: collapse;
     user-select: none;
     width: 100%;
-    height: calc(100vh - 582.5px);
+    height: calc(100vh - 556.5px);
 
     thead {
       background-color: #0c9abe;
@@ -194,6 +194,7 @@
         color: #0c9abe;
         font-family: 'NunitoSans';
         padding-left: 8px;
+        width: 7rem;
       }
 
       .final {
@@ -201,12 +202,14 @@
         color: #0c9abe;
         font-family: 'NunitoSans';
         padding-left: 8px;
+        width: 7rem;
       }
     
       .documento {
         color: #0c9abe;
         font-family: 'NunitoSans';
         padding: 0px 8px;
+        width: 3rem;
       }
 
       .page-number { 

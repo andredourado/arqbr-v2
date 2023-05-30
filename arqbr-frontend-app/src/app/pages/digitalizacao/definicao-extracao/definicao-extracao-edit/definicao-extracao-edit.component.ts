@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnDestroy, OnInit } from "@angular/core"
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core"
 import { ActivatedRoute, Router } from '@angular/router'
-import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification, PoComboOption } from '@po-ui/ng-components'
+import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification, PoComboOption, PoTableComponent, PoTableColumn } from '@po-ui/ng-components'
 import { FormBuilder } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { environment } from "src/environments/environment"
 import { RestService } from "src/app/services/rest.service"
 import { DomSanitizer } from '@angular/platform-browser'
 import { v4 as uuidV4 } from 'uuid'
+import { LanguagesService } from 'src/app/services/languages.service'
 
 
 const ZOOM_STEP: number = 0.1
@@ -37,6 +38,24 @@ type textoType = {
   styleUrls: ["./definicao-extracao-edit.component.scss"],
 })
 export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
+  @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
+  columns: Array<PoTableColumn> = [
+    {
+      property: 'nomeCampo',
+      label: 'Nome do Campo',
+      width: '35%'
+    },
+    {
+      property: 'titulo',
+      label: 'Título',
+      width: '30%'
+    },
+    {
+      property: 'estrategia',
+      label: 'Estratégia'
+    }
+  ]
+
   file: string
   page: number = 1
   conteudoEmTexto: string
@@ -97,11 +116,14 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private poNotification: PoNotificationService,
+    private languagesService: LanguagesService,
     private sanitizer: DomSanitizer,
 
   ) { }
 
   ngOnInit(): void {
+    this.getLiterals()
+    this.pageButtonsBuilder(this.getPageType(this.activatedRoute.snapshot.routeConfig.path))
   }
 
   ngOnDestroy(): void {
@@ -123,9 +145,27 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     }
   }
 
+  getLiterals() {
+    this.languagesService.getLiterals({ type: 'edit', module: 'digitalizacao', options: 'definicaoExtracao'})
+      .subscribe({
+        next: res => this.literals = res
+      })
+  }
+
   clienteIdChange(event: string) {
     this.departamentoIdService = `${environment.baseUrl}/departamentos/select?clienteId=${event}`
     this.tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select?clienteId=${event}`
+  }
+
+  openFileExplorer() {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    fileInput.click();
+  }
+  
+  onFileSelected(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    const file = fileInput.files[0];
+    // Faça o que você precisa com o arquivo selecionado, por exemplo, enviar para o servidor
   }
 
   searchPdf() {
@@ -145,7 +185,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       this.restService
-        .post("/documento-digital/page", payload)
+        .post("/documento-digital/extracao", payload)
         .subscribe({
           next: (res: IResponse) => {
             this.src = this.sanitizer.bypassSecurityTrustResourceUrl(res.data.image as string)
@@ -208,60 +248,79 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     this.loadPage();
   }
 
- 
-  save(data, willCreateAnother?: boolean) {
-    if (this.extracaoForm.valid) {
-      if (this.file && this.getPageType(this.activatedRoute.snapshot.routeConfig.path) === 'edit') {
-        this.subscriptions.add(
-          this.restService
-            .put(`/quebra-manual/${this.file}`, data)
-            .subscribe({
-              next: () => {
-                this.poNotification.success({
-                  message: this.literals.saveSuccess,
-                  duration: environment.poNotificationDuration
-                })
+  pageButtonsBuilder(pageType: string): null {
+    if (pageType === 'view') {
+      this.readonly = true
 
-                if (willCreateAnother) {
-                  this.extracaoForm.reset()
-                  this.router.navigate(["quebra-manual/new"])
-                } else {
-                  this.router.navigate(["quebra-manual"])
-                }
-              },
-              error: (error) => console.log(error),
-            })
-        )
-      } else {
-        this.subscriptions.add(
-          this.restService
-            .post("/quebra-manual", data)
-            .subscribe({
-              next: () => {
-                this.poNotification.success({
-                  message: this.literals.saveSuccess,
-                  duration: environment.poNotificationDuration
-                })
+      this.pageActions.push(
+        {
+          label: this.literals.return,
+          action: this.goBack.bind(this),
+        }
+      )
+      return
+    }
 
-                if (willCreateAnother) {
-                  this.extracaoForm.reset()
-                  this.router.navigate(["quebra-manual/new"])
-                } else {
-                  this.router.navigate(["quebra-manual"])
-                }
-              },
-              error: (error) => console.log(error),
-            })
-        )
+    this.pageActions.push(
+      {
+        label: this.literals.save,
+        action: () => this.save(this.searchForm.value)
+      },
+      {
+        label: this.literals.saveAndNew,
+        action: () => this.save(this.searchForm.value, true)
+      },
+      {
+        label: this.literals.cancel,
+        action: this.goBack.bind(this),
       }
-    } else {
+    )
+
+    return
+  }
+
+  save(data, willCreateAnother?: boolean) {
+    if (this.searchForm.valid && this.texto.length > 0) {
+      const payload = {
+        clienteId: data.clienteId,
+        departamentoId: data.departamentoId,
+        tipoDocumentoId: data.tipoDocumentoId,
+        pdf: data.pdf
+      }
+
+      this.subscriptions.add(
+        this.restService
+          .post("/definicao-extracao", payload)
+          .subscribe({
+            next: () => {
+              this.poNotification.success({
+                message: this.literals.saveSuccess,
+                duration: environment.poNotificationDuration
+              })
+
+              if (willCreateAnother) {
+                this.searchForm.reset()
+                this.texto = []
+                this.router.navigate(["definicao-extracao/new"])
+              } else {
+                this.router.navigate(["definicao-extracao"])
+              }
+            },
+            error: (error) => console.log(error),
+          })
+      )
+
+      return
+    }
+      
       this.markAsDirty()
       this.poNotification.warning({
         message: this.literals.formError,
         duration: environment.poNotificationDuration
       })
     }
-  }
+
+
 
   markAsDirty() {
     this.searchForm.controls.clienteId.markAsDirty()
