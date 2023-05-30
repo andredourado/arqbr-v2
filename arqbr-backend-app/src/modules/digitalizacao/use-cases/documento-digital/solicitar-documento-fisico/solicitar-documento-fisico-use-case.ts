@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories/i-documento-digital-repository'
-import { HttpResponse } from '@shared/helpers'
+import { HttpResponse, serverError } from '@shared/helpers'
 import { ISolicitanteRepository } from '@modules/clientes/repositories/i-solicitante-repository'
 import { User } from '@modules/security/infra/typeorm/entities/user'
 
@@ -30,6 +30,9 @@ class SolicitarDocumentoDigitalUseCase {
         continue
       }
       const solicitante = await this.solicitanteRepository.getByEmail(user.login)
+      if (!solicitante) {
+        return [serverError(Error('Solicitante não encontrado!'))]
+      }
       documentoDigital.data.solicitanteId = solicitante.id
       documentoDigital.data.solicitacaoFisico = !documentoDigital.data.solicitacaoFisico
       documentoDigital.data.dataSolicitacao = dataSolicitacao

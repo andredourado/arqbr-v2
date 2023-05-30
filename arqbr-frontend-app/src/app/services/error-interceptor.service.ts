@@ -59,6 +59,25 @@ export class ErrorInterceptorService implements HttpInterceptor {
           }          
         }
 
+        if (error.status === 500) {
+          console.log(error)
+          switch (error?.error[0]?.data?.message) {
+            case ('Solicitante não encontrado!'):
+              this.poNotificationService.warning({
+                message: 'Solicitante não encontrado!',
+                duration: environment.poNotificationDuration
+              })
+              break
+            default:
+              this.poNotificationService.warning({
+                message: (error as any)?.data?.name ?? "Ocorreu um erro inesperado",
+                duration: environment.poNotificationDuration
+              })
+              break
+          }          
+        }
+
+
         if (error?.error?.data?.name) {
           this.poNotificationService.warning({
             message: error?.error?.data?.name,

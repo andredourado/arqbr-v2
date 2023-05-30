@@ -6,6 +6,7 @@ import { CountPagesDocumentoDigitalController } from '@modules/digitalizacao/use
 import { CountByTipoDocumentoDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/count-by-tipo-documento-documento-digital/count-by-tipo-documento-documento-digital-controller'
 import { SelectDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/select-documento-digital/select-documento-digital-controller'
 import { PageDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/page-documento-digital/page-documento-digital-controller'
+import { ExtracaoDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/extracao-documento-digital/extracao-documento-digital-controller'
 import { GetPdfDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/get-pdf-documento-digital/get-pdf-documento-digital-controller'
 import { IdSelectDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/id-select-documento-digital/id-select-documento-digital-controller'
 import { GetDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/get-documento-digital/get-documento-digital-controller'
@@ -29,6 +30,7 @@ const countByDepartamentoDocumentoDigitalController = new CountByDepartamentoDoc
 const selectDocumentoDigitalController = new SelectDocumentoDigitalController()
 const countProcessingDocumentoDigitalController = new CountProcessingDocumentoDigitalController()
 const pageDocumentoDigitalController = new PageDocumentoDigitalController()
+const extracaoDocumentoDigitalController = new ExtracaoDocumentoDigitalController()
 const getPdfDocumentoDigitalController = new GetPdfDocumentoDigitalController()
 const idSelectDocumentoDigitalController = new IdSelectDocumentoDigitalController()
 const getDocumentoDigitalController = new GetDocumentoDigitalController()
@@ -46,6 +48,7 @@ documentosDigitaisRoutes.post('/count-pages', ensureAuthenticated, countPagesDoc
 documentosDigitaisRoutes.post('/count-by-tipo-documento', ensureAuthenticated, countByTipoDocumentoDocumentoDigitalController.handle)
 documentosDigitaisRoutes.post('/count-by-departamento', ensureAuthenticated, countByDepartamentoDocumentoDigitalController.handle)
 documentosDigitaisRoutes.post('/page', ensureAuthenticated, pageDocumentoDigitalController.handle)
+documentosDigitaisRoutes.post('/extracao', ensureAuthenticated, extracaoDocumentoDigitalController.handle)
 documentosDigitaisRoutes.post('/pdf', ensureAuthenticated, getPdfDocumentoDigitalController.handle)
 documentosDigitaisRoutes.get('/select/:id', ensureAuthenticated, idSelectDocumentoDigitalController.handle)
 documentosDigitaisRoutes.get('/select', ensureAuthenticated, selectDocumentoDigitalController.handle)

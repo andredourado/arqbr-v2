@@ -48,9 +48,9 @@ export class DocumentoDigitalListComponent implements OnInit, OnDestroy {
         }
       ]
     },
-    { property: '', label: 'Campo 1' },
-    { property: '', label: 'Campo 2' },
-    { property: '', label: 'Campo 3' },
+    { property: 'campo1', label: 'Campo 1' },
+    { property: 'campo2', label: 'Campo 2' },
+    { property: 'campo3', label: 'Campo 3' },
   ]
   public pageActions: Array<PoPageAction> = [
     {
