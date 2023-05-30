@@ -6,14 +6,14 @@ class ExtracaoDocumentoDigitalController {
   async handle(request: Request, response: Response): Promise<Response> {
     const {
       nomeArquivo,
-      numeroPaginas
+      page
     } = request.body
 
     const extracaoDocumentoDigitalUseCase = container.resolve(ExtracaoDocumentoDigitalUseCase)
 
     const image = await extracaoDocumentoDigitalUseCase.execute({
       nomeArquivo,
-      numeroPaginas
+      page
     })
 
     return response.status(image.statusCode).json(image)
