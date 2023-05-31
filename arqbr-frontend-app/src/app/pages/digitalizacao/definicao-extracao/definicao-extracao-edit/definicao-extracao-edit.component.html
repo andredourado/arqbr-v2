@@ -1,5 +1,5 @@
 <po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
-  <div class="campos">
+  <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 campos">
     <form [formGroup]="searchForm">
       <div class="po-sm-3 po-md-3 po-lg-3 po-xl-3 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
@@ -16,7 +16,8 @@
 
       <div class="po-sm-3 po-md-3 po-lg-3 po-xl-3 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
-        p-clean [p-disabled]="readonly"
+        p-clean
+        [p-disabled]="readonly"
         formControlName="departamentoId"
         name="departamentoId"
         [p-filter-service]="departamentoIdService"
@@ -25,7 +26,7 @@
         > </po-combo>
       </div>
 
-      <div class="po-sm-3 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <div class="po-sm-2 po-md-2 po-lg-2 po-xl-2 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
         p-clean [p-disabled]="readonly"
         formControlName="tipoDocumentoId"
@@ -37,17 +38,16 @@
       </div>
 
       <div class="po-sm-2 po-md-2 po-lg-2 po-xl-2 p no-padding">
-        <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
+        <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
           name="pdf"
           p-clean
           [p-disabled]="readonly"
           formControlName="pdf"
           p-label="PDF"
-          p-required
         > </po-input>
       </div>
 
-      <div class="po-sm-1 po-md-1 po-lg-1 po-xl-1 po-mt-4 no-padding" style= "display: flex; gap: 5px">
+      <div class="po-sm-2 po-md-2 po-lg-2 po-xl-2 po-mt-4 no-padding" style= "display: flex; gap: 10px">
         <po-button (click)="openFileExplorer()" p-label="Local" p-kind="primary"> </po-button>
         <input type="file" id="fileInput" style="display: none" (change)="onFileSelected($event)">
         <po-button (p-click)="searchPdf()" p-label="S3" p-kind="secondary"> </po-button>
@@ -57,44 +57,37 @@
 
   <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 side-menu">
     <div class="page-body shadow">
-      <div class="text-container">
-        
+      <div class="text-container" style="white-space:pre-wrap">
+        {{text}}
       </div>
+            <po-divider></po-divider>
 
-      <po-divider></po-divider>
+
       <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
         <nav>
           <div class="zoom-component">
             <div (click)="zoomIn()" class="nav-component button-zoom fa-solid fa-magnifying-glass-plus nav-icon"></div>
-
             <div (click)="zoomOut()" class="nav-component fa-solid fa-magnifying-glass-minus nav-icon"></div>
-
             <div (click)="resetZoom()" class="nav-component button-zoom fa-solid fa-rotate-right nav-icon"></div>
           </div>
-
           <div class="pass-page">
             <div class="number-pages-avance pass-page-margin">
               <button (click)="prev50Page()" [disabled]="page === 1"
                 class="previous nav-component pass-botton fa-solid fa-angles-left nav-icon"></button>
               <p>-50</p>
             </div>
-
             <button (click)="prevPage()" [disabled]="page === 1"
               class="previous nav-component pass-botton fa-solid fa-angle-left nav-icon pass-page-margin"></button>
-
             <div class="contador">
               <div class="contador-input">
                 <po-number name="page" [(ngModel)]="page" p-maxlength="4" (keyup.enter)="changePage()"></po-number>
               </div>
-
               <div class="number-pages nav-component pass-botton pass-page-margin">
                 <p>/ {{ totalPages }}</p>
               </div>
             </div>
-
             <button (click)="nextPage()" [disabled]="page === totalPages"
               class="next nav-component pass-botton fa-solid fa-angle-right nav-icon pass-page-margin"></button>
-
             <div class="number-pages-avance pass-page-margin">
               <p>+50</p>
               <button (click)="next50Page()" [disabled]="page === totalPages"
@@ -111,6 +104,7 @@
             name="textoQuebra" 
             p-clean 
             [p-disabled]="readonly"
+            formControlName="textoQuebra"
             p-label="Texto que Quebra a Página" 
             p-required
             > </po-input>
@@ -121,6 +115,7 @@
             name="nomeCampo" 
             p-clean 
             [p-disabled]="readonly"
+            formControlName="nomeCampo"
             p-label="Nome do Campo" 
             p-required
           > </po-input>
@@ -131,6 +126,7 @@
             name="titulo" 
             p-clean 
             [p-disabled]="readonly"
+            formControlName="titulo"
             p-label="Título" 
             p-required
           > </po-input>
@@ -141,7 +137,12 @@
             name="estrategia" 
             p-clean 
             [p-disabled]="readonly"
+            formControlName="estrategia"
             p-label="Estratégia" 
+            [p-options]="[
+              { label: 'Option 1', value: '1' },
+              { label: 'Option 2', value: '2' }
+            ]"
             p-required
           > </po-combo>
         </div>
@@ -151,6 +152,7 @@
             name="texto" 
             p-clean 
             [p-disabled]="readonly"
+            formControlName="texto"
             p-label="Texto" 
             p-required
           > </po-input>
@@ -161,33 +163,66 @@
             name="inicio" 
             p-clean 
             [p-disabled]="readonly"
+            formControlName="inicio"
             p-label="Início" 
             p-required
           > </po-input>
         </div>
 
         <div class="po-sm-4 po-md-4 po-lg-4 po-xl-4 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
+          <po-number class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
             name="comprimento" 
             p-clean 
             [p-disabled]="readonly"
+            formControlName="comprimento"
             p-label="Comprimento" 
             p-required
-          > </po-input>
+          > </po-number>
         </div>
+
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
+          <po-button (p-click)="addExtracao()" p-label="Adicionar" p-kind="primary"> </po-button>
+        </div>
+
       </form>
-      <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12">
+
+      <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
+        <table class="quebras-table">
+          <thead>
+            <th>Quebras</th>
+          </thead>
+
+          <div class="table-body">
+            <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+              <td class="po-font-text-large documento">Nome do Campo</td>
+              <td class="po-font-text-large inicial">Título</td>
+              <td class="po-font-text-large final">Estratégia</td>
+            </tr>
+            <tr *ngFor="let texto of textos"
+              class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
+              <td class="po-font-text-large documento">{{ texto.nomeCampo }}</td>
+              <td class="po-font-text-large inicial">{{ texto.titulo }}</td>
+              <td class="po-font-text-large final">{{ texto.estrategia }}</td>
+            </tr>
+          </div>
+        </table>
+        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
+          <po-button (p-click)="deleteQuebra()"  p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
+        </div>
+      </div>
+
+      <!-- <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12">
         <po-table 
           [p-auto-collapse]="true"
           [p-height]="listHeight"
           [p-columns]="columns"
           p-container="string"
           [p-hide-columns-manager]="true"
-          [p-items]="texto"
+          [p-items]="textos"
           [p-striped]="true"
           p-height="200"
         > </po-table>
-      </div>
+      </div> -->
     </div>
   </div>
 

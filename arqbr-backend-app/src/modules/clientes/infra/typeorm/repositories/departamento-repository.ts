@@ -110,6 +110,32 @@ class DepartamentoRepository implements IDepartamentoRepository {
           'dep.id as "value"',
           'dep.nome as "label"',
         ])
+
+        if (clienteId) {
+          query = query
+            .where('dep.clienteId = :clienteId', { clienteId: `${clienteId}`})
+        }
+
+      const departamentos = await query
+        .andWhere('dep.nome ilike :filter', { filter: `${filter}%` })
+        .addOrderBy('dep.nome')
+        .getRawMany()
+
+      return ok(departamentos)
+    } catch (err) {
+      return serverError(err)
+    }
+  }
+
+
+  // selectFiltered
+  async selectFiltered (filter: string, clienteId): Promise<HttpResponse> {
+    try {
+      let query = this.repository.createQueryBuilder('dep')
+        .select([
+          'dep.id as "value"',
+          'dep.nome as "label"',
+        ])
         .innerJoin('documentos_digitais', 'a', 'a.departamentoId = dep.id')
 
         if (clienteId) {

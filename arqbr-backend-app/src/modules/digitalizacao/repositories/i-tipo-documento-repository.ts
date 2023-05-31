@@ -18,6 +18,10 @@ interface ITipoDocumentoRepository {
 
   // select
   select (filter: string, clienteId: string, departamentoId: string): Promise<HttpResponse>
+
+
+  // selectFiltered
+  selectFiltered (filter: string, clienteId: string, departamentoId: string): Promise<HttpResponse>
   
   
   // id select

@@ -1,9 +1,9 @@
-import { IDepartamentoDTO } from '@modules/clientes/dtos/i-departamento-dto'
+import { IDefinicaoExtracaoDTO } from '@modules/digitalizacao/dtos/i-definicao-extracao-dto'
 import { HttpResponse } from '@shared/helpers'
 
-interface IDepartamentoRepository {
+interface IDefinicaoExtracaoRepository {
   // create
-  create (data: IDepartamentoDTO): Promise<HttpResponse> 
+  create (data: IDefinicaoExtracaoDTO): Promise<HttpResponse> 
 
 
   // list
@@ -17,11 +17,7 @@ interface IDepartamentoRepository {
 
 
   // select
-  select (filter: string, clienteId: string): Promise<HttpResponse>
-
-
-  // selectFiltered
-  selectFiltered (filter: string, clienteId: string): Promise<HttpResponse>
+  select (filter: string): Promise<HttpResponse>
   
   
   // id select
@@ -36,12 +32,8 @@ interface IDepartamentoRepository {
   get (id: string): Promise<HttpResponse>
 
 
-  // get
-  getByIdentificador (identificador: string): Promise<HttpResponse>
-
-
   // update
-  update (data: IDepartamentoDTO): Promise<HttpResponse>
+  update (data: IDefinicaoExtracaoDTO): Promise<HttpResponse>
 
 
   // delete
@@ -52,4 +44,4 @@ interface IDepartamentoRepository {
   multiDelete (ids: string[]): Promise<HttpResponse>
 }
 
-export { IDepartamentoRepository }
+export { IDefinicaoExtracaoRepository }

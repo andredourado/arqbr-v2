@@ -84,12 +84,14 @@ import { IDocumentoDigitalRepository } from '@modules/digitalizacao/repositories
 import { DocumentoDigitalRepository } from '@modules/digitalizacao/infra/typeorm/repositories/documento-digital-repository'
 import { IDocumentoDigitalCampoRepository } from '@modules/digitalizacao/repositories/i-documento-digital-campo-repository'
 import { DocumentoDigitalCampoRepository } from '@modules/digitalizacao/infra/typeorm/repositories/documento-digital-campo-repository'
+import { DefinicaoExtracaoRepository } from '@modules/digitalizacao/infra/typeorm/repositories/definicao-extracao-repository'
 import { IUnidadeRepository } from '@modules/armazenamento/repositories/i-unidade-repository'
 import { UnidadeRepository } from '@modules/armazenamento/infra/typeorm/repositories/unidade-repository'
 import { IPlantaRepository } from '@modules/armazenamento/repositories/i-planta-repository'
 import { PlantaRepository } from '@modules/armazenamento/infra/typeorm/repositories/planta-repository'
 import { IPosicaoRepository } from '@modules/armazenamento/repositories/i-posicao-repository'
 import { PosicaoRepository } from '@modules/armazenamento/infra/typeorm/repositories/posicao-repository'
+import { IDefinicaoExtracaoRepository } from '@modules/digitalizacao/repositories/i-definicao-extracao-repository'
 
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository)
 container.registerSingleton<IUserSecurityRepository>('UserSecurityRepository', UserSecurityRepository)
@@ -132,6 +134,7 @@ container.registerSingleton<ICampoDocumentoRepository>('CampoDocumentoRepository
 container.registerSingleton<ICaixaQuebraRepository>('CaixaQuebraRepository', CaixaQuebraRepository)
 container.registerSingleton<IDocumentoDigitalRepository>('DocumentoDigitalRepository', DocumentoDigitalRepository)
 container.registerSingleton<IDocumentoDigitalCampoRepository>('DocumentoDigitalCampoRepository', DocumentoDigitalCampoRepository)
+container.registerSingleton<IDefinicaoExtracaoRepository>('DefinicaoExtracaoRepository', DefinicaoExtracaoRepository)
 container.registerSingleton<IUnidadeRepository>('UnidadeRepository', UnidadeRepository)
 container.registerSingleton<IPlantaRepository>('PlantaRepository', PlantaRepository)
 container.registerSingleton<IPosicaoRepository>('PosicaoRepository', PosicaoRepository)

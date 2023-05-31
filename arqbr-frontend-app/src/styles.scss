@@ -347,4 +347,16 @@
   .sv-root-modern .sv-btn--navigation {
     background-color: var(--primary-color);
   }
+
+  .remove-overflow-x {
+    .po-page-content {
+      overflow-x: hidden;
+    }
+  }
+
+  .po-hide-upload-progress {
+    .po-progress {
+      display: none;
+    }
+  }
 }

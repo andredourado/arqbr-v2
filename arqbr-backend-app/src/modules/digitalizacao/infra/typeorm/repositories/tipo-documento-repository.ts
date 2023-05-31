@@ -134,6 +134,50 @@ class TipoDocumentoRepository implements ITipoDocumentoRepository {
         ])
         .distinct(true)
         .leftJoin('campos_documento', 'cam', 'cam.tipoDocumentoId = tip.id')
+
+      if (clienteId) {
+        query = query 
+          .where('tip.clienteId = :clienteId', { clienteId: `${clienteId}`})
+      }
+
+      if (departamentoId) {
+        query = query 
+          .where('tip.departamentoId = :departamentoId', { departamentoId: `${departamentoId}`})
+      }
+
+      const tiposDocumento = await query
+        .andWhere('tip.descricao ilike :filter', { filter: `${filter}%` })
+        .addOrderBy('tip.descricao')
+        .getRawMany()
+
+      const newTiposDocumento = newObjectBuilder({
+        data: tiposDocumento,
+        ref: 'value',
+        variablesToArray: ['id', 'nomeCampo', 'titulo', 'metodoExtracao'],
+        nameArrayVariable: 'campos' 
+      }) 
+
+      return ok(newTiposDocumento)
+    } catch (err) {
+      return serverError(err)
+    }
+  }
+
+
+  // selectFiltered
+  async selectFiltered (filter: string, clienteId: string, departamentoId: string): Promise<HttpResponse> {
+    try {
+      let query = this.repository.createQueryBuilder('tip')
+        .select([
+          'tip.id as "value"',
+          'tip.descricao as "label"',
+          'cam.id as "id"',
+          'cam.nomeCampo as "nomeCampo"',
+          'cam.titulo as "titulo"',
+          'cam.metodoExtracao as "metodoExtracao"'
+        ])
+        .distinct(true)
+        .leftJoin('campos_documento', 'cam', 'cam.tipoDocumentoId = tip.id')
         .innerJoin('documentos_digitais', 'b', 'b.tipoDocumentoId = tip.id')
 
       if (clienteId) {

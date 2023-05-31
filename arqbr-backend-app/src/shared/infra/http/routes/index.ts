@@ -43,6 +43,7 @@ import { caixasQuebrasRoutes } from './digitalizacao/caixas-quebras-routes'
 import { documentosDigitaisRoutes } from './digitalizacao/documentos-digitais-routes'
 import { documentosDigitaisCamposRoutes } from './digitalizacao/documentos-digitais-campos-routes'
 import { quebraManualRoutes } from './digitalizacao/quebra-manual-routes'
+import { definicaoExtracaoRoutes } from './digitalizacao/definicoes-extracao-routes'
 import { unidadesRoutes } from './armazenamento/unidades-routes'
 import { plantasRoutes } from './armazenamento/plantas-routes'
 import { posicoesRoutes } from './armazenamento/posicoes-routes'
@@ -93,6 +94,7 @@ router.use('/caixas-quebras', caixasQuebrasRoutes)
 router.use('/documentos-digitais', documentosDigitaisRoutes)
 router.use('/documentos-digitais-campos', documentosDigitaisCamposRoutes)
 router.use('/quebras-manuais', quebraManualRoutes)
+router.use('/definicoes-extracao', definicaoExtracaoRoutes)
 router.use('/unidades', unidadesRoutes)
 router.use('/plantas', plantasRoutes)
 router.use('/posicoes', posicoesRoutes)

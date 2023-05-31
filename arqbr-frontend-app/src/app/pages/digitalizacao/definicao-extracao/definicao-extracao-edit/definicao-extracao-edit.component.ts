@@ -15,7 +15,6 @@ const ZOOM_STEP: number = 0.1
 const DEFAULT_ZOOM: number = 0.6
 
 interface IResponse {
-  solicitacaoFisico: any
   statusCode: number
   data: any
   items: any
@@ -23,13 +22,13 @@ interface IResponse {
 
 type textoType = {
   id?: string,
-  textoQuebra: string,
-  nomeCampo: string,
-  titulo: string,
-  estrategia: string,
-  texto: string,
-  inicio: any,
-  comprimento: number
+  textoQuebra?: string,
+  nomeCampo?: string,
+  titulo?: string,
+  estrategia?: string,
+  texto?: string,
+  inicio?: string,
+  comprimento?: number
 }
 
 @Component({
@@ -38,40 +37,21 @@ type textoType = {
   styleUrls: ["./definicao-extracao-edit.component.scss"],
 })
 export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
-  @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
-  columns: Array<PoTableColumn> = [
-    {
-      property: 'nomeCampo',
-      label: 'Nome do Campo',
-      width: '35%'
-    },
-    {
-      property: 'titulo',
-      label: 'Título',
-      width: '30%'
-    },
-    {
-      property: 'estrategia',
-      label: 'Estratégia'
-    }
-  ]
-
+  public text = ''
   file: string
   page: number = 1
-  conteudoEmTexto: string
   scale = DEFAULT_ZOOM
   totalPages: number = 0
   isLoaded: boolean = false
   src: any = ''
   nomeArquivo: string
-  solicitacaoFisico: boolean = false
   textoBotao = ''
   items: any
+  public id: string
   public clienteId = ''
   public isLoading = false
   public listHeight: number
-  public texto: textoType[] = []
-
+  public textos: textoType[] = []
   public readonly = false
   public result: any
   public literals: any = {}
@@ -90,20 +70,15 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     estrategia: '',
     texto: '',
     inicio: '',
-    comprimento: '',
+    comprimento: 0
   })
 
-  public tableActions: PoPageAction[] = [
-    { label: 'Visualizar',  icon: 'fa-solid fa-eye' }
-  ]
-
-  public readonly serviceApi = `${environment.baseUrl}/definicao-extracao`
+  public readonly serviceApi = `${environment.baseUrl}/definicoes-extracao`
   public documentoDigitalIdService = `${environment.baseUrl}/documentos-digitais/select`
   public campoDocumentoIdService = `${environment.baseUrl}/campos-documento/select`
   public clienteIdService = `${environment.baseUrl}/clientes/select`
   public departamentoIdService = `${environment.baseUrl}/departamentos/select`
   public tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select`
-  public caixasOptions: PoComboOption[] = []
 
   subscriptions = new Subscription()
 
@@ -116,14 +91,19 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private poNotification: PoNotificationService,
-    private languagesService: LanguagesService,
-    private sanitizer: DomSanitizer,
-
+    private languagesService: LanguagesService
   ) { }
 
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.paramMap.get("id")
+
     this.getLiterals()
+
     this.pageButtonsBuilder(this.getPageType(this.activatedRoute.snapshot.routeConfig.path))
+
+    if (this.id) {
+      this.subscriptions.add(this.getDefinicaoExtracao(this.id))
+    }
   }
 
   ngOnDestroy(): void {
@@ -158,14 +138,13 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   }
 
   openFileExplorer() {
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-    fileInput.click();
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement
+    fileInput.click()
   }
   
   onFileSelected(event: Event) {
-    const fileInput = event.target as HTMLInputElement;
-    const file = fileInput.files[0];
-    // Faça o que você precisa com o arquivo selecionado, por exemplo, enviar para o servidor
+    const fileInput = event.target as HTMLInputElement
+    const file = fileInput.files[0]
   }
 
   searchPdf() {
@@ -178,17 +157,18 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
 
   loadPage() {
     const payload = {
-      file: this.file,
-      page: this.page,
-      conteudoEmTexto: this.conteudoEmTexto
+      nomeArquivo: this.file,
+      page: this.page
     }
+
+    console.log(payload)
 
     this.subscriptions.add(
       this.restService
-        .post("/documento-digital/extracao", payload)
+        .post("/documentos-digitais/extracao-s3", payload)
         .subscribe({
           next: (res: IResponse) => {
-            this.src = this.sanitizer.bypassSecurityTrustResourceUrl(res.data.image as string)
+            this.text = res.data.text
             this.totalPages = res.data.numberPages
           }
         })
@@ -248,6 +228,40 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     this.loadPage();
   }
 
+
+  addExtracao() { 
+    if (this.extracaoForm.valid) {
+      const {  textoQuebra, nomeCampo, titulo, estrategia, texto, inicio, comprimento } = this.extracaoForm.value
+      const payload = {
+        textoQuebra,
+        nomeCampo,
+        titulo,
+        estrategia,
+        texto,
+        inicio,
+        comprimento
+      }
+      this.textos.push(payload)
+      console.log(this.textos)
+      this.extracaoForm.reset()
+
+      return 
+    }
+
+    this.extracaoForm.markAllAsTouched()
+    this.extracaoForm.controls.textoQuebra.markAsDirty()
+    this.extracaoForm.controls.nomeCampo.markAsDirty()
+    this.extracaoForm.controls.titulo.markAsDirty()
+    this.extracaoForm.controls.estrategia.markAsDirty()
+    this.extracaoForm.controls.texto.markAsDirty()
+    this.extracaoForm.controls.inicio.markAsDirty()
+    this.extracaoForm.controls.comprimento.markAsDirty()
+  }
+
+  deleteQuebra() {
+    this.textos.pop()
+  }
+
   pageButtonsBuilder(pageType: string): null {
     if (pageType === 'view') {
       this.readonly = true
@@ -279,18 +293,36 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     return
   }
 
+  getDefinicaoExtracao(id: string) {
+    this.restService
+      .get(`/definicoes-extracao/${id}`)
+      .subscribe({
+        next: (result) => {
+          this.searchForm.patchValue({
+            clienteId: result.clienteId,
+            departamentoId: result.departamentoId,
+            tipoDocumentoId: result.tipoDocumentoId,
+            pdf: result.pdf
+          })
+          this.textos = result.textos
+        },
+        error: (error) => console.log(error)
+      })
+  }
+
   save(data, willCreateAnother?: boolean) {
-    if (this.searchForm.valid && this.texto.length > 0) {
+    if (this.searchForm.valid) {
       const payload = {
         clienteId: data.clienteId,
         departamentoId: data.departamentoId,
         tipoDocumentoId: data.tipoDocumentoId,
-        pdf: data.pdf
+        pdf: data.pdf,
+        textos: this.textos
       }
 
       this.subscriptions.add(
         this.restService
-          .post("/definicao-extracao", payload)
+          .post("/definicoes-extracao", payload)
           .subscribe({
             next: () => {
               this.poNotification.success({
@@ -300,10 +332,10 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
 
               if (willCreateAnother) {
                 this.searchForm.reset()
-                this.texto = []
-                this.router.navigate(["definicao-extracao/new"])
+                this.textos = []
+                this.router.navigate(["definicoes-extracao/new"])
               } else {
-                this.router.navigate(["definicao-extracao"])
+                this.router.navigate(["definicoes-extracao"])
               }
             },
             error: (error) => console.log(error),
@@ -330,7 +362,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   }
 
   goBack() {
-    this.router.navigate(["definicao-extracao"])
+    this.router.navigate(["definicoes-extracao"])
   } 
 }
 

@@ -208,7 +208,7 @@ export class DocumentoDigitalListComponent implements OnInit, OnDestroy {
   }
 
   getTipoDocumento(departamentoId?: string) {
-    const url = departamentoId ? `/tipos-documento/select?departamentoId=${departamentoId}&filter=` : `/tipos-documento/select?filter=`
+    const url = departamentoId ? `/tipos-documento/select-filtered?departamentoId=${departamentoId}&filter=` : `/tipos-documento/select-filtered?filter=`
     this.httpClient.get(`${environment.baseUrl}${url}`)
       .subscribe({
         next: (res: ListResponse) => {
@@ -221,7 +221,7 @@ export class DocumentoDigitalListComponent implements OnInit, OnDestroy {
   }
 
   getDepartamento() {
-    this.httpClient.get(`${environment.baseUrl}/departamentos/select?filter=`)
+    this.httpClient.get(`${environment.baseUrl}/departamentos/select-filtered?filter=`)
       .subscribe({
         next: (res: ListResponse) => {
           this.departamentoList = res.items

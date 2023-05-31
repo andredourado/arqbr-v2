@@ -10,6 +10,7 @@ import { UpdateDepartamentoController } from '@modules/clientes/use-cases/depart
 import { DeleteDepartamentoController } from '@modules/clientes/use-cases/departamento/delete-departamento/delete-departamento-controller'
 import { MultiDeleteDepartamentoController } from '@modules/clientes/use-cases/departamento/multi-delete-departamento/multi-delete-departamento-controller'
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensure-authenticated'
+import { SelectFilteredDepartamentoController } from '@modules/clientes/use-cases/departamento/select-filtered-departamento/select-filtered-departamento-controller'
 
 const departamentosRoutes = Router()
 
@@ -17,6 +18,7 @@ const createDepartamentoController = new CreateDepartamentoController()
 const listDepartamentoController = new ListDepartamentoController()
 const countDepartamentoController = new CountDepartamentoController()
 const selectDepartamentoController = new SelectDepartamentoController()
+const selectFilteredDepartamentoController = new SelectFilteredDepartamentoController()
 const idSelectDepartamentoController = new IdSelectDepartamentoController()
 const getDepartamentoController = new GetDepartamentoController()
 const getDepartamentoByIdentificadorController = new GetDepartamentoByIdentificadorController()
@@ -29,6 +31,7 @@ departamentosRoutes.post('/list', ensureAuthenticated, listDepartamentoControlle
 departamentosRoutes.post('/count', ensureAuthenticated, countDepartamentoController.handle)
 departamentosRoutes.get('/select/:id', ensureAuthenticated, idSelectDepartamentoController.handle)
 departamentosRoutes.get('/select', ensureAuthenticated, selectDepartamentoController.handle)
+departamentosRoutes.get('/select-filtered', ensureAuthenticated, selectFilteredDepartamentoController.handle)
 departamentosRoutes.get('/:id', ensureAuthenticated, getDepartamentoController.handle)
 departamentosRoutes.get('/identificador/:identificador', ensureAuthenticated, getDepartamentoByIdentificadorController.handle)
 departamentosRoutes.put('/:id', ensureAuthenticated, updateDepartamentoController.handle)

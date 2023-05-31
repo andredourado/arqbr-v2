@@ -179,7 +179,7 @@ const routes: Routes = [
         loadChildren: () => import('./modules/digitalizacao/ajuste-manual/ajuste-manual.module').then(m => m.AjusteManualModule),
       },
       {
-        path: 'definicao-extracao',
+        path: 'definicoes-extracao',
         loadChildren: () => import('./modules/digitalizacao/definicao-extracao/definicao-extracao.module').then(m => m.DefinicaoExtracaoModule),
       },
       {

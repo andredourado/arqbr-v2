@@ -33,24 +33,6 @@ paginaFinal?: string
   styleUrls: ["./caixa-quebra-edit.component.scss"],
 })
 export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
-  @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
-    columns: Array<PoTableColumn> = [
-      {
-        property: '{{ quebraIndex + 1 }}',
-        label: 'Seq',
-        width: '20%'
-      },
-      {
-        property: 'paginaInicial',
-        label: 'Página Inicial',
-        width: '40%'
-      },
-      {
-        property: 'paginaFinal',
-        label: 'Página Final'
-      }
-    ];
-  
   public id: string
   public readonly = false
   public clienteId = ''
@@ -58,15 +40,14 @@ export class CaixaQuebraEditComponent implements OnInit, OnDestroy {
   public literals: any = {}
   public quebras: QuebraType[] = []
   public listHeight: number = 0
-
+  public name: string
+  public tipoDocumentoId: string
   src: any = ''
   scale = DEFAULT_ZOOM
   page: number = 1
   file: string
   totalPages: number = 0
   isLoaded: boolean = false
-  public name: string
-  public tipoDocumentoId: string
 
   caixaQuebraForm = this.formBuilder.group({
     clienteId: null,

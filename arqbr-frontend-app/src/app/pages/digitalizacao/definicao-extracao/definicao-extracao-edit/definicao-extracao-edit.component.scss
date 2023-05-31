@@ -59,8 +59,10 @@
 
 .text-container {
   width: 100%;
-  max-height: calc(100vh - 483px);
+  word-wrap: break-word;
+  height: calc(100vh - 260px);
   overflow-y: scroll;
+  overflow-x: auto;
 }
 
 // .text-container img {
@@ -151,6 +153,86 @@
   gap: 20px;
   margin-top: 15px;
   }
+
+  .table-div {
+    width: 35rem;
+    height: calc(100% - 400px);
+    margin-bottom: 20px;
+    margin-left: -2px;
+    border: 1px solid #0c9abe;
+    
+    .quebras-table {
+      border-collapse: collapse;
+      user-select: none;
+      width: 100%;
+      height: calc(100vh - 720.5px);
+  
+      thead {
+        background-color: #0c9abe;
+      }
+    
+      th {
+        color: white;
+        font-family: 'NunitoSans';
+        font-size: 14px;
+        line-height: 24px;
+        padding: 8px 16px;
+        text-transform: uppercase;
+      }
+    
+      .table-body {
+        background-color: white;
+        max-height: calc(100vh - 500px);
+        overflow-y: scroll;
+        width: 100%;
+  
+        .square-name {
+          border-left: 1px solid #83a9b333;
+          font-family: 'NunitoSans';
+          padding-left: 8px;
+        }
+        
+        .inicial {
+          border-left: 1px solid #83a9b333;
+          color: #0c9abe;
+          font-family: 'NunitoSans';
+          padding-left: 8px;
+          width: 10rem;
+        }
+  
+        .final {
+          border-left: 1px solid #83a9b333;
+          color: #0c9abe;
+          font-family: 'NunitoSans';
+          padding-left: 8px;
+          width: 10rem;
+        }
+      
+        .documento {
+          color: #0c9abe;
+          font-family: 'NunitoSans';
+          padding: 0px 8px;
+          width: 10rem;
+        }
+  
+        .page-number { 
+          font-family: 'NunitoSans';
+          padding: 0px 8px;
+        }
+      }
+    
+      tr {
+        border-bottom: 1px solid #83a9b333;
+        cursor: pointer; 
+        transition: 0.2s;
+        width: 100%;
+      }
+    
+      tr:hover {
+        background-color: #96b7cf26;
+      }
+    }
+  }
   
   .campo-quebras {
     display: flex;
@@ -216,6 +298,3 @@
   color: white;
   cursor: pointer;
 }
-
-
-

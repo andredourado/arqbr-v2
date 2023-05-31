@@ -10,6 +10,7 @@ import { UpdateTipoDocumentoController } from '@modules/digitalizacao/use-cases/
 import { DeleteTipoDocumentoController } from '@modules/digitalizacao/use-cases/tipo-documento/delete-tipo-documento/delete-tipo-documento-controller'
 import { MultiDeleteTipoDocumentoController } from '@modules/digitalizacao/use-cases/tipo-documento/multi-delete-tipo-documento/multi-delete-tipo-documento-controller'
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensure-authenticated'
+import { SelectFilteredTipoDocumentoController } from '@modules/digitalizacao/use-cases/tipo-documento/select-filtered-tipo-documento/select-filtered-tipo-documento-controller'
 
 const tiposDocumentoRoutes = Router()
 
@@ -17,6 +18,7 @@ const createTipoDocumentoController = new CreateTipoDocumentoController()
 const listTipoDocumentoController = new ListTipoDocumentoController()
 const countTipoDocumentoController = new CountTipoDocumentoController()
 const selectTipoDocumentoController = new SelectTipoDocumentoController()
+const selectFilteredTipoDocumentoController = new SelectFilteredTipoDocumentoController()
 const idSelectTipoDocumentoController = new IdSelectTipoDocumentoController()
 const getTipoDocumentoController = new GetTipoDocumentoController()
 const getTipoDocumentoByIdentificadorController = new GetTipoDocumentoByIdentificadorController()
@@ -29,6 +31,7 @@ tiposDocumentoRoutes.post('/list', ensureAuthenticated, listTipoDocumentoControl
 tiposDocumentoRoutes.post('/count', ensureAuthenticated, countTipoDocumentoController.handle)
 tiposDocumentoRoutes.get('/select/:id', ensureAuthenticated, idSelectTipoDocumentoController.handle)
 tiposDocumentoRoutes.get('/select', ensureAuthenticated, selectTipoDocumentoController.handle)
+tiposDocumentoRoutes.get('/select-filtered', ensureAuthenticated, selectFilteredTipoDocumentoController.handle)
 tiposDocumentoRoutes.get('/:id', ensureAuthenticated, getTipoDocumentoController.handle)
 tiposDocumentoRoutes.get('/identificador/:identificador', ensureAuthenticated, getTipoDocumentoByIdentificadorController.handle)
 tiposDocumentoRoutes.put('/:id', ensureAuthenticated, updateTipoDocumentoController.handle)
