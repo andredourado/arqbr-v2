@@ -1,25 +1,23 @@
 import { injectable } from 'tsyringe'
 import { HttpResponse, ok } from '@shared/helpers/http'
-import { extractTexts } from '@utils/extract-texts'
+import { extractTextsS3 } from '@utils/extract-texts'
 
 interface IRequest {
-  file: string
-  fileName?: string
+  nomeArquivo: string,
   page?: number
 }
 
 @injectable()
-class ExtracaoDocumentoDigitalUseCase {
+class ExtracaoS3DocumentoDigitalUseCase {
   constructor() { }
   async execute({
-    file,
-    fileName,
+    nomeArquivo,
     page = 1
   }: IRequest): Promise<HttpResponse> {
-    const text = await extractTexts(fileName ?? file, page)
+    const text = await extractTextsS3(nomeArquivo, page, 'arquivos-pdf-scanner')
 
     return ok(text)
   }
 }
 
-export { ExtracaoDocumentoDigitalUseCase }
+export { ExtracaoS3DocumentoDigitalUseCase }

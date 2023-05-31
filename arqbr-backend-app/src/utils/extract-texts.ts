@@ -1,4 +1,5 @@
 import { Endpoint, S3 } from "aws-sdk"
+import path from 'path'
 import { v4 as uuidV4 } from 'uuid'
 import { promises as fs } from 'fs'
 import { createCanvas } from 'canvas'
@@ -38,8 +39,10 @@ const loadFile = async (s3Client: S3, nomeArquivo: string, folder: string) => {
 
 const extractTextFromFile = async (localFilePath: string, pageNumber: number) => {
   let textOutput: string
+  let numberPages: number
 
   const pdf = await getDocument(localFilePath).promise
+  numberPages = pdf.numPages
 
   const page = await pdf.getPage(pageNumber)
 
@@ -75,7 +78,7 @@ const extractTextFromFile = async (localFilePath: string, pageNumber: number) =>
   }
 
 
-  return textOutput
+  return { textOutput, numberPages }
 }
 
 const writeFileAtTmp = async (file: any, pageNumber: number) => {
@@ -83,30 +86,40 @@ const writeFileAtTmp = async (file: any, pageNumber: number) => {
   const uuid = uuidV4()
   const localFilePath = `/tmp/${uuid}.pdf`
 
-  try {
-    await fs.writeFile(localFilePath, file)
+  await fs.writeFile(localFilePath, file)
 
-    const texts = await extractTextFromFile(localFilePath, pageNumber)
-  
-    await fs.unlink(localFilePath)
-  
-    return texts
-  } catch (err) {
-    console.error(`Error parsing PDF document: ${err}`)
-    return err
-  }
+  return localFilePath
 }
 
-export const extractTexts = async (nomeArquivo: string, pageNumber: number, folder: string) => {
+export const extractTextsS3 = async (nomeArquivo: string, pageNumber: number, folder: string) => {
   const s3Client = s3ClientConstructor(S3)
 
   try {
     const file = await loadFile(s3Client, nomeArquivo, folder)
 
     if (file) {
-      const text = await writeFileAtTmp(file, pageNumber)
-      return text
+      const localFilePath = await writeFileAtTmp(file, pageNumber)
+
+      const { textOutput, numberPages } = await extractTextFromFile(localFilePath, pageNumber)
+
+      await fs.unlink(localFilePath)
+
+      return { text: textOutput, numberPages }
     }
+  } catch (err) {
+    return err
+  }
+}
+
+export const extractTexts = async (file: string, pageNumber: number) => {
+  try {
+    const filePath = path.resolve(__dirname, '..', '..', 'tmp', file)
+
+    console.log(filePath)
+
+    const { textOutput, numberPages } = await extractTextFromFile(filePath, pageNumber)
+
+    return { text: textOutput, numberPages, fileName: file }
   } catch (err) {
     return err
   }

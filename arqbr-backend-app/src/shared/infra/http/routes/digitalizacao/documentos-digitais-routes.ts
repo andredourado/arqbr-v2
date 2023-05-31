@@ -1,4 +1,7 @@
 import { Router } from 'express'
+import multer from 'multer'
+import uploadConfig from '@config/upload'
+
 import { CreateDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/create-documento-digital/create-documento-digital-controller'
 import { ListDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/list-documento-digital/list-documento-digital-controller'
 import { CountDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/count-documento-digital/count-documento-digital-controller'
@@ -7,6 +10,7 @@ import { CountByTipoDocumentoDocumentoDigitalController } from '@modules/digital
 import { SelectDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/select-documento-digital/select-documento-digital-controller'
 import { PageDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/page-documento-digital/page-documento-digital-controller'
 import { ExtracaoDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/extracao-documento-digital/extracao-documento-digital-controller'
+import { ExtracaoS3DocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/extracao-s3-documento-digital/extracao-s3-documento-digital-controller'
 import { GetPdfDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/get-pdf-documento-digital/get-pdf-documento-digital-controller'
 import { IdSelectDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/id-select-documento-digital/id-select-documento-digital-controller'
 import { GetDocumentoDigitalController } from '@modules/digitalizacao/use-cases/documento-digital/get-documento-digital/get-documento-digital-controller'
@@ -21,6 +25,8 @@ import { ListSolicitacaoController } from '@modules/digitalizacao/use-cases/docu
 
 const documentosDigitaisRoutes = Router()
 
+const uploadFile = multer(uploadConfig)
+
 const createDocumentoDigitalController = new CreateDocumentoDigitalController()
 const listDocumentoDigitalController = new ListDocumentoDigitalController()
 const countDocumentoDigitalController = new CountDocumentoDigitalController()
@@ -31,6 +37,7 @@ const selectDocumentoDigitalController = new SelectDocumentoDigitalController()
 const countProcessingDocumentoDigitalController = new CountProcessingDocumentoDigitalController()
 const pageDocumentoDigitalController = new PageDocumentoDigitalController()
 const extracaoDocumentoDigitalController = new ExtracaoDocumentoDigitalController()
+const extracaoS3DocumentoDigitalController = new ExtracaoS3DocumentoDigitalController()
 const getPdfDocumentoDigitalController = new GetPdfDocumentoDigitalController()
 const idSelectDocumentoDigitalController = new IdSelectDocumentoDigitalController()
 const getDocumentoDigitalController = new GetDocumentoDigitalController()
@@ -48,7 +55,8 @@ documentosDigitaisRoutes.post('/count-pages', ensureAuthenticated, countPagesDoc
 documentosDigitaisRoutes.post('/count-by-tipo-documento', ensureAuthenticated, countByTipoDocumentoDocumentoDigitalController.handle)
 documentosDigitaisRoutes.post('/count-by-departamento', ensureAuthenticated, countByDepartamentoDocumentoDigitalController.handle)
 documentosDigitaisRoutes.post('/page', ensureAuthenticated, pageDocumentoDigitalController.handle)
-documentosDigitaisRoutes.post('/extracao', ensureAuthenticated, extracaoDocumentoDigitalController.handle)
+documentosDigitaisRoutes.post('/extracao', ensureAuthenticated, uploadFile.single('file'), extracaoDocumentoDigitalController.handle)
+documentosDigitaisRoutes.post('/extracao-s3', ensureAuthenticated, extracaoS3DocumentoDigitalController.handle)
 documentosDigitaisRoutes.post('/pdf', ensureAuthenticated, getPdfDocumentoDigitalController.handle)
 documentosDigitaisRoutes.get('/select/:id', ensureAuthenticated, idSelectDocumentoDigitalController.handle)
 documentosDigitaisRoutes.get('/select', ensureAuthenticated, selectDocumentoDigitalController.handle)
