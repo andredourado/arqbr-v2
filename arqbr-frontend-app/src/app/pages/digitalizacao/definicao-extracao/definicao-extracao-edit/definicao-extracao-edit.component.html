@@ -48,9 +48,9 @@
       </div>
 
       <div class="po-sm-2 po-md-2 po-lg-2 po-xl-2 po-mt-4 no-padding" style= "display: flex; gap: 10px">
+        <po-button (p-click)="searchPdf()" p-label="S3" p-kind="secondary"> </po-button>
         <po-button (click)="openFileExplorer()" p-label="Local" p-kind="primary"> </po-button>
         <input type="file" id="fileInput" style="display: none" (change)="onFileSelected($event)">
-        <po-button (p-click)="searchPdf()" p-label="S3" p-kind="secondary"> </po-button>
       </div>
     </form>
   </div>
@@ -98,6 +98,7 @@
       </div>
     </div>
     <div class="campo-quebras">
+    <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 extracao">
       <form [formGroup]="extracaoForm">
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
           <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
@@ -181,15 +182,15 @@
         </div>
 
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
+          <po-button p-label="Teste" p-kind="secondary"> </po-button>
           <po-button (p-click)="addExtracao()" p-label="Adicionar" p-kind="primary"> </po-button>
         </div>
-
       </form>
-
+    </div>
       <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
         <table class="quebras-table">
           <thead>
-            <th>Quebras</th>
+            <th>CAMPOS</th>
           </thead>
 
           <div class="table-body">
