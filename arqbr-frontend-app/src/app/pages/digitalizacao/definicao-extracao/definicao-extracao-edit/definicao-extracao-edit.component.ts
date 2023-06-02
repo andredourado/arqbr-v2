@@ -325,8 +325,8 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     this.extracaoForm.controls.comprimento.markAsDirty()
   }
 
-  deleteQuebra() {
-    this.textos.pop()
+  deleteQuebra(event) {
+    this.textos.splice(this.textos.indexOf(event), 1)
   }
 
   pageButtonsBuilder(pageType: string): null {
