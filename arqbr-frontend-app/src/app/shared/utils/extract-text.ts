@@ -19,56 +19,25 @@ export const extractByRegex = (text, pattern, occurence=0) => {
   }
 }
   
-export const extractBySearchTextGetLine = (text, field) => {
-  let targetLine = ''
+export const extractBySearchTextGetLine = (text: string, {
+  texto,
+  linha,
+  inicio,
+  comprimento
+}) => {
   const lines = text.replace(/(^[ \t]*\n)/gm, "").split("\n")
 
   const output = []
-  lines.map((line: string) => {
-    if (line.includes(field)) {
-      const lineBreak = line.split(line, field)
-      console.log(lineBreak)
-      output.push(lineBreak[1])
+  lines.map((line: string, index: number) => {
+    let lineIndex 
+    if (line.includes(texto)) {
+      lineIndex = index + linha
+      const occurenceIndex = line.indexOf(inicio)
+      const word = lines[lineIndex].substring(occurenceIndex, occurenceIndex + comprimento)
+      output.push(word)
     }
   })
 
-  // for (let index = 0; index < lines.length; index++) {
-  //   field.search_text.forEach(searchText => {
-  //     if (lines[index].toUpperCase().includes(searchText.toUpperCase())) {
-  //       targetLine = lines[index + field.line]
-  //       return
-  //     }
-  //   })
-
-  //   if (targetLine !== '') {
-  //     break
-  //   }
-  // }
-
-  // let tempResult = ''
-
-  // if (typeof field.extraction_start === 'string' || field.extraction_start instanceof String) {
-  //   let tempResult = targetLine.substring(targetLine.indexOf(field.extraction_start) + field.extraction_start.length, field.extraction_length).trim()
-
-  //   tempResult = tempResult.replace(/[|!;\[\]]/g, '')
-
-  //   if (tempResult.includes(field.extraction_start)) {
-  //     tempResult = tempResult.substring(tempResult.indexOf(field.extraction_start) + field.extraction_start.length, field.extraction_length).trim()
-  //   }
-    
-  //   if (tempResult.includes('   ')) {
-  //     tempResult = tempResult.substring(tempResult.indexOf('   ') + 3, field.extraction_length).trim()
-  //   }
-  // } else {
-  //   let tempResult = targetLine.substring(field.extraction_start + field.extraction_start.length, field.extraction_length).trim()
-
-  //   tempResult = tempResult.replace(/[|!;\[\]]/g, '')
-    
-  //   if (tempResult.includes('   ')) {
-  //     tempResult = tempResult.substring(tempResult.indexOf('   ') + 3, field.extraction_length).trim()
-  //   }
-  // }
-
-  return output
+ return output
 }
 

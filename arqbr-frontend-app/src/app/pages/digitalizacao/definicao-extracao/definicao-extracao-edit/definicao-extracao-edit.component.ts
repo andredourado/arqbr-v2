@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core"
 import { ActivatedRoute, Router } from '@angular/router'
-import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification, PoComboOption, PoTableComponent, PoTableColumn } from '@po-ui/ng-components'
+import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification, PoComboOption, PoTableComponent, PoTableColumn, PoModalComponent } from '@po-ui/ng-components'
 import { FormBuilder } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { environment } from "src/environments/environment"
@@ -39,6 +39,7 @@ type textoType = {
 })
 export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
+  @ViewChild(PoModalComponent, { static: true }) modal: PoModalComponent
     columns: Array<PoTableColumn> = [
       {
         property: 'nomeCampo',
@@ -70,6 +71,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   nomeArquivo: string
   textoBotao = ''
   items: any
+  resultado: string
   public uploadUrl = `${environment.baseUrl}/documentos-digitais/extracao`
   public id: string
   public clienteId = ''
@@ -79,6 +81,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   public readonly = false
   public result: any
   public literals: any = {}
+  public matches = []
 
   searchForm = this.formBuilder.group({
     clienteId: null,
@@ -163,12 +166,20 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   }
 
   extractTextTeste() {
-    const { estrategia, texto, inicio, comprimento } = this.extracaoForm.value
-
+    const { estrategia, texto, linha, inicio, comprimento } = this.extracaoForm.value
+  
     if (estrategia === 'lineInLine') {
-      const result = extractBySearchTextGetLine(this.text, texto)
-      console.log(result)
+      this.matches = extractBySearchTextGetLine(this.text, {
+        texto,
+        linha,
+        inicio,
+        comprimento
+      })
+    } else {
+      this.matches = extractByRegex(this.text, 'mm/yyyy')
     }
+
+    this.modal.open()
   }
 
   uploadFile(event) {
@@ -412,6 +423,22 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
       })
     }
 
+    onEstrategiaChange() {
+      const estrategia = this.extracaoForm.get('estrategia').value;
+    
+      if (estrategia === 'regex') {
+        this.extracaoForm.get('texto').disable();
+        this.extracaoForm.get('linha').disable();
+        this.extracaoForm.get('inicio').disable();
+        this.extracaoForm.get('comprimento').disable();
+      } else {
+        this.extracaoForm.get('texto').enable();
+        this.extracaoForm.get('linha').enable();
+        this.extracaoForm.get('inicio').enable();
+        this.extracaoForm.get('comprimento').enable();
+      }
+    }
+    
 
 
   markAsDirty() {
