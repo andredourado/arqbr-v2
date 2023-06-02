@@ -9,7 +9,7 @@ import { RestService } from "src/app/services/rest.service"
 import { DomSanitizer } from '@angular/platform-browser'
 import { v4 as uuidV4 } from 'uuid'
 import { LanguagesService } from 'src/app/services/languages.service'
-
+import { extractByRegex, extractBySearchTextGetLine } from 'src/app/shared/utils/extract-text'
 
 const ZOOM_STEP: number = 0.1
 const DEFAULT_ZOOM: number = 0.6
@@ -27,6 +27,7 @@ type textoType = {
   titulo?: string,
   estrategia?: string,
   texto?: string,
+  linha?: string,
   inicio?: string,
   comprimento?: number
 }
@@ -37,8 +38,29 @@ type textoType = {
   styleUrls: ["./definicao-extracao-edit.component.scss"],
 })
 export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
+  @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
+    columns: Array<PoTableColumn> = [
+      {
+        property: 'nomeCampo',
+        label: 'Nome de Campo',
+        width: '20%'
+      },
+      {
+        property: 'titulo',
+        label: 'Título',
+        width: '40%'
+      },
+      {
+        property: 'estrategia',
+        label: 'Estratégia'
+      }
+    ]
+  public tableActions: PoPageAction[] = [
+    { label: 'Deletar', action: this.deleteQuebra.bind(this), icon: 'fa-solid fa-trash' }
+  ]
   public text = ''
   file: string
+  fileName: string
   page: number = 1
   scale = DEFAULT_ZOOM
   totalPages: number = 0
@@ -47,6 +69,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   nomeArquivo: string
   textoBotao = ''
   items: any
+  public uploadUrl = `${environment.baseUrl}/documentos-digitais/extracao`
   public id: string
   public clienteId = ''
   public isLoading = false
@@ -69,6 +92,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     titulo: '',
     estrategia: '',
     texto: '',
+    linha: '',
     inicio: '',
     comprimento: 0
   })
@@ -137,14 +161,57 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     this.tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select?clienteId=${event}`
   }
 
-  openFileExplorer() {
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement
-    fileInput.click()
+  extractTextTeste() {
+    const { estrategia, texto, inicio, comprimento } = this.extracaoForm.value
+
+    if (estrategia === 'lineInLine') {
+      const result = extractBySearchTextGetLine(this.text, texto)
+      console.log(result)
+    }
   }
-  
+
+  uploadFile(event) {
+    const target = event.target as HTMLInputElement
+
+    if (target.files) {
+      const data = new FormData()
+
+      data.append('file', target.files[0])
+
+      this.subscriptions.add(
+        this.restService
+          .post("/documentos-digitais/extracao", data)
+          .subscribe({
+            next: (res: IResponse) => {
+              console.log(res)
+              this.text = res.data.text
+              this.totalPages = res.data.numberPages
+            }
+          })
+      )
+    }
+  }
+
   onFileSelected(event: Event) {
     const fileInput = event.target as HTMLInputElement
     const file = fileInput.files[0]
+
+    const payload = {
+      file: file,
+      fileName: file.name,
+      page: this.page
+    }
+
+    this.subscriptions.add(
+      this.restService
+        .post("/documentos-digitais/extracao", payload)
+        .subscribe({
+          next: (res: IResponse) => {
+            this.text = res.data.text
+            this.totalPages = res.data.numberPages
+          }
+        })
+    )
   }
 
   searchPdf() {
@@ -160,8 +227,6 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
       nomeArquivo: this.file,
       page: this.page
     }
-
-    console.log(payload)
 
     this.subscriptions.add(
       this.restService
@@ -231,13 +296,14 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
 
   addExtracao() { 
     if (this.extracaoForm.valid) {
-      const {  textoQuebra, nomeCampo, titulo, estrategia, texto, inicio, comprimento } = this.extracaoForm.value
+      const {  textoQuebra, nomeCampo, titulo, estrategia, texto, linha, inicio, comprimento } = this.extracaoForm.value
       const payload = {
         textoQuebra,
         nomeCampo,
         titulo,
         estrategia,
         texto,
+        linha,
         inicio,
         comprimento
       }
@@ -254,6 +320,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
     this.extracaoForm.controls.titulo.markAsDirty()
     this.extracaoForm.controls.estrategia.markAsDirty()
     this.extracaoForm.controls.texto.markAsDirty()
+    this.extracaoForm.controls.linha.markAsDirty()
     this.extracaoForm.controls.inicio.markAsDirty()
     this.extracaoForm.controls.comprimento.markAsDirty()
   }

@@ -35,6 +35,7 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
           titulo: texto.titulo,
           estrategia: texto.estrategia,
           texto: texto.texto,
+          linha: texto.linha,
           inicio: texto.inicio,
           comprimento: texto.comprimento
         })
@@ -209,7 +210,9 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
           'def.titulo as "titulo"',
           'def.estrategia as "estrategia"',
           'def.texto as "texto"',
+          'def.linha as "linha"',
           'def.inicio as "inicio"',
+          'def.comprimento as "comprimento"'
         ])
         .addOrderBy('def.sequencia', 'ASC')
         .getRawMany()
@@ -221,7 +224,7 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
       const newDefinicaoExtracao = newObjectBuilder({
         data: definicaoExtracao,
         ref: 'clienteId',
-        variablesToArray: [ 'textoQuebra', 'nomeCampo', 'titulo', 'estrategia', 'texto', 'inicio' ],
+        variablesToArray: [ 'textoQuebra', 'nomeCampo', 'titulo', 'estrategia', 'texto', 'linha', 'inicio', 'comprimento' ],
         nameArrayVariable: 'textos'
       })
 
@@ -244,6 +247,7 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
     titulo,
     estrategia,
     texto,
+    linha,
     inicio,
     comprimento
   }: IDefinicaoExtracaoDTO): Promise<HttpResponse> {
@@ -264,6 +268,7 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
       titulo,
       estrategia,
       texto,
+      linha,
       inicio,
       comprimento
     })

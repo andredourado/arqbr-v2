@@ -19,6 +19,7 @@ export const definicaoExtracaoFields = {
     titulo: 'Título',
     estrategia: 'Estratégia',  
     texto: 'Texto',
+    linha: 'Linha',
     inicio: 'Início',
     comprimento: 'Comprimento'
   }
