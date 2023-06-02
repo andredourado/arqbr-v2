@@ -61,6 +61,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   public text = ''
   file: string
   fileName: string
+  uploadedFile: string
   page: number = 1
   scale = DEFAULT_ZOOM
   totalPages: number = 0
@@ -179,39 +180,17 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
       data.append('file', target.files[0])
 
       this.subscriptions.add(
-        this.restService
-          .post("/documentos-digitais/extracao", data)
+        this.httpClient
+          .post(`${environment.baseUrl}/documentos-digitais/extracao`, data)
           .subscribe({
             next: (res: IResponse) => {
-              console.log(res)
               this.text = res.data.text
               this.totalPages = res.data.numberPages
+              this.uploadedFile = res.data.fileName
             }
           })
       )
     }
-  }
-
-  onFileSelected(event: Event) {
-    const fileInput = event.target as HTMLInputElement
-    const file = fileInput.files[0]
-
-    const payload = {
-      file: file,
-      fileName: file.name,
-      page: this.page
-    }
-
-    this.subscriptions.add(
-      this.restService
-        .post("/documentos-digitais/extracao", payload)
-        .subscribe({
-          next: (res: IResponse) => {
-            this.text = res.data.text
-            this.totalPages = res.data.numberPages
-          }
-        })
-    )
   }
 
   searchPdf() {
@@ -225,19 +204,33 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   loadPage() {
     const payload = {
       nomeArquivo: this.file,
-      page: this.page
+      page: this.page,
+      fileName: this.uploadedFile
     }
 
-    this.subscriptions.add(
-      this.restService
-        .post("/documentos-digitais/extracao-s3", payload)
-        .subscribe({
-          next: (res: IResponse) => {
-            this.text = res.data.text
-            this.totalPages = res.data.numberPages
-          }
-        })
-    )
+    if (this.uploadedFile) {
+      this.subscriptions.add(
+        this.restService
+          .post("/documentos-digitais/extracao", payload)
+          .subscribe({
+            next: (res: IResponse) => {
+              this.text = res.data.text
+              this.totalPages = res.data.numberPages
+            }
+          })
+      )
+    } else {
+      this.subscriptions.add(
+        this.restService
+          .post("/documentos-digitais/extracao-s3", payload)
+          .subscribe({
+            next: (res: IResponse) => {
+              this.text = res.data.text
+              this.totalPages = res.data.numberPages
+            }
+          })
+      )
+    }
   } 
 
   changePage() {
