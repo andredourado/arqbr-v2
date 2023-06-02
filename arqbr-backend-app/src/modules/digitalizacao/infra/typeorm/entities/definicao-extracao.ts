@@ -40,6 +40,9 @@ class DefinicaoExtracao {
   @Column({ name: 'texto', nullable: true })
   texto?: string
 
+  @Column({ name: 'linha', nullable: true })
+  linha?: string
+
   @Column({ name: 'inicio', nullable: true })
   inicio?: string
 

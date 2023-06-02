@@ -17,6 +17,7 @@ class DefinicaoExtracaoRepositoryInMemory implements IDefinicaoExtracaoRepositor
     titulo,
     estrategia,
     texto,
+    linha,
     inicio,
     comprimento
   }: IDefinicaoExtracaoDTO): Promise<HttpResponse> {
@@ -32,6 +33,7 @@ class DefinicaoExtracaoRepositoryInMemory implements IDefinicaoExtracaoRepositor
       titulo,
       estrategia,
       texto,
+      linha,
       inicio,
       comprimento
     })
@@ -122,6 +124,7 @@ class DefinicaoExtracaoRepositoryInMemory implements IDefinicaoExtracaoRepositor
     titulo,
     estrategia,
     texto,
+    linha,
     inicio,
     comprimento
     
@@ -137,6 +140,7 @@ class DefinicaoExtracaoRepositoryInMemory implements IDefinicaoExtracaoRepositor
     this.definicoesExtracao[index].titulo = titulo
     this.definicoesExtracao[index].estrategia = estrategia
     this.definicoesExtracao[index].texto = texto
+    this.definicoesExtracao[index].linha = linha
     this.definicoesExtracao[index].inicio = inicio
     this.definicoesExtracao[index].comprimento = comprimento
 

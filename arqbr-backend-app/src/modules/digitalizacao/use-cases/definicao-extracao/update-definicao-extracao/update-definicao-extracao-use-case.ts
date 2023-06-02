@@ -15,6 +15,7 @@ interface IRequest {
   titulo: string
   estrategia: string
   texto: string
+  linha: string
   inicio: string
   comprimento: number
 }
@@ -37,6 +38,7 @@ class UpdateDefinicaoExtracaoUseCase {
     titulo,
     estrategia,
     texto,
+    linha,
     inicio,
     comprimento
   }: IRequest): Promise<HttpResponse> {
@@ -50,6 +52,7 @@ class UpdateDefinicaoExtracaoUseCase {
       titulo,
       estrategia,
       texto,
+      linha,
       inicio,
       comprimento
     })

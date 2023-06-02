@@ -47,10 +47,12 @@
         > </po-input>
       </div>
 
-      <div class="po-sm-2 po-md-2 po-lg-2 po-xl-2 po-mt-4 no-padding" style= "display: flex; gap: 10px">
+      <div class="po-sm-1 po-md-1 po-lg-2 po-xl-2 po-mt-4 no-padding botoes">
         <po-button (p-click)="searchPdf()" p-label="S3" p-kind="secondary"> </po-button>
-        <po-button (click)="openFileExplorer()" p-label="Local" p-kind="primary"> </po-button>
-        <input type="file" id="fileInput" style="display: none" (change)="onFileSelected($event)">
+        <div class="upload">
+          <input type="file" id="file" (change)="uploadFile($event)">
+          <span>Local</span>
+        </div>
       </div>
     </form>
   </div>
@@ -61,7 +63,6 @@
         {{text}}
       </div>
             <po-divider></po-divider>
-
 
       <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
         <nav>
@@ -97,11 +98,12 @@
         </nav>
       </div>
     </div>
-    <div class="campo-quebras">
+    
+  <div class="campo-quebras">
     <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 extracao">
       <form [formGroup]="extracaoForm">
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
             name="textoQuebra" 
             p-clean 
             [p-disabled]="readonly"
@@ -112,7 +114,7 @@
         </div>
 
         <div class="po-sm-6 po-md-6 po-lg-6 po-xl-6 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
             name="nomeCampo" 
             p-clean 
             [p-disabled]="readonly"
@@ -123,7 +125,7 @@
         </div>
 
         <div class="po-sm-6 po-md-6 po-lg-6 po-xl-6 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
             name="titulo" 
             p-clean 
             [p-disabled]="readonly"
@@ -134,22 +136,22 @@
         </div>
 
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
+          <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
             name="estrategia" 
             p-clean 
             [p-disabled]="readonly"
             formControlName="estrategia"
             p-label="Estratégia" 
             [p-options]="[
-              { label: 'Option 1', value: '1' },
-              { label: 'Option 2', value: '2' }
+              { label: 'Regex', value: 'regex' },
+              { label: 'Linha a linha', value: 'lineInLine' }
             ]"
             p-required
           > </po-combo>
         </div>
 
-        <div class="po-sm-4 po-md-4 po-lg-4 po-xl-4 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
+        <div class="po-sm-4 po-md-4 po-lg-4 po-xl-6 no-padding">
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
             name="texto" 
             p-clean 
             [p-disabled]="readonly"
@@ -159,8 +161,19 @@
           > </po-input>
         </div>
 
-        <div class="po-sm-4 po-md-4 po-lg-4 po-xl-4 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
+        <div class="po-sm-4 po-md-4 po-lg-4 po-xl-6 no-padding">
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
+            name="linha" 
+            p-clean 
+            [p-disabled]="readonly"
+            formControlName="linha"
+            p-label="Linha" 
+            p-required
+          > </po-input>
+        </div>
+
+        <div class="po-sm-4 po-md-4 po-lg-4 po-xl-6 no-padding">
+          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
             name="inicio" 
             p-clean 
             [p-disabled]="readonly"
@@ -170,8 +183,8 @@
           > </po-input>
         </div>
 
-        <div class="po-sm-4 po-md-4 po-lg-4 po-xl-4 no-padding">
-          <po-number class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
+        <div class="po-sm-4 po-md-4 po-lg-4 po-xl-6 no-padding">
+          <po-number class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
             name="comprimento" 
             p-clean 
             [p-disabled]="readonly"
@@ -182,12 +195,13 @@
         </div>
 
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
-          <po-button p-label="Teste" p-kind="secondary"> </po-button>
+          <po-modal #modal p-title="Extrações"> Os campos achados </po-modal>
+          <po-button (p-click)="extractTextTeste()" p-label="Teste" p-kind="secondary"> </po-button>
           <po-button (p-click)="addExtracao()" p-label="Adicionar" p-kind="primary"> </po-button>
         </div>
       </form>
     </div>
-      <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
+      <!-- <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
         <table class="quebras-table">
           <thead>
             <th>CAMPOS</th>
@@ -210,21 +224,23 @@
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
           <po-button (p-click)="deleteQuebra()"  p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
         </div>
-      </div>
-
-      <!-- <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12">
-        <po-table 
-          [p-auto-collapse]="true"
-          [p-height]="listHeight"
-          [p-columns]="columns"
-          p-container="string"
-          [p-hide-columns-manager]="true"
-          [p-items]="textos"
-          [p-striped]="true"
-          p-height="200"
-        > </po-table>
       </div> -->
+
     </div>
+  </div>
+  <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12" style="margin-top: 15px;">
+    <po-table 
+      [p-actions]="tableActions"
+      p-actions-right
+      [p-auto-collapse]="true"
+      [p-height]="listHeight"
+      [p-columns]="columns"
+      p-container="string"
+      [p-hide-columns-manager]="true"
+      [p-items]="textos"
+      [p-striped]="true"
+      p-height="200"
+    > </po-table>
   </div>
 
   <po-loading-overlay *ngIf="isLoading" [p-screen-lock]="true" p-text="Carregando"> </po-loading-overlay>

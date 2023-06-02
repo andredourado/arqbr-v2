@@ -9,6 +9,7 @@ interface IDefinicaoExtracaoDTO {
   titulo?: string
   estrategia?: string
   texto?: string
+  linha?: string
   inicio?: string
   comprimento?: Number
   textos?: any[]

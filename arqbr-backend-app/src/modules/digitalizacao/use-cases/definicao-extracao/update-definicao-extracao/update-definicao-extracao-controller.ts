@@ -14,6 +14,7 @@ class UpdateDefinicaoExtracaoController {
       titulo,
       estrategia,
       texto,
+      linha,
       inicio,
       comprimento
     } = request.body
@@ -33,6 +34,7 @@ class UpdateDefinicaoExtracaoController {
         titulo,
         estrategia,
         texto,
+        linha,
         inicio,
         comprimento
       })

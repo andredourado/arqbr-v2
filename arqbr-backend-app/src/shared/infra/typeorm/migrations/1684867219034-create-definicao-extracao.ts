@@ -57,6 +57,11 @@ export class CreateDefinicaoExtracao1684867219034 implements MigrationInterface 
             isNullable: true,
           },
           {
+            name: 'linha',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'inicio',
             type: 'varchar',
             isNullable: true,
