@@ -12,11 +12,7 @@ export const extractByRegex = (text, pattern, occurence=0) => {
     matches.push(match[0])
   }
 
-  if (matches.length > 0) {
-    return matches[occurence]
-  } else {
-    return ''
-  }
+    return matches
 }
   
 export const extractBySearchTextGetLine = (text: string, {

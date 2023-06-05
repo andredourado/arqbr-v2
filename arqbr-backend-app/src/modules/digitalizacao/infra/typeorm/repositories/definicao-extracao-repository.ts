@@ -196,8 +196,6 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
   // get
   async get (id: string): Promise<HttpResponse> {
     try {
-      const texto = await this.repository.findOne(id)
-
       const definicaoExtracao = await this.repository.createQueryBuilder('def')
         .select([
           'def.id as "id"',
@@ -214,7 +212,7 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
           'def.inicio as "inicio"',
           'def.comprimento as "comprimento"'
         ])
-        .addOrderBy('def.sequencia', 'ASC')
+        .where('def.id = :id', { id })
         .getRawMany()
 
       if (typeof definicaoExtracao === 'undefined') {

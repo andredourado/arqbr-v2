@@ -1,7 +1,7 @@
 <po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
   <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 campos">
     <form [formGroup]="searchForm">
-      <div class="po-sm-12 po-md-3 po-lg-4 po-xl-3 no-padding">
+      <div class="po-sm-12 po-md-6 po-lg-4 po-xl-3 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
           p-clean 
           [p-disabled]="readonly"
@@ -14,7 +14,7 @@
         > </po-combo>
       </div>
 
-      <div class="po-sm-12 po-md-3 po-lg-4 po-xl-3 no-padding">
+      <div class="po-sm-12 po-md-6 po-lg-4 po-xl-3 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
         p-clean
         [p-disabled]="readonly"
@@ -26,7 +26,7 @@
         > </po-combo>
       </div>
 
-      <div class="po-sm-12 po-md-2 po-lg-4 po-xl-2 no-padding">
+      <div class="po-sm-12 po-md-6 po-lg-4 po-xl-2 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
         p-clean [p-disabled]="readonly"
         formControlName="tipoDocumentoId"
@@ -37,7 +37,7 @@
         > </po-combo>
       </div>
 
-      <div class="po-sm-2 po-md-2 po-lg-3 po-xl-2 p no-padding">
+      <div class="po-sm-12 po-md-6 po-lg-3 po-xl-2 p no-padding">
         <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12"
           name="pdf"
           p-clean
@@ -47,7 +47,7 @@
         > </po-input>
       </div>
 
-      <div class="po-sm-1 po-md-1 po-lg-2 po-xl-2 po-mt-4 no-padding botoes">
+      <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 po-mt-4 no-padding botoes">
         <po-button (p-click)="searchPdf()" p-label="S3" p-kind="secondary"> </po-button>
         <div class="upload">
           <input type="file" id="file" (change)="uploadFile($event)">
@@ -151,7 +151,7 @@
           > </po-combo>
         </div>
 
-        <div class="po-sm-4 po-md-4 po-lg-6 po-xl-6 no-padding">
+        <div class="po-sm-6 po-md-6 po-lg-6 po-xl-6 no-padding">
           <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
             name="texto" 
             p-clean 
@@ -161,7 +161,7 @@
           > </po-input>
         </div>
 
-        <div class="po-sm-4 po-md-4 po-lg-6 po-xl-6 no-padding">
+        <div class="po-sm-6 po-md-6 po-lg-6 po-xl-6 no-padding">
           <po-number class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
             name="linha" 
             p-clean 
@@ -171,7 +171,7 @@
           > </po-number>
         </div>
 
-        <div class="po-sm-4 po-md-4 po-lg-6 po-xl-6 no-padding">
+        <div class="po-sm-6 po-md-6 po-lg-6 po-xl-6 no-padding">
           <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
             name="inicio" 
             p-clean 
@@ -181,7 +181,7 @@
           > </po-input>
         </div>
 
-        <div class="po-sm-4 po-md-4 po-lg-6 po-xl-6 no-padding">
+        <div class="po-sm-6 po-md-6 po-lg-6 po-xl-6 no-padding">
           <po-number class="po-sm-12 po-md-12 po-lg-12 po-xl-12" 
             name="comprimento" 
             p-clean 
@@ -193,7 +193,7 @@
 
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
           <po-modal #modal p-title="Extrações">
-            <div> Os campos achados </div>
+            <div> Campos encontrados</div>
             <div *ngFor="let match of matches">{{ match }}</div>
           </po-modal>
           <po-button (p-click)="extractTextTeste()" p-label="Teste" p-kind="secondary"> </po-button>

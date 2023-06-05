@@ -312,7 +312,6 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
         comprimento
       }
       this.textos.push(payload)
-      console.log(this.textos)
       this.extracaoForm.reset()
 
       return 
