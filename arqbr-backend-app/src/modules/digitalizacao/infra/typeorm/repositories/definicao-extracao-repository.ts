@@ -25,7 +25,7 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
 
     try {
       for await (let texto of textos) {
-        const caixaQuebra = this.repository.create({
+        const definicaoExtracao = this.repository.create({
           clienteId,
           departamentoId,
           tipoDocumentoId,
@@ -40,7 +40,7 @@ class DefinicaoExtracaoRepository implements IDefinicaoExtracaoRepository {
           comprimento: texto.comprimento
         })
 
-        await this.repository.save(caixaQuebra)
+        await this.repository.save(definicaoExtracao)
       }
 
       return noContent()

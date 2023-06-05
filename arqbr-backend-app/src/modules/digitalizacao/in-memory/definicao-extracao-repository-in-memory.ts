@@ -129,7 +129,7 @@ class DefinicaoExtracaoRepositoryInMemory implements IDefinicaoExtracaoRepositor
     comprimento
     
   }: IDefinicaoExtracaoDTO): Promise<HttpResponse> {
-    const index = this.definicoesExtracao.findIndex((caixaQuebra) => caixaQuebra.id === id)
+    const index = this.definicoesExtracao.findIndex((definicaoExtracao) => definicaoExtracao.id === id)
 
     this.definicoesExtracao[index].clienteId = clienteId
     this.definicoesExtracao[index].departamentoId = departamentoId

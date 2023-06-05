@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
+import { DefinicaoExtracaoListComponent } from 'src/app/pages/digitalizacao/definicao-extracao/definicao-extracao-list/definicao-extracao-list.component'
 import { DefinicaoExtracaoEditComponent } from 'src/app/pages/digitalizacao/definicao-extracao/definicao-extracao-edit/definicao-extracao-edit.component'
 import { AuthGuard } from 'src/app/services/auth.guard'
 
 const routesDefinicaoExtracao = [
   {
     path: "",
-    component: DefinicaoExtracaoEditComponent,
+    component: DefinicaoExtracaoListComponent,
     canActivate: [AuthGuard],
   },
   {
