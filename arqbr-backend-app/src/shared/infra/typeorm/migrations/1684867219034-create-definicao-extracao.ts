@@ -84,7 +84,7 @@ export class CreateDefinicaoExtracao1684867219034 implements MigrationInterface 
         ],
         foreignKeys: [
           {
-            name: 'FKClienteCaixaQuebraClienteId',
+            name: 'FKClienteDefinicaoExtracaoClienteId',
             referencedTableName: 'clientes',
             referencedColumnNames: ['id'],
             columnNames: ['cliente_id'],
@@ -92,7 +92,7 @@ export class CreateDefinicaoExtracao1684867219034 implements MigrationInterface 
             onUpdate: 'SET NULL',
           },
           {
-            name: 'FKDepartamentoCaixaQuebraDepartamentoId',
+            name: 'FKDepartamentoDefinicaoExtracaoDepartamentoId',
             referencedTableName: 'departamentos',
             referencedColumnNames: ['id'],
             columnNames: ['departamento_id'],
@@ -100,7 +100,7 @@ export class CreateDefinicaoExtracao1684867219034 implements MigrationInterface 
             onUpdate: 'SET NULL',
           },
           {
-            name: 'FKTipoDocumentoCaixaQuebraTipoDocumentoId',
+            name: 'FKTipoDocumentoDefinicaoExtracaoTipoDocumentoId',
             referencedTableName: 'tipos_documento',
             referencedColumnNames: ['id'],
             columnNames: ['tipo_documento_id'],

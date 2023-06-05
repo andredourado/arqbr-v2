@@ -1,4 +1,4 @@
-export const definicaoExtracaoFields = {
+export const definicoesExtracaoFields = {
   list: {
     clienteId: 'Cliente',
     departamentoNome: 'Centro de Custo',
