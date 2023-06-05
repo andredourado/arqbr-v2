@@ -82,6 +82,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
   public result: any
   public literals: any = {}
   public matches = []
+  public titulos = []
 
   searchForm = this.formBuilder.group({
     clienteId: null,

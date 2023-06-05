@@ -47,7 +47,7 @@
         > </po-input>
       </div>
 
-      <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 po-mt-4 no-padding botoes">
+      <div class="po-sm-12 po-md-6 po-lg-2 po-xl-2 po-mt-4 botoes">
         <po-button (p-click)="searchPdf()" p-label="S3" p-kind="secondary"> </po-button>
         <div class="upload">
           <input type="file" id="file" (change)="uploadFile($event)">
@@ -66,11 +66,6 @@
 
       <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
         <nav>
-          <div class="zoom-component">
-            <div (click)="zoomIn()" class="nav-component button-zoom fa-solid fa-magnifying-glass-plus nav-icon"></div>
-            <div (click)="zoomOut()" class="nav-component fa-solid fa-magnifying-glass-minus nav-icon"></div>
-            <div (click)="resetZoom()" class="nav-component button-zoom fa-solid fa-rotate-right nav-icon"></div>
-          </div>
           <div class="pass-page">
             <div class="number-pages-avance pass-page-margin">
               <button (click)="prev50Page()" [disabled]="page === 1"
@@ -194,6 +189,7 @@
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
           <po-modal #modal p-title="Extrações">
             <div> Campos encontrados</div>
+            <div *ngFor="let titulo of titulos">{{ titulo }}</div>
             <div *ngFor="let match of matches">{{ match }}</div>
           </po-modal>
           <po-button (p-click)="extractTextTeste()" p-label="Teste" p-kind="secondary"> </po-button>
@@ -201,30 +197,6 @@
         </div>
       </form>
     </div>
-      <!-- <div class="po-sm-12 po-md-6 po-lg-6 po-xl-6 no-padding table-div">
-        <table class="quebras-table">
-          <thead>
-            <th>CAMPOS</th>
-          </thead>
-
-          <div class="table-body">
-            <tr class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-              <td class="po-font-text-large documento">Nome do Campo</td>
-              <td class="po-font-text-large inicial">Título</td>
-              <td class="po-font-text-large final">Estratégia</td>
-            </tr>
-            <tr *ngFor="let texto of textos"
-              class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-              <td class="po-font-text-large documento">{{ texto.nomeCampo }}</td>
-              <td class="po-font-text-large inicial">{{ texto.titulo }}</td>
-              <td class="po-font-text-large final">{{ texto.estrategia }}</td>
-            </tr>
-          </div>
-        </table>
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
-          <po-button (p-click)="deleteQuebra()"  p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
-        </div>
-      </div> -->
 
     </div>
   </div>
