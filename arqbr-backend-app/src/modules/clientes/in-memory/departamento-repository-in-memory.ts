@@ -4,6 +4,9 @@ import { Departamento } from '@modules/clientes/infra/typeorm/entities/departame
 import { ok, notFound, HttpResponse } from '@shared/helpers'
 
 class DepartamentoRepositoryInMemory implements IDepartamentoRepository {
+  selectFiltered(filter: string, clienteId: string): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
   departamentos: Departamento[] = []
 
   // create

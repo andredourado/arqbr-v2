@@ -4,6 +4,9 @@ import { TipoDocumento } from '@modules/digitalizacao/infra/typeorm/entities/tip
 import { ok, notFound, HttpResponse } from '@shared/helpers'
 
 class TipoDocumentoRepositoryInMemory implements ITipoDocumentoRepository {
+  selectFiltered(filter: string, clienteId: string, departamentoId: string): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
   tiposDocumento: TipoDocumento[] = []
 
   // create
