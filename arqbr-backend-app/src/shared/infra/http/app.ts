@@ -37,7 +37,8 @@ app.use(Sentry.Handlers.requestHandler())
 app.use(Sentry.Handlers.tracingHandler())
 
 // @ts-ignore
-app.use(express.json())
+app.use(express.json({ limit: '1000mb' }))
+app.use(express.urlencoded({ limit: '1000mb' }))
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`))
@@ -47,7 +48,7 @@ const allowedOrigins = '*'
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 }
 
 app.use(cors(options))
