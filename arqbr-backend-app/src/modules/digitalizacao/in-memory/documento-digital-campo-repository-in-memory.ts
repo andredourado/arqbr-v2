@@ -4,6 +4,9 @@ import { DocumentoDigitalCampo } from '@modules/digitalizacao/infra/typeorm/enti
 import { ok, notFound, HttpResponse } from '@shared/helpers'
 
 class DocumentoDigitalCampoRepositoryInMemory implements IDocumentoDigitalCampoRepository {
+  listByDocumento(documentoDigitalId: string): Promise<HttpResponse> {
+    throw new Error('Method not implemented.')
+  }
   documentosDigitaisCampos: DocumentoDigitalCampo[] = []
 
   // create
