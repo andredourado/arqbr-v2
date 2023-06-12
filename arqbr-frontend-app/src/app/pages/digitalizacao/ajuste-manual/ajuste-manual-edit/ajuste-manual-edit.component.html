@@ -1,7 +1,7 @@
 <po-page-default [p-title]="this.literals.title" [p-actions]="pageActions">
-  <div class="campos">
-    <form [formGroup]="searchForm">
-      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+  <!--<div class="campos">
+     <form [formGroup]="searchForm">
+      <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
           p-clean 
           [p-disabled]="readonly"
@@ -14,7 +14,7 @@
         > </po-combo>
       </div>
 
-      <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
+      <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
         <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
         p-clean [p-disabled]="readonly"
         formControlName="departamentoId"
@@ -25,6 +25,20 @@
         > </po-combo>
       </div>
 
+      <div class="po-sm-12 po-md-4 po-lg-4 po-xl-4 no-padding">
+        <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
+          name="tipoDocumentoId"
+          p-clean 
+          [p-disabled]="readonly"
+          formControlName="tipoDocumentoId" 
+          name="tipoDocumentoId"
+          [p-filter-service]="tipoDocumentoIdService"
+          p-label="Tipos de Documentos"
+          p-required
+        > </po-combo>
+      </div> 
+
+
       <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding">
         <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
           name="caixa"
@@ -34,15 +48,15 @@
           p-label="Documento Digital"
           p-required
         > </po-input>
-      </div>
+      </div> 
 
       <div class="po-sm-12 po-md-3 po-lg-3 po-xl-3 no-padding po-mt-1">
         <button type="button" class="fa-solid fa-magnifying-glass fa-lg button-filter"
         (click)="searchCaixas()"
         > </button>
-      </div>
+      </div> 
     </form>
-  </div>
+  </div>-->
 
   <div id="sideMenu" class="po-sm-12 po-md-12 po-lg-12 po-xl-12 side-menu">
     <div class="page-body shadow">
@@ -94,23 +108,11 @@
       </div>
     </div>
     <div class="campo-quebras">
-      <form [formGroup]="quebraForm">
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-combo class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
-            name="tipoDocumentoId"
-            p-clean 
-            [p-disabled]="readonly"
-            formControlName="tipoDocumentoId" 
-            name="tipoDocumentoId"
-            [p-filter-service]="tipoDocumentoIdService"
-            p-label="Tipos de Documentos"
-            p-required
-          > </po-combo>
-        </div>
-
+      <form [formGroup]="ajusteForm">
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
           <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required"
-            name="paginaInicial" 
+            name="conteudo" 
+            formControlName="conteudo"
             p-clean 
             [p-disabled]="readonly"
             p-label="Conteúdo" 
@@ -118,20 +120,24 @@
             > </po-input>
         </div>
 
-        <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding">
-          <po-input class="po-sm-12 po-md-12 po-lg-12 po-xl-12 po-required" 
-            name="paginaFinal" 
-            p-clean 
-            [p-disabled]="readonly"
-            p-label="Valor" 
-            p-required
-          > </po-input>
-        </div>
         <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12 no-padding botaozinho">
-          <po-button (p-click)="addQuebra()" p-label="Quebra" p-kind="primary"> </po-button>
-          <po-button (p-click)="deleteQuebra()" p-danger="true" p-label="Deletar" p-kind="secondary"> </po-button>
+          <po-button (p-click)="save()" p-label="Salvar" p-kind="primary"> </po-button>
         </div>
       </form>
+
+      <div class="po-sm-12 po-md-12 po-lg-12 po-xl-12" style="margin-top: 15px;">
+        <po-table 
+          [p-actions]="tableActions"
+          p-actions-right
+          [p-auto-collapse]="true"
+          [p-height]="listHeight"
+          [p-columns]="columns"
+          p-container="string"
+          [p-hide-columns-manager]="true"
+          [p-items]="campos"
+          p-height="200"
+        > </po-table>
+      </div>
     </div>
   </div>
 

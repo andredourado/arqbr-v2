@@ -141,7 +141,7 @@ async function create() {
       ('947f18e3-a042-4066-b355-4b80f2392286', '9a3835cb-1e2d-4370-80b7-3dcbcbd20b51', '006003', 'Quebras de Caixas', '/caixas-quebras', 'List', 'digitalizacao-caixas-quebras', 'now()', 'now()'),			
       ('55655f2b-693c-4efb-a465-afedb938a507', '9a3835cb-1e2d-4370-80b7-3dcbcbd20b51', '006004', 'Documentos Digitais', '/documentos-digitais', 'List', 'digitalizacao-documentos-digitais', 'now()', 'now()'),
 			('14d5bff1-8ca9-4802-8fb0-cf8c71ea79e8', '9a3835cb-1e2d-4370-80b7-3dcbcbd20b51', '006005', 'Campos dos Documentos Digitais', '/documentos-digitais-campos', 'List', 'digitalizacao-documentos-digitais-campos', 'now()', 'now()'),
-			('47e0b4bb-3feb-4f13-a2e9-7b30ba590ba7', '9a3835cb-1e2d-4370-80b7-3dcbcbd20b51', '006006', 'Ajuste Manual', '/ajuste-manual', 'List', 'ajuste-manual', 'now()', 'now()'),
+			('47e0b4bb-3feb-4f13-a2e9-7b30ba590ba7', '9a3835cb-1e2d-4370-80b7-3dcbcbd20b51', '006006', 'Ajuste Manual', '/ajustes-manuais', 'List', 'ajuste-manual', 'now()', 'now()'),
 			('d27019f9-974c-439c-bd4f-c9e040e21e01', '9a3835cb-1e2d-4370-80b7-3dcbcbd20b51', '006007', 'Definição de Extrações', '/definicoes-extracao', 'List', 'definicao-extracao', 'now()', 'now()'),
 			('edbc6472-72ed-403c-a323-af84a34b0335', 'b47dccea-2d1b-419b-b9bb-d17695ad43bf', '007', 'Armazenamento', '', 'fa-solid fa-boxes-stacked', 'armazenamento', 'now()', 'now()'),
 			('2a68d42a-3ba1-4b40-b70c-db0ba3e5e20e', 'b47dccea-2d1b-419b-b9bb-d17695ad43bf', '007001', 'Unidades', '/unidades', 'List', 'armazenamento-unidades', 'now()', 'now()'),

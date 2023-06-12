@@ -1,1 +1,37 @@
-// empty file
+.select-container {
+  width: calc(100% - 58px);
+}
+
+.button-filter {
+  margin-top: 23px;
+  height: 44px; 
+  width: 44px; 
+  background-color: white; 
+  border: 1px solid #b6bdbf;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 8px 0 rgba(0,0,0,.1);
+  color: #0C9ABE;
+  cursor: pointer;
+}
+
+.filter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.busca {
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #0c9abe;
+}

@@ -6,8 +6,6 @@ import { HttpResponse } from '@shared/helpers'
 
 interface IRequest {
   id: string
-  documentoDigitalId: string
-  campoDocumentoId: string
   conteudo: string
 }
 
@@ -20,14 +18,10 @@ class UpdateDocumentoDigitalCampoUseCase {
 
   async execute({
     id,
-    documentoDigitalId,
-    campoDocumentoId,
     conteudo
   }: IRequest): Promise<HttpResponse> {
     const documentoDigitalCampo = await this.documentoDigitalCampoRepository.update({
       id,
-      documentoDigitalId,
-      campoDocumentoId,
       conteudo
     })
 

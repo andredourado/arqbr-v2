@@ -26,8 +26,7 @@ import { camposDocumentoFields } from './fields/pt/digitalizacao/campos-document
 import { caixasQuebrasFields } from './fields/pt/digitalizacao/caixas-quebras'
 import { documentosDigitaisFields } from './fields/pt/digitalizacao/documentos-digitais'
 import { documentosDigitaisCamposFields } from './fields/pt/digitalizacao/documentos-digitais-campos'
-import { quebraManualFields } from './fields/pt/digitalizacao/quebra-manual'
-import { ajusteManualFields } from './fields/pt/digitalizacao/ajuste-manual'
+import { ajustesManuaisFields } from './fields/pt/digitalizacao/ajuste-manual'
 import { definicoesExtracaoFields } from './fields/pt/digitalizacao/definicoes-extracao'
 import { unidadesFields } from './fields/pt/armazenamento/unidades'
 import { plantasFields } from './fields/pt/armazenamento/plantas'
@@ -302,13 +301,9 @@ export const generalPt = {
     title: 'Campos dos Documentos Digitais',
     fields: documentosDigitaisCamposFields
   },
-  digitalizacao_quebraManual: {
-    title: 'Quebra Manual',
-    fields: quebraManualFields
-  },
   digitalizacao_ajusteManual: {
     title: 'Ajuste Manual',
-    fields: ajusteManualFields
+    fields: ajustesManuaisFields
   },
   digitalizacao_definicaoExtracao: {
     title: 'Definição de Extrações',

@@ -15,6 +15,11 @@ interface IDocumentoDigitalCampoRepository {
     filter: string
   ): Promise<HttpResponse>
 
+  // list by documento
+  listByDocumento (
+    documentoDigitalId: string
+  ): Promise<HttpResponse>
+
 
   // select
   select (filter: string): Promise<HttpResponse>

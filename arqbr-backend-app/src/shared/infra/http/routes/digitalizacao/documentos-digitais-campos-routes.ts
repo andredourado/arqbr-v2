@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { CreateDocumentoDigitalCampoController } from '@modules/digitalizacao/use-cases/documento-digital-campo/create-documento-digital-campo/create-documento-digital-campo-controller'
 import { ListDocumentoDigitalCampoController } from '@modules/digitalizacao/use-cases/documento-digital-campo/list-documento-digital-campo/list-documento-digital-campo-controller'
+import { ListByDocumentoDocumentoDigitalCampoController } from '@modules/digitalizacao/use-cases/documento-digital-campo/list-by-documento-documento-digital-campo/list-by-documento-documento-digital-campo-controller'
 import { CountDocumentoDigitalCampoController } from '@modules/digitalizacao/use-cases/documento-digital-campo/count-documento-digital-campo/count-documento-digital-campo-controller'
 import { SelectDocumentoDigitalCampoController } from '@modules/digitalizacao/use-cases/documento-digital-campo/select-documento-digital-campo/select-documento-digital-campo-controller'
 import { IdSelectDocumentoDigitalCampoController } from '@modules/digitalizacao/use-cases/documento-digital-campo/id-select-documento-digital-campo/id-select-documento-digital-campo-controller'
@@ -14,6 +15,7 @@ const documentosDigitaisCamposRoutes = Router()
 
 const createDocumentoDigitalCampoController = new CreateDocumentoDigitalCampoController()
 const listDocumentoDigitalCampoController = new ListDocumentoDigitalCampoController()
+const listByDocumentoDocumentoDigitalCampoController = new ListByDocumentoDocumentoDigitalCampoController()
 const countDocumentoDigitalCampoController = new CountDocumentoDigitalCampoController()
 const selectDocumentoDigitalCampoController = new SelectDocumentoDigitalCampoController()
 const idSelectDocumentoDigitalCampoController = new IdSelectDocumentoDigitalCampoController()
@@ -24,6 +26,7 @@ const multiDeleteDocumentoDigitalCampoController = new MultiDeleteDocumentoDigit
 
 documentosDigitaisCamposRoutes.post('/', ensureAuthenticated, createDocumentoDigitalCampoController.handle )
 documentosDigitaisCamposRoutes.post('/list', ensureAuthenticated, listDocumentoDigitalCampoController.handle)
+documentosDigitaisCamposRoutes.get('/list-by-documento/:documentoDigitalId', ensureAuthenticated, listByDocumentoDocumentoDigitalCampoController.handle)
 documentosDigitaisCamposRoutes.post('/count', ensureAuthenticated, countDocumentoDigitalCampoController.handle)
 documentosDigitaisCamposRoutes.get('/select/:id', ensureAuthenticated, idSelectDocumentoDigitalCampoController.handle)
 documentosDigitaisCamposRoutes.get('/select', ensureAuthenticated, selectDocumentoDigitalCampoController.handle)

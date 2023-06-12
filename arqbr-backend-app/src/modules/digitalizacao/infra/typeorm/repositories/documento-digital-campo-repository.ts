@@ -104,6 +104,27 @@ class DocumentoDigitalCampoRepository implements IDocumentoDigitalCampoRepositor
   }
 
 
+  // list by documento
+  async listByDocumento (documentoDigitalId: string): Promise<HttpResponse> {
+    try {
+      const documentosDigitaisCampos = await this.repository
+        .createQueryBuilder('doc')
+        .select([
+          'doc.id as "id"',
+          'cam.titulo as "campo"',
+          'doc.conteudo as "conteudo"',
+        ])
+        .innerJoin('campos_documento', 'cam', 'doc.campoDocumentoId = cam.id')
+        .where('doc.documentoDigitalId = :documentoDigitalId', { documentoDigitalId })
+        .getRawMany()
+
+      return ok(documentosDigitaisCampos)
+    } catch (err) {
+      return serverError(err)
+    }
+  }
+
+
   // select
   async select (filter: string): Promise<HttpResponse> {
     try {
@@ -204,28 +225,24 @@ class DocumentoDigitalCampoRepository implements IDocumentoDigitalCampoRepositor
   // update
   async update ({
     id,
-    documentoDigitalId,
-    campoDocumentoId,
     conteudo
   }: IDocumentoDigitalCampoDTO): Promise<HttpResponse> {
-    const documentoDigitalCampo = await this.repository.findOne(id)
-
-    if (!documentoDigitalCampo) {
-      return notFound()
-    }
-
-    const newdocumentoDigitalCampo = this.repository.create({
-      id,
-      documentoDigitalId,
-      campoDocumentoId,
-      conteudo
-    })
-
     try {
-      await this.repository.save(newdocumentoDigitalCampo)
+      const documentoDigitalCampo = await this.repository
+        .createQueryBuilder('ddc')
+        .select('*')
+        .where('ddc.id = :id', { id })
+        .getRawOne()
 
-      return ok(newdocumentoDigitalCampo)
+      if (!documentoDigitalCampo) {
+        return notFound()
+      }
+
+      const newDocumentoDigitalCampo = await this.repository.update({ id }, { conteudo })
+
+      return ok(newDocumentoDigitalCampo)
     } catch (err) {
+      console.log(err)
       return serverError(err)
     }
   }

@@ -175,7 +175,7 @@ const routes: Routes = [
         loadChildren: () => import('./modules/digitalizacao/documento-digital-campo/documento-digital-campo.module').then(m => m.DocumentoDigitalCampoModule),
       },
       {
-        path: 'ajuste-manual',
+        path: 'ajustes-manuais',
         loadChildren: () => import('./modules/digitalizacao/ajuste-manual/ajuste-manual.module').then(m => m.AjusteManualModule),
       },
       {

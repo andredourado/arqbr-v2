@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core"
 import { ActivatedRoute, Router } from '@angular/router'
-import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification, PoComboOption, PoTableComponent, PoTableColumn, PoModalComponent } from '@po-ui/ng-components'
+import { PoPageAction, PoNotificationService, PoTableComponent, PoTableColumn, PoModalComponent } from '@po-ui/ng-components'
 import { FormBuilder } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { environment } from "src/environments/environment"
@@ -301,7 +301,7 @@ export class DefinicaoExtracaoEditComponent implements OnInit, OnDestroy {
 
   addExtracao() { 
     if (this.extracaoForm.valid) {
-      const {  textoQuebra, nomeCampo, titulo, estrategia, texto, linha, inicio, comprimento } = this.extracaoForm.value
+      const { textoQuebra, nomeCampo, titulo, estrategia, texto, linha, inicio, comprimento } = this.extracaoForm.value
       const payload = {
         textoQuebra,
         nomeCampo,

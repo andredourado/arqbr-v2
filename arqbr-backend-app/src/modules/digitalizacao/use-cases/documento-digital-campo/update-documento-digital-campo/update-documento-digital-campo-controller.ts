@@ -5,8 +5,6 @@ import { UpdateDocumentoDigitalCampoUseCase } from './update-documento-digital-c
 class UpdateDocumentoDigitalCampoController {
   async handle(request: Request, response: Response): Promise<Response> {
     const {
-      documentoDigitalId,
-      campoDocumentoId,
       conteudo
     } = request.body
 
@@ -16,8 +14,6 @@ class UpdateDocumentoDigitalCampoController {
 
     const result = await updateDocumentoDigitalCampoUseCase.execute({
         id,
-        documentoDigitalId,
-        campoDocumentoId,
         conteudo
       })
       .then(documentoDigitalCampoResult => {

@@ -1,30 +1,27 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnDestroy, OnInit } from "@angular/core"
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core"
 import { ActivatedRoute, Router } from '@angular/router'
-import { PoDynamicFormField, PoPageAction, PoNotificationService, PoNotification, PoComboOption } from '@po-ui/ng-components'
+import { PoPageAction, PoNotificationService, PoTableComponent, PoTableColumn } from '@po-ui/ng-components'
 import { FormBuilder } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { environment } from "src/environments/environment"
 import { RestService } from "src/app/services/rest.service"
 import { DomSanitizer } from '@angular/platform-browser'
 import { v4 as uuidV4 } from 'uuid'
+import { LanguagesService } from 'src/app/services/languages.service'
 
 
 const ZOOM_STEP: number = 0.1
 const DEFAULT_ZOOM: number = 0.6
 
 interface IResponse {
-  solicitacaoFisico: any
-  statusCode: number
   data: any
   items: any
 }
 
-type QuebraType = {
+type AjusteType = {
   id?: string,
-  documento?: string,
-  paginaInicial?: string,
-  paginaFinal?: string
+  conteudo?: string
 }
 
 @Component({
@@ -33,6 +30,27 @@ type QuebraType = {
   styleUrls: ["./ajuste-manual-edit.component.scss"],
 })
 export class AjusteManualEditComponent implements OnInit, OnDestroy {
+  @ViewChild(PoTableComponent, { static: true }) table: PoTableComponent
+    columns: Array<PoTableColumn> = [
+      {
+        property: 'id',
+        visible: false
+      },
+      {
+        property: 'campo',
+        label: 'Título',
+        width: '50%'
+      },
+      {
+        property: 'conteudo',        
+        label: 'Conteúdo',
+      }
+    ]
+ 
+    public tableActions: PoPageAction[] = [
+      { label: '', action: this.editItem.bind(this), icon: 'fa-solid fa-pen' }
+    ]
+  
   file: string
   page: number = 1
   scale = DEFAULT_ZOOM
@@ -40,42 +58,39 @@ export class AjusteManualEditComponent implements OnInit, OnDestroy {
   isLoaded: boolean = false
   src: any = ''
   nomeArquivo: string
-  solicitacaoFisico: boolean = false
-  textoBotao = ''
   items: any
+  titulo: string
+  conteudo: string
+  campos: any[]
+  public id: string
   public clienteId = ''
   public isLoading = false
   public listHeight: number
-  public quebras: QuebraType[] = []
-  private quebraId: string
-
+  public ajustes: AjusteType[] = []
+  private ajusteId: string
   public readonly = false
   public result: any
   public literals: any = {}
 
+  public initialFields = []
+
   searchForm = this.formBuilder.group({
     clienteId: null,
     departamentoId: null,
-    caixa: null,
-  })
-
-  quebraForm = this.formBuilder.group({
     tipoDocumentoId: null,
-    paginaInicial: '',
-    paginaFinal: '',
   })
 
-  public tableActions: PoPageAction[] = [
-    { label: 'Visualizar',  icon: 'fa-solid fa-eye' }
-  ]
+  ajusteForm = this.formBuilder.group({
+    id: null,
+    conteudo: null
+  })
 
-  public readonly serviceApi = `${environment.baseUrl}/ajuste-manual`
+  public readonly serviceApi = `${environment.baseUrl}/ajustes-manuais`
   public documentoDigitalIdService = `${environment.baseUrl}/documentos-digitais/select`
   public campoDocumentoIdService = `${environment.baseUrl}/campos-documento/select`
   public clienteIdService = `${environment.baseUrl}/clientes/select`
   public departamentoIdService = `${environment.baseUrl}/departamentos/select`
   public tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select`
-  public caixasOptions: PoComboOption[] = []
 
   subscriptions = new Subscription()
 
@@ -89,11 +104,21 @@ export class AjusteManualEditComponent implements OnInit, OnDestroy {
     private router: Router,
     private poNotification: PoNotificationService,
     private sanitizer: DomSanitizer,
+    private languagesService: LanguagesService
 
   ) { }
 
   ngOnInit(): void {
-    // this.loadQuebraManualDocumentos()
+    this.id = this.activatedRoute.snapshot.paramMap.get("id")
+
+    this.getLiterals()
+
+    this.pageButtonsBuilder(this.getPageType(this.activatedRoute.snapshot.routeConfig.path))
+
+    if (this.id) {
+      this.tableItem()
+    }
+    this.loadPage()
   }
 
   ngOnDestroy(): void {
@@ -115,36 +140,78 @@ export class AjusteManualEditComponent implements OnInit, OnDestroy {
     }
   }
 
+  getLiterals() {
+    this.languagesService.getLiterals({ type: 'edit', module: 'digitalizacao', options: 'ajusteManual'})
+      .subscribe({
+        next: res => this.literals = res
+      })
+  }
+
+  pageButtonsBuilder(pageType: string): null {
+    if (pageType === 'view') {
+      this.readonly = true
+
+      this.pageActions.push(
+        {
+          label: this.literals.return,
+          action: this.goBack.bind(this),
+        }
+      )
+      return
+    }
+
+    this.pageActions.push(
+      {
+        label: 'Voltar',
+        action: this.goBack.bind(this),
+      }
+    )
+
+    return
+  }
+
+  editItem(event) {
+    this.ajusteForm.patchValue({
+      id: event.id,
+      conteudo: event.conteudo
+    })
+  }
+
   clienteIdChange(event: string) {
     this.departamentoIdService = `${environment.baseUrl}/departamentos/select?clienteId=${event}`
     this.tipoDocumentoIdService = `${environment.baseUrl}/tipos-documento/select?clienteId=${event}`
   }
 
-  searchCaixas() {
-    const { caixa } = this.searchForm.value
-    if (caixa && caixa != '') {
-      this.file = caixa as string
-      this.loadPage()
-    }
+  tableItem() {
+    this.subscriptions.add(
+      this.restService
+        .get(`/documentos-digitais-campos/list-by-documento/${this.id}`)
+        .subscribe({
+          next: (res: IResponse) => {
+            this.campos = res.data
+          }
+        })
+    )
   }
  
-  loadPage() {
+  loadPage () {
     const payload = {
-      file: this.file,
-      page: this.page
+      id: this.id,
+      page: this.page,
     }
 
     this.subscriptions.add(
       this.restService
-        .post("/quebras-manuais/open", payload)
+        .post("/documentos-digitais/page", payload)
         .subscribe({
           next: (res: IResponse) => {
             this.src = this.sanitizer.bypassSecurityTrustResourceUrl(res.data.image as string)
-            this.totalPages = res.data.numberPages
+            this.totalPages = res.data.totalPages
+            this.nomeArquivo = res.data.nomeArquivo
           }
         })
     )
-  } 
+  }
 
   changePage() {
     if (this.page > this.totalPages) {
@@ -199,111 +266,24 @@ export class AjusteManualEditComponent implements OnInit, OnDestroy {
     this.loadPage();
   }
 
-  addQuebra() { 
-    if (this.quebraForm.valid) {
-      const payload = {
-        id: this.quebraId ?? uuidV4(),
-        tipoDocumento: this.quebraForm.value.tipoDocumentoId,
-        paginaInicial: this.quebraForm.value.paginaInicial,
-        paginaFinal: this.quebraForm.value.paginaFinal,
-      }
+  save() {
+    const { id, conteudo } = this.ajusteForm.value
+    const campo = this.campos.find(item => item.id === id)
+    campo.conteudo = conteudo
 
-      if (this.quebraId) {
-        let quebraIndex: number
-        this.quebras.map((text, index) => {
-          if (text.id === this.quebraId) quebraIndex = index
-        })
-        this.quebras[quebraIndex] = payload
-      } else this.quebras.push(payload)
-      
-      this.quebraForm.reset()
-      this.quebraId = null
-    } else {
-        this.poNotification.warning({
-        message: "Erro ao salvar",
-        duration: environment.poNotificationDuration
-      })
-    }
-    console.log(this.quebras)
-  }
-
-  deleteQuebra() {
-    if(this.quebraId) {
-      let indexTextById: number
-      this.quebras.map((quebra, quebraIndex) => {
-        if(quebra.id === this.quebraId) indexTextById = quebraIndex
-      })
-
-      this.quebras.splice(indexTextById, 1)
-      this.quebraForm.reset()
-      this.quebraId = null
-    }
-  }
-
- 
-  save(data, willCreateAnother?: boolean) {
-    if (this.quebraForm.valid) {
-      if (this.file && this.getPageType(this.activatedRoute.snapshot.routeConfig.path) === 'edit') {
-        this.subscriptions.add(
-          this.restService
-            .put(`/quebra-manual/${this.file}`, data)
-            .subscribe({
-              next: () => {
-                this.poNotification.success({
-                  message: this.literals.saveSuccess,
-                  duration: environment.poNotificationDuration
-                })
-
-                if (willCreateAnother) {
-                  this.quebraForm.reset()
-                  this.router.navigate(["quebra-manual/new"])
-                } else {
-                  this.router.navigate(["quebra-manual"])
-                }
-              },
-              error: (error) => console.log(error),
-            })
-        )
-      } else {
-        this.subscriptions.add(
-          this.restService
-            .post("/quebra-manual", data)
-            .subscribe({
-              next: () => {
-                this.poNotification.success({
-                  message: this.literals.saveSuccess,
-                  duration: environment.poNotificationDuration
-                })
-
-                if (willCreateAnother) {
-                  this.quebraForm.reset()
-                  this.router.navigate(["quebra-manual/new"])
-                } else {
-                  this.router.navigate(["quebra-manual"])
-                }
-              },
-              error: (error) => console.log(error),
-            })
-        )
-      }
-    } else {
-      this.markAsDirty()
-      this.poNotification.warning({
-        message: this.literals.formError,
-        duration: environment.poNotificationDuration
-      })
-    }
+    this.subscriptions.add(
+      this.restService
+        .put(`/documentos-digitais-campos/${id}`, {conteudo})
+        .subscribe()
+    )
   }
 
   markAsDirty() {
-    this.searchForm.controls.clienteId.markAsDirty()
-    this.searchForm.controls.departamentoId.markAsDirty()
-    this.searchForm.controls.caixa.markAsDirty()
-    this.quebraForm.controls.tipoDocumentoId.markAsDirty()
+    this.ajusteForm.controls.conteudo.markAsDirty()
   }
 
   goBack() {
-    this.router.navigate(["ajuste-manual"])
+    this.router.navigate(["ajustes-manuais"])
   } 
 }
 
