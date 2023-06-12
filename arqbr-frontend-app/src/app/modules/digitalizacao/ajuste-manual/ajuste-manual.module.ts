@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { AjusteManualEditComponent } from 'src/app/pages/digitalizacao/ajuste-manual/ajuste-manual-edit/ajuste-manual-edit.component'
+import { AjusteManualListComponent } from 'src/app/pages/digitalizacao/ajuste-manual/ajuste-manual-list/ajuste-manual-list.component'
 import { AuthGuard } from 'src/app/services/auth.guard'
 
 const routesAjusteManual = [
   {
     path: "",
-    component: AjusteManualEditComponent,
+    component: AjusteManualListComponent,
     canActivate: [AuthGuard],
   },
   {

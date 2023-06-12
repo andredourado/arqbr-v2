@@ -1,5 +1,93 @@
-<!-- <app-custom-table
-  [pageTitle]="this.literals.title"
-  route="ajuste-manual"
-  [initialFields]="initialFields"
-> </app-custom-table> -->
+<po-page-default p-title="Ajuste Manual" [p-actions]="pageActions">
+
+  <div class="filter">
+    <div class="select-container" style="display: flex; gap: 15px;">
+      <po-select
+        [p-options]="departamentoList" 
+        class="po-lg-6 po-sm-12 po-p-0"
+        (p-change)="changeDepartamento($event)" 
+        p-label="Centro de Custo"
+        [(ngModel)]="departamento"
+      > </po-select>
+
+      <po-select
+        [p-options]="tiposDocumento" 
+        class="po-lg-6 po-sm-12 po-p-0"
+        (p-change)="changeTipoDocumento($event)" 
+        p-label="Tipo de documento"
+        [p-disabled]="tiposDocumento.length == 0 && canSeeDepartamento"
+        [(ngModel)]="tipoDocumento"
+      > </po-select>
+    </div>
+
+    <button 
+      type="button" 
+      class="fa-solid fa-xmark fa-lg button-filter"
+      (click)="clearFilter()"
+    > </button>
+    <button 
+      type="button" 
+      class="fa-solid fa-magnifying-glass fa-lg button-filter"
+      (click)="filterDocumentos(false)"
+    > </button>
+  </div>
+
+  <form [formGroup]="filterForm">
+    <div
+      style="max-width: calc(100vw - 288px); display: flex; flex-direction: row; align-items: center; padding-right: 8px; margin-bottom: 8px; gap: 10px" 
+      *ngIf="tipoDocumentoSelected != null"
+    >
+      <div style="display: flex; flex-direction: row; gap: 8px;">
+        <div 
+          style="display: flex; flex-direction: row; gap: 10px"
+          *ngFor="let campo of tipoDocumentoSelected.campos"
+        >
+          <div class="campo">
+            <div *ngIf="campo.id != null" class="texto">
+              <label [for]="campo.id" class="po-field-title">{{campo.titulo}}</label>
+              <input
+                [formControlName]="campo.id"
+                class="po-input"
+                [id]="campo.id"
+                [name]="campo.id" 
+                clean 
+                type="text"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="busca">
+          <label class="po-field-title">Busca Ampla</label>
+          <input
+            formControlName="texto"
+            class="po-input"
+            id="texto"
+            name="texto" 
+            clean 
+            type="text"
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <po-table
+    #table
+    [p-actions]="tableActions"
+    p-actions-right
+    [p-columns]="fields"
+    p-container
+    [p-height]="listHeight"
+    p-infinite-scroll
+    p-infinite-scroll-distance="90"
+    [p-items]="items"
+    [p-loading]="loading"
+    p-selectable
+    (p-show-more)="showMoreItems()"
+  > </po-table>
+
+  <div class="po-mt-2">
+    <h3>Total de Documentos: <span style="font-weight: bold;">{{ totalDocumentos }}</span></h3>
+  </div>
+</po-page-default>

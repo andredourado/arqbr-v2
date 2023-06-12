@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing"
 
-import { QuebraManualListComponent } from "./ajuste-manual-list.component"
+import { AjusteManualListComponent } from "./ajuste-manual-list.component"
 
-describe("QuebraManualListComponent", () => {
-  let component: QuebraManualListComponent
-  let fixture: ComponentFixture<QuebraManualListComponent>
+describe("AjusteManualListComponent", () => {
+  let component: AjusteManualListComponent
+  let fixture: ComponentFixture<AjusteManualListComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [QuebraManualListComponent],
+      declarations: [AjusteManualListComponent],
     }).compileComponents()
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuebraManualListComponent)
+    fixture = TestBed.createComponent(AjusteManualListComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
