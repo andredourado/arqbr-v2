@@ -1,6 +1,6 @@
-import { IStorageProvider } from "@shared/container/providers/storage-provider/i-storage-provider";
-import { HttpResponse, ok } from "@shared/helpers";
-import { inject, injectable } from "tsyringe";
+import { IStorageProvider } from "@shared/container/providers/storage-provider/i-storage-provider"
+import { HttpResponse, ok } from "@shared/helpers"
+import { inject, injectable } from "tsyringe"
 
 @injectable()
 class QuebraManualOpenDocumentoUseCase {
@@ -10,8 +10,10 @@ class QuebraManualOpenDocumentoUseCase {
   ) { }
 
   async execute(file: string, page: number): Promise<HttpResponse> {
+    const regex = /\.(png|pdf|txt|jpg)$/i
+    const nomeArquivoSemExtensao = file.replace(regex, '')
     const newPage = 'page_' + String(page).padStart(5, '0') + '.png'
-    const url = 'arquivos-pdf-scanner-pages/' + file
+    const url = 'arquivos-pdf-scanner-pages/' + nomeArquivoSemExtensao
     const image = await this.storageProvider.load(newPage, url)
     const numberPages = await this.storageProvider.numberPages(url)
 

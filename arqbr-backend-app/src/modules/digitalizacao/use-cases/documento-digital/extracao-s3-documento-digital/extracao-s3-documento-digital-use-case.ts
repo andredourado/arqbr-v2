@@ -14,7 +14,9 @@ class ExtracaoS3DocumentoDigitalUseCase {
     nomeArquivo,
     page = 1
   }: IRequest): Promise<HttpResponse> {
-    const text = await extractTextsS3(nomeArquivo, page, 'arquivos-pdf-scanner')
+    const regex = /\.(png|pdf|txt|jpg)$/i
+    const nomeArquivoSemExtensao = nomeArquivo.replace(regex, '')
+    const text = await extractTextsS3(`${nomeArquivoSemExtensao}.pdf`, page, 'arquivos-pdf-scanner')
 
     return ok(text)
   }
